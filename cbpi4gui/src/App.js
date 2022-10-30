@@ -145,6 +145,7 @@ const CraftBeerPiApp = () => {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  
 
   configapi.getone('BREWERY_NAME', (data) => {
     if (data){
@@ -171,7 +172,7 @@ const CraftBeerPiApp = () => {
       <Router>
       <CompatRouter>
         <Switch>
-          <CompatRoute path="/">
+          <Route path="/">
             <AppBar ref={navBarRef}  position="absolute" className={classes.appBar}>
               <Toolbar className={classes.toolbar}>
                 <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={classes.menuButton}>
@@ -193,12 +194,14 @@ const CraftBeerPiApp = () => {
             <Drawer open={open} onClose={() => setOpen(false)}>
               <Menu onClose={() => setOpen(false)} />
             </Drawer>
-
+            
 
           
+            
             <main className={classes.content}>
+            
               <div className={classes.appBarSpacer} />
-
+            
               <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
                 <CompatRoute exact path="/" component={Dashboard2}/> 
                 <CompatRoute exact path="/fixdash/:dashboardid" component={FixDashboard} />
@@ -232,8 +235,11 @@ const CraftBeerPiApp = () => {
                   <CompatRoute exact path="/charting" component={Charting}/>
                 </Container>
               </Container>
+            
+            
             </main>
-          </CompatRoute>
+
+          </Route>
           
         </Switch>
         </CompatRouter>
