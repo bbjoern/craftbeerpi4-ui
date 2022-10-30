@@ -169,7 +169,7 @@ const CraftBeerPiApp = () => {
       <CssBaseline />
       <Router>
         <Switch>
-          <PrivateRoute path="/">
+          <Route path="/">
             <AppBar ref={navBarRef}  position="absolute" className={classes.appBar}>
               <Toolbar className={classes.toolbar}>
                 <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={classes.menuButton}>
@@ -191,7 +191,7 @@ const CraftBeerPiApp = () => {
             <Drawer open={open} onClose={() => setOpen(false)}>
               <Menu onClose={() => setOpen(false)} />
             </Drawer>
-
+          
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
 
@@ -293,7 +293,8 @@ const CraftBeerPiApp = () => {
                 </Container>
               </Container>
             </main>
-          </PrivateRoute>
+          </Route>
+          
         </Switch>
         
       </Router>
