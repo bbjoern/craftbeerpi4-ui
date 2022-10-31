@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { CBPiContext } from "../data";
 import { sensorapi } from "../data/sensorapi";
 import DeleteDialog from "../util/DeleteDialog";
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 
 const SensorTable = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { state, actions } = useContext(CBPiContext);
 
   const remove_callback = (id) => {
@@ -84,7 +85,7 @@ const SensorTable = () => {
                     aria-label="delete"
                     size="small"
                     onClick={() => {
-                      history.push("/sensor/" + row.id);
+                      navigate("/sensor/" + row.id);
                     }}
                   >
                     <VisibilityIcon />

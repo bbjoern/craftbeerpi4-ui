@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useCBPi } from "../data";
 import ActorSelect from "../util/ActorSelect";
 import FermenterLogicSelect from "../util/FermenterLogicSelect";
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FermenterForm = () => {
   
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -83,9 +84,9 @@ const FermenterForm = () => {
     };
 
     if (id) {
-      actions.update_fermenter(id, data, () => history.push("/hardware"));
+      actions.update_fermenter(id, data, () => navigate("/hardware"));
     } else {
-      actions.add_fermenter(data, () => history.push("/hardware"));
+      actions.add_fermenter(data, () => navigate("/hardware"));
     }
   };
 
@@ -132,7 +133,7 @@ const FermenterForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/hardware");
+            navigate("/hardware");
           }}
         >
           Fermenter
@@ -180,7 +181,7 @@ const FermenterForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/hardware");
+              navigate("/hardware");
             }}
             className={classes.button}
           >

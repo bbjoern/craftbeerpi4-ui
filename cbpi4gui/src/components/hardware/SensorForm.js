@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useCBPi } from "../data";
 import PropsEdit from "../util/PropsEdit";
 import SensorTypeSelect from "../util/SensorTypeSelect";
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SensorForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -74,9 +75,9 @@ const SensorForm = () => {
     const data = { name, type, props };
 
     if (id) {
-      actions.update_sensor(id, data, () => history.push("/hardware"));
+      actions.update_sensor(id, data, () => navigate("/hardware"));
     } else {
-      actions.add_sensor(data, () => history.push("/hardware"));
+      actions.add_sensor(data, () => navigate("/hardware"));
     }
   };
 
@@ -101,7 +102,7 @@ const SensorForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/hardware");
+            navigate("/hardware");
           }}
         >
           Sensor
@@ -126,7 +127,7 @@ const SensorForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/hardware");
+              navigate("/hardware");
             }}
             className={classes.button}
           >

@@ -12,17 +12,14 @@ import TimelineIcon from '@material-ui/icons/Timeline';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ComputerIcon from '@material-ui/icons/Computer';
 import React from 'react';
-import {
-
-    useHistory
-} from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 
 const MenuItem = ({ onClose, label, path = "/", children }) => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const goTo = (key) => {
-        history.push(key);
+        navigate(key);
         onClose()
     }
 

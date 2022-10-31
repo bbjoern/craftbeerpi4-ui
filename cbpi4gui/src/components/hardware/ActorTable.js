@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom-v5-compat";
 import { CBPiContext } from '../data';
 import { actorapi } from '../data/actorapi';
 import ActorButton from '../util/ActorButton';
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
 
 const ActorTable = () => {
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
     const { state, actions } = useContext(CBPiContext);
 
     
@@ -60,7 +61,7 @@ const ActorTable = () => {
                                 <TableCell align="right" className="hidden-xs"><ActorSwitch id={row.id}/></TableCell>
                                 <TableCell align="right" className="hidden-xs">
                                     <DeleteDialog title="Delete Actor" message="Do you want to delete the Actor" id={row.id} callback={remove_callback} />
-                                    <IconButton aria-label="delete" size="small" onClick={() => { history.push("/actor/"+row.id) }} >
+                                    <IconButton aria-label="delete" size="small" onClick={() => { navigate("/actor/"+row.id) }} >
                                       <VisibilityIcon />
                                     </IconButton>
                                 </TableCell>

@@ -6,6 +6,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SaveIcon from "@material-ui/icons/Save";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import Header from "../util/Header";
 import { BasicData } from "./BasicData";
@@ -20,7 +21,7 @@ const FermenterRecipeEditor = () => {
   const { id } = useParams();
   const [open, setOpen] = useState(false)
   const [openferment, setOpenferment] = useState(false)
-  const history = useHistory();
+  const navigate = useNavigate();
   const [steps, setSteps] = useState([]);
   const [basicData, setBasicData] = useState({ name: "", author: "", desc: "" });
   
@@ -37,17 +38,17 @@ const FermenterRecipeEditor = () => {
 
   const save = () => fermenterrecipeapi.save(id, { basic: basicData, steps });
   const addStep = () => setSteps([...steps, { name: "", props: {}, type: "" }]);
-  const back = () => history.push("/fermenterrecipes");
+  const back = () => navigate("/fermenterrecipes");
 
   //--> Fermenter / fermenterid needs to be selcted in form
  // const brew = () => {
  //   fermenterrecipeapi.brew(id)
- //   history.push("/fermenterprofile")
+ //   navigate("/fermenterprofile")
  // }
 
   const remove = () => {
     fermenterrecipeapi.remove(id);
-    history.goBack();
+    navigate(-1);
   };
 
   const clone = () => {
@@ -88,7 +89,7 @@ const FermenterRecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterprofile");
+            navigate("/fermenterprofile");
           }}
         >
           Active Recipe
@@ -96,7 +97,7 @@ const FermenterRecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterrecipes");
+            navigate("/fermenterrecipes");
           }}
         >
           Fermenter Recipe Book

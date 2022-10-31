@@ -6,6 +6,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SaveIcon from "@material-ui/icons/Save";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { recipeapi } from "../data/recipeapi";
 import Header from "../util/Header";
 import { BasicData } from "./BasicData";
@@ -18,7 +19,7 @@ import { CBPiPaddleIcon } from "../util/icons/CBPiSensorIcon";
 const RecipeEditor = () => {
   const { id } = useParams();
   const [open, setOpen] = useState(false)
-  const history = useHistory();
+  const navigate = useNavigate();
   const [steps, setSteps] = useState([]);
   const [basicData, setBasicData] = useState({ name: "", author: "", desc: "" });
   
@@ -35,15 +36,15 @@ const RecipeEditor = () => {
 
   const save = () => recipeapi.save(id, { basic: basicData, steps });
   const addStep = () => setSteps([...steps, { name: "", props: {}, type: "" }]);
-  const back = () => history.push("/recipes");
+  const back = () => navigate("/recipes");
   const brew = () => {
     recipeapi.brew(id)
-    history.push("/mashprofile")
+    navigate("/mashprofile")
   }
 
   const remove = () => {
     recipeapi.remove(id);
-    history.goBack();
+    navigate(-1);
   };
 
   const clone = () => {
@@ -78,7 +79,7 @@ const RecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/mashprofile");
+            navigate("/mashprofile");
           }}
         >
           Active Recipe
@@ -86,7 +87,7 @@ const RecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/recipes");
+            navigate("/recipes");
           }}
         >
           Recipe Book

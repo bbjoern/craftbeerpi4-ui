@@ -194,12 +194,12 @@ const CraftBeerPiApp = () => {
             <Drawer open={open} onClose={() => setOpen(false)}>
               <Menu onClose={() => setOpen(false)} />
             </Drawer>
-            
+             
 
           
-            
-            <main className={classes.content}>
-            
+           { 
+            //<main className={classes.content}>
+           }
               <div className={classes.appBarSpacer} />
             
               <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
@@ -236,9 +236,9 @@ const CraftBeerPiApp = () => {
                 </Container>
               </Container>
             
-            
-            </main>
-
+          {  
+           // </main>
+          }
           </Route>
           
         </Switch>

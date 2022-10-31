@@ -1,17 +1,18 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core"
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 
 
 export const NewRecipeDialog = ({open, setOpen}) => {
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const [name, setName] = useState("")
 
     const create = () => {
         fermenterrecipeapi.create(name, (id)=> {
-            history.push("/fermenterrecipe/" + id);
+            navigate("/fermenterrecipe/" + id);
           })
     }
 

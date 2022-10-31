@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
 import SearchIcon from "@material-ui/icons/Search";
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const FermenterRecipes = () => {
   const [totalList, setTotalList] = useState([]);
   const [list, setList] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false)
   const [filter, setFilter] = useState("");
   const classes = useStyles();
@@ -54,7 +55,7 @@ const FermenterRecipes = () => {
   
 
   const openRecipe = (file) => {
-    history.push("/fermenterrecipe/" + file);
+    navigate("/fermenterrecipe/" + file);
   };
 
   const createRecipe = () => {
@@ -100,7 +101,7 @@ const FermenterRecipes = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterprofile");
+            navigate("/fermenterprofile");
           }}
         >
           Active Recipe

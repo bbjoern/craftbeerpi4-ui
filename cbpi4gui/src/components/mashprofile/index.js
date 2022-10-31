@@ -13,6 +13,7 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { default as React, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
 import SaveDialog from "../util/SaveDialog";
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const MashProfile = () => {
   const classes = useStyles();
   const { state } = useCBPi();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const MashProfile = () => {
             variant="outlined"
             color="primary"
             onClick={() => {
-              history.push("/recipes");
+              navigate("/recipes");
             }} startIcon={<MenuBookIcon />}
           >
             Please select a Recipe
@@ -96,7 +97,7 @@ const MashProfile = () => {
           <IconButton
             variant="contained"
             onClick={() => {
-              history.push("/recipes");
+              navigate("/recipes");
             }}
           >
             <MenuBookIcon />
@@ -112,7 +113,7 @@ const MashProfile = () => {
             <Header title="Profile">
               <div style={{ display: "flex" }}>
                 <MashControl />
-                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => history.push("/step")}>
+                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => navigate("/step")}>
                   ADD
                 </Button>
               </div>
@@ -156,7 +157,7 @@ const MashProfile = () => {
                       <TableCell align="right" className="hidden-xs">
                         <DeleteDialog title="Delete Step" message="Do you want to delete the step" id={row.id} callback={remove_callback} />
                         
-                        <IconButton aria-label="add" size="small" onClick={() => history.push("/step/" + row.id)}>
+                        <IconButton aria-label="add" size="small" onClick={() => navigate("/step/" + row.id)}>
                           <VisibilityIcon />
                         </IconButton>                        
                       </TableCell>

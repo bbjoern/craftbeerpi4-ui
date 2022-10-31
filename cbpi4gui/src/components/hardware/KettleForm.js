@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useCBPi } from "../data";
 import ActorSelect from "../util/ActorSelect";
 import LogicSelect from "../util/LogicSelect";
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const KettleForm = () => {
   
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -73,9 +74,9 @@ const KettleForm = () => {
     };
 
     if (id) {
-      actions.update_kettle(id, data, () => history.push("/hardware"));
+      actions.update_kettle(id, data, () => navigate("/hardware"));
     } else {
-      actions.add_kettle(data, () => history.push("/hardware"));
+      actions.add_kettle(data, () => navigate("/hardware"));
     }
   };
 
@@ -117,7 +118,7 @@ const KettleForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/hardware");
+            navigate("/hardware");
           }}
         >
           Kettle
@@ -150,7 +151,7 @@ const KettleForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/hardware");
+              navigate("/hardware");
             }}
             className={classes.button}
           >

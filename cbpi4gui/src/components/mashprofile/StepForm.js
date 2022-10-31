@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useAlert } from "../alert/AlertProvider";
 import { CBPiContext, useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StepForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const alert = useAlert();
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -88,12 +89,12 @@ const StepForm = () => {
     if (id) {
       stepapi.save(id, data, (data) => {
         
-        history.push("/mashprofile");
+        navigate("/mashprofile");
       });
     } else {
       stepapi.add(data, (data) => {
         
-        history.push("/mashprofile");
+        navigate("/mashprofile");
       });
     }
   };
@@ -130,7 +131,7 @@ const StepForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/mashprofile");
+            navigate("/mashprofile");
           }}
         >
           Mash Profile
@@ -155,7 +156,7 @@ const StepForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/mashprofile");
+              navigate("/mashprofile");
             }}
             className={classes.button}
           >

@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useAlert } from "../alert/AlertProvider";
 import { CBPiContext, useCBPi } from "../data";
 import { fermenterapi } from "../data/fermenterapi";
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FermenterStepForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const alert = useAlert();
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -91,11 +92,11 @@ const FermenterStepForm = () => {
       fermenterapi.updatestep(fermenterid, id, data, (data) => {
         //console.log("Test");
          });
-         history.push("/fermenterprofile/"+fermenterid);
+         navigate("/fermenterprofile/"+fermenterid);
     } else {
       fermenterapi.addstep(fermenterid, data, (data) => {
         
-        history.push("/fermenterprofile/"+fermenterid);
+        navigate("/fermenterprofile/"+fermenterid);
       });
     }
   };
@@ -133,7 +134,7 @@ const FermenterStepForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterprofile/"+fermenterid);
+            navigate("/fermenterprofile/"+fermenterid);
           }}
         >
           Fermenter Profile
@@ -158,7 +159,7 @@ const FermenterStepForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/fermenterprofile/"+fermenterid);
+              navigate("/fermenterprofile/"+fermenterid);
             }}
             className={classes.button}
           >

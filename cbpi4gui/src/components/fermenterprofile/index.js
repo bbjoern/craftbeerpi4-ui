@@ -13,6 +13,7 @@ import MenuBookIcon from "@material-ui/icons/MenuBook";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { default as React, useEffect, useState } from "react";
 import { useHistory , useParams} from "react-router-dom";
+import { useNavigate } from "react-router-dom-v5-compat";
 import { useCBPi } from "../data";
 import { fermenterapi } from "../data/fermenterapi"; 
 import FermenterDeleteDialog from "../util/FermenterDeleteDialog";  
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const FermenterProfile = () => {
   const classes = useStyles();
   const { state } = useCBPi();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [brewname, setBrewName] = useState("");
   const { fermenterid } = useParams();
@@ -68,7 +69,7 @@ const FermenterProfile = () => {
     if (e.target.value) {
     fermenterapi.getsteps(e.target.value, (data) => {
     setData(data.steps)
-    history.push("/fermenterprofile/"+e.target.value)});
+    navigate("/fermenterprofile/"+e.target.value)});
     };
   };
 
@@ -93,7 +94,7 @@ const FermenterProfile = () => {
         <IconButton
             variant="contained"
             onClick={() => {
-              history.push("/fermenterrecipes");
+              navigate("/fermenterrecipes");
             }}
           >
             <MenuBookIcon />
@@ -134,7 +135,7 @@ const FermenterProfile = () => {
           <IconButton
             variant="contained"
             onClick={() => {
-              history.push("/fermenterrecipes");
+              navigate("/fermenterrecipes");
             }}
           >
             <MenuBookIcon />
@@ -150,7 +151,7 @@ const FermenterProfile = () => {
             <Header title="Profile">
               <div style={{ display: "flex" }}>
                 <FermenterControl fermenterid={fermenterid} />
-                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => history.push("/fermenterstep/"+fermenterid)}>
+                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => navigate("/fermenterstep/"+fermenterid)}>
                   ADD
                 </Button>
               </div>
@@ -194,7 +195,7 @@ const FermenterProfile = () => {
                       <TableCell align="right" className="hidden-xs">
                         <FermenterDeleteDialog title="Delete Step" message="Do you want to delete the step" fermenterid={fermenterid} id={row.id} callback={remove_callback} />
                         
-                        <IconButton aria-label="add" size="small" onClick={() => history.push("/fermenterstep/" + row.id + "/" + fermenterid)}>
+                        <IconButton aria-label="add" size="small" onClick={() => navigate("/fermenterstep/" + row.id + "/" + fermenterid)}>
                           <VisibilityIcon />
                         </IconButton>                        
                       </TableCell>
