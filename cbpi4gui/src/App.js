@@ -165,14 +165,11 @@ const CraftBeerPiApp = () => {
     updateNavBarHeight();
     return () => window.removeEventListener("resize", updateNavBarHeight);
   }, []);
-  
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Router>
-      <CompatRouter>
-        <Switch>
-          <Route path="/">
+
+  const MainMenu = () => {
+    
+    return (
+      <>
             <AppBar ref={navBarRef}  position="absolute" className={classes.appBar}>
               <Toolbar className={classes.toolbar}>
                 <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={classes.menuButton}>
@@ -194,18 +191,26 @@ const CraftBeerPiApp = () => {
             <Drawer open={open} onClose={() => setOpen(false)}>
               <Menu onClose={() => setOpen(false)} />
             </Drawer>
-             
+      </>
+    )
+    
+    }
+  
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <Router>
+      <CompatRouter>
+        <Switch>
+          <Route path="/" >
+          <MainMenu />     
 
-          
-           { 
-            //<main className={classes.content}>
-           }
               <div className={classes.appBarSpacer} />
             
               <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
-                <CompatRoute exact path="/" component={Dashboard2}/> 
+                <CompatRoute path="/" component={Dashboard2}/> 
                 <CompatRoute exact path="/fixdash/:dashboardid" component={FixDashboard} />
-                <Container maxWidth="lg">
+
                   <CompatRoute path="/plugins" component={Plugins} />
                   <CompatRoute path="/about" component={About} />
                   <CompatRoute path="/upload" component={Upload} />
@@ -222,7 +227,7 @@ const CraftBeerPiApp = () => {
                   <CompatRoute exact path="/settings" component={Settings}/>
                   <CompatRoute exact path="/mashprofile" component={MashProfile}/>
                   <CompatRoute exact path="/fermenterprofile" component={FermenterProfile}/>
-                  <CompatRoute exact path="/fermenterprofile/:fermenterid" component={FermenterProfile}/>
+                  <CompatRoute exact path="/fermenterprofile/:fermenterid" component={FermenterProfile}/>         
                   <CompatRoute exact path="/recipes" component={Recipes}/>
                   <CompatRoute exact path="/fermenterrecipes" component={FermenterRecipes}/>
                   <CompatRoute exact path="/recipe/:id" component={RecipeEditor}/>
@@ -233,12 +238,10 @@ const CraftBeerPiApp = () => {
                   <CompatRoute exact path="/step/:id" component={StepForm}/>
                   <CompatRoute exact path="/fermenterstep/:id/:fermenterid" component={FermenterStepForm}/>
                   <CompatRoute exact path="/charting" component={Charting}/>
-                </Container>
+
               </Container>
             
-          {  
-           // </main>
-          }
+
           </Route>
           
         </Switch>
