@@ -2,7 +2,7 @@ import { IconButton } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import SaveIcon from "@material-ui/icons/Save";
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "../../App.css";
 import { useAlert } from "../alert/AlertProvider";
@@ -36,10 +36,14 @@ export const DashboardProvider = ({ children }) => {
   const [dashboardX, setDashboardX] = useState(1);
   const [maxdashboard, setMaxdashboard] = useState(4);
   const [initialdashboard, setInitialdashboard] = useState(0) 
-
+  const [slowPipeAnimation, setSlowPipeAnimation] = useState( true );
+  
   useEffect(() => {
     dashboardapi.getcurrentdashboard((data) => {
       setInitialdashboard(data);
+    });
+    dashboardapi.getpipeanimation((data) => {
+      setSlowPipeAnimation( (data === 'Yes') ? true : false);
     });
   }, []);
   
@@ -166,13 +170,13 @@ export const DashboardProvider = ({ children }) => {
     }
 
     if(direction === "leftExpression"){
-        console.log("update expression left : " + data)
-        console.log(temp_pathes[index])
+        //console.log("update expression left : " + data)
+        //console.log(temp_pathes[index])
         temp_pathes[index].condition.leftExpression = data;
     }
     if(direction === "rightExpression"){
-      console.log("update expression right : " + data)
-      console.log(temp_pathes[index])
+      //console.log("update expression right : " + data)
+      //console.log(temp_pathes[index])
       temp_pathes[index].condition.rightExpression = data;
     }
 
@@ -182,15 +186,15 @@ export const DashboardProvider = ({ children }) => {
   const update_path_condition = (id, dataLeft, dataRight, direction) => {
     const index = pathes.findIndex((e) => e.id === id);
     const temp_pathes = [...pathes];
-    console.log("data temp_pathes : ")
-    console.log(temp_pathes)
+    //console.log("data temp_pathes : ")
+    //console.log(temp_pathes)
     if(direction === "left"){
-      console.log("update condition : " + id + ", direction : " + direction + ", data : " + dataLeft)
+      //console.log("update condition : " + id + ", direction : " + direction + ", data : " + dataLeft)
       temp_pathes[index].condition.left = dataLeft;
     }
     if(direction === "right"){
-      console.log("update condition : " + id + ", direction : " + direction + ", data : " + dataRight)  
-      console.log("!!!! DEBUG CONDITION !!!! " + temp_pathes[index].condition)
+      //console.log("update condition : " + id + ", direction : " + direction + ", data : " + dataRight)  
+      //console.log("!!!! DEBUG CONDITION !!!! " + temp_pathes[index].condition)
       temp_pathes[index].condition.right = dataRight;
     }
     setPathes([...temp_pathes]);
@@ -235,8 +239,8 @@ export const DashboardProvider = ({ children }) => {
     const conditionInitData = {left: [], right: [], leftExpression:"", rightExpression:"" };
     //setPathes([...pathes, { id, path: data, instance: <Path id={id} coordinates={data} condition={conditionInitData} max_x={width} max_y={height} /> }]);
     setPathes([...pathes, { id, path: data, condition: conditionInitData, instance: <Path id={id} coordinates={data} condition={conditionInitData} max_x={width} max_y={height} /> }]);
-    console.log("DEBUG PAHT ADD : ")
-    console.log(pathes);
+    //console.log("DEBUG PAHT ADD : ")
+    //console.log(pathes);
   };
 
   const get_data = (id) => {
@@ -250,8 +254,8 @@ export const DashboardProvider = ({ children }) => {
   const save = (DashboardID = 1) => {
     let e = elements2.map((value) => ({ id: value.id, name: value.name, x: value.x, y: value.y, type: value.type, props: { ...value.props } }));
     let p = pathes.map((value) => ({ id: value.id, coordinates: value.coordinates, condition: value.condition }));
-    console.log("DEBUG CONDITION SAVED")
-    console.log(p);
+    //console.log("DEBUG CONDITION SAVED")
+    //console.log(p);
     dashboardapi.save(DashboardID, { elements: e, pathes: p }, () => {
       
     });
@@ -272,7 +276,8 @@ export const DashboardProvider = ({ children }) => {
       selectedPath,
       maxdashboard,
       dashboardX,
-      initialdashboard
+      initialdashboard,
+      slowPipeAnimation	  
     },
     actions: {
       setCurrent,
@@ -297,6 +302,7 @@ export const DashboardProvider = ({ children }) => {
       setSelectedPath,
       setDashboardX,
       save,
+	  setSlowPipeAnimation
     },
   };
 
@@ -365,28 +371,62 @@ export const Dashboard = ({ width, height , fixdash}) => {
       }
 
   };
+  
+  const refresh_dashboard = () => {
+    actions.setDraggable(!state.draggable);
+//	if (state.draggable) {
+//       window.location.reload();
+//	}
+  };
+  
+  // get bounding box of svg
+  const useBBox = () => {
+      const svgRef = useRef();
+      const [svgWidth, setSvgWidth] = useState(undefined);
 
+      const getBoundingBox = useCallback(() => {
+      // if svg not mounted yet, exit
+        if (!svgRef.current)
+              return;
+          // get bbox of content in svg
+          const box = svgRef.current.getBBox();
+          //console.log(box);
+          // set width for svg
+          setSvgWidth(box.width + box.x + 20);
+      }, []);
 
+      useLayoutEffect(() => {
+          getBoundingBox();
+      });
+
+      return [svgRef, svgWidth];
+  };
+    
+  const [svgRef, svgWidth] = useBBox();
+    
+  
   return (
     <div>
       
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         {state.draggable ? <DashboardWidgetList /> : null}
-        <div
-          onPointerDown={() => {
+        <div className={state.draggable ? "divgrid" : "divnogrid"}
+          onPointerDown={(e) => {
+			if ((e.clientY ) >= (e.target.getBoundingClientRect().top + e.target.clientHeight)) return;  // on horizontal scroll bar
             actions.setSelected((current) => null);
             actions.setSelectedPath((current) => null);
           }}
           ref={parentRef}
           style={{
             position: "relative",
-            backgroundColor: "#272227",
             width,
             height,
+            overflowX: 'auto',
+			overflowY: 'hidden'
           }}
         >
           {state.elements2.map((value, index) => value.instance)}
-          <svg style={{ position: "absolute", pointerEvents: "none" }} width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+          <svg ref={svgRef} style={{ position: "absolute", minWidth: svgWidth, pointerEvents: "none" }} width={width} height={height}>
             {state.pathes.map((value) => value.instance)}
           </svg>
           {!fixdash ?
