@@ -202,15 +202,11 @@ const CraftBeerPiApp = () => {
       <Router>
       <CompatRouter>
         <Switch>
-          <Route path="/" >
-          <MainMenu />     
-
-              <div className={classes.appBarSpacer} />
-            
+          <Route path="/"  >
+          <MainMenu />
+              <div className={classes.appBarSpacer} />          
               <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
-                <CompatRoute path="/" component={Dashboard2}/> 
-                <CompatRoute exact path="/fixdash/:dashboardid" component={FixDashboard} />
-
+                  <CompatRoute path="fixdash/:dashboardid" component={FixDashboard} />
                   <CompatRoute path="/plugins" component={Plugins} />
                   <CompatRoute path="/about" component={About} />
                   <CompatRoute path="/upload" component={Upload} />
@@ -224,21 +220,21 @@ const CraftBeerPiApp = () => {
                   <CompatRoute exact path="/actor" component={ActorForm}/>
                   <CompatRoute exact path="/sensor/:id" component={SensorForm}/>
                   <CompatRoute exact path="/sensor" component={SensorForm}/>
-                  <CompatRoute exact path="/settings" component={Settings}/>
-                  <CompatRoute exact path="/mashprofile" component={MashProfile}/>
-                  <CompatRoute exact path="/fermenterprofile" component={FermenterProfile}/>
-                  <CompatRoute exact path="/fermenterprofile/:fermenterid" component={FermenterProfile}/>         
-                  <CompatRoute exact path="/recipes" component={Recipes}/>
-                  <CompatRoute exact path="/fermenterrecipes" component={FermenterRecipes}/>
-                  <CompatRoute exact path="/recipe/:id" component={RecipeEditor}/>
-                  <CompatRoute exact path="/fermenterrecipe/:id" component={FermenterRecipeEditor}/>
-                  <CompatRoute exact path="/step" component={StepForm}/>
-                  <compatRoute exact path="/fermenterstep" component={FermenterStepForm}/>
-                  <CompatRoute exact path="/fermenterstep/:fermenterid" component={FermenterStepForm}/>
+                  <CompatRoute path="/settings" component={Settings}/>
+                  <CompatRoute path="/mashprofile" component={MashProfile}/>
+                  <CompatRoute exact path="/fermenterprofile/:fermenterid" component={FermenterProfile}/>  
+                  <CompatRoute exact path="/fermenterprofile" component={FermenterProfile}/>       
+                  <CompatRoute path="/recipes" component={Recipes}/>
+                  <CompatRoute path="/fermenterrecipes" component={FermenterRecipes}/>
+                  <CompatRoute path="/recipe/:id" component={RecipeEditor}/>
+                  <CompatRoute path="/fermenterrecipe/:id" component={FermenterRecipeEditor}/>
                   <CompatRoute exact path="/step/:id" component={StepForm}/>
+                  <CompatRoute exact path="/step" component={StepForm}/>
                   <CompatRoute exact path="/fermenterstep/:id/:fermenterid" component={FermenterStepForm}/>
-                  <CompatRoute exact path="/charting" component={Charting}/>
-
+                  <CompatRoute exact path="/fermenterstep/:fermenterid" component={FermenterStepForm}/>
+                  <CompatRoute exact path="/fermenterstep" component={FermenterStepForm}/>
+                  <CompatRoute path="/charting" component={Charting}/>
+                  <CompatRoute path="/" component={Dashboard2}/> 
               </Container>
             
 
