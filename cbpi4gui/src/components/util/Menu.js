@@ -13,13 +13,16 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ComputerIcon from '@material-ui/icons/Computer';
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate, useLocation} from "react-router-dom-v5-compat";
 
 const MenuItem = ({ onClose, label, path = "/", children }) => {
     const navigate = useNavigate();
+    const location = useLocation();
+
 
     const goTo = (key) => {
         console.log(key);
+        console.log(location.state);
         navigate(key);
         onClose()
     }

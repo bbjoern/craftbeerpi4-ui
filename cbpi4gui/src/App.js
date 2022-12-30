@@ -10,8 +10,8 @@ import { makeStyles } from "@material-ui/core/styles";
 //import MenuIcon from "@material-ui/icons/Menu";
 //import NotificationsIcon from "@material-ui/icons/Notifications";
 import React, {useRef, useLayoutEffect, useState} from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { CompatRouter, CompatRoute} from "react-router-dom-v5-compat";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { CompatRouter, CompatRoute, Routes, Route} from "react-router-dom-v5-compat";
 import "./App.css";
 import About from "./components/about";
 //import { configapi } from "./components/data/configapi";
@@ -161,46 +161,39 @@ const CraftBeerPiApp = () => {
       <CssBaseline />
       <Router>
       <CompatRouter>
-        <Switch>
-          <Route path="/" >
-              <MainMenu />
-            {/* <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>*/}
-                  <CompatRoute exact path="/" component={Dashboard2}/> 
-                  <CompatRoute exact path="/fixdash/:dashboardid" component={FixDashboard} />
-                  <CompatRoute path="/plugins" component={Plugins} />
-                  <CompatRoute path="/about" component={About} />
-                  <CompatRoute path="/upload" component={Upload} />
-                  <CompatRoute path="/system" component={CBPiSystem}/>
-                  <CompatRoute path="/hardware" component={Hardware}/>
-                  <CompatRoute exact path="/kettle/:id" component={KettleForm}/>
-                  <CompatRoute exact path="/kettle" component={KettleForm}/>
-                  <CompatRoute exact path="/fermenter/:id" component={FermenterForm}/>
-                  <CompatRoute exact path="/fermenter" component={FermenterForm}/>
-                  <CompatRoute exact path="/actor/:id" component={ActorForm}/>
-                  <CompatRoute exact path="/actor" component={ActorForm}/>
-                  <CompatRoute exact path="/sensor/:id" component={SensorForm}/>
-                  <CompatRoute exact path="/sensor" component={SensorForm}/>
-                  <CompatRoute path="/settings" component={Settings}/>
-                  <CompatRoute path="/mashprofile" component={MashProfile}/>
-                  <CompatRoute exact path="/fermenterprofile/:fermenterid" component={FermenterProfile}/>  
-                  <CompatRoute exact path="/fermenterprofile" component={FermenterProfile}/>       
-                  <CompatRoute path="/recipes" component={Recipes}/>
-                  <CompatRoute path="/fermenterrecipes" component={FermenterRecipes}/>
-                  <CompatRoute path="/recipe/:id" component={RecipeEditor}/>
-                  <CompatRoute path="/fermenterrecipe/:id" component={FermenterRecipeEditor}/>
-                  <CompatRoute exact path="/step/:id" component={StepForm}/>
-                  <CompatRoute exact path="/step" component={StepForm}/>
-                  <CompatRoute exact path="/fermenterstep/:id/:fermenterid" component={FermenterStepForm}/>
-                  <CompatRoute exact path="/fermenterstep/:fermenterid" component={FermenterStepForm}/>
-                  <CompatRoute exact path="/fermenterstep" component={FermenterStepForm}/>
-                  <CompatRoute path="/charting" component={Charting}/>
-                  
-              {/*/Container>*/}
-            
-
+        <Routes>
+          <Route path="/" element={<MainMenu />} >
+                  <Route path="/" element={<Dashboard2 />} />
+                  <Route path="fixdash/:dashboardid" element={<FixDashboard />} />
+                  <Route path="plugins" element={<Plugins />} />
+                  <Route path="about" element={<About />}/>
+                  <Route path="upload" element={<Upload />}/>
+                  <Route path="system" element={<CBPiSystem />}/>
+                  <Route path="hardware" element={<Hardware />}/>
+                  <Route path="kettle/:id" element={<KettleForm />}/>
+                  <Route path="kettle" element={<KettleForm />}/>
+                  <Route path="fermenter/:id" element={<FermenterForm />}/>
+                  <Route path="fermenter" element={<FermenterForm />}/>
+                  <Route path="actor/:id" element={<ActorForm />}/>
+                  <Route path="actor" element={<ActorForm />}/>
+                  <Route path="sensor/:id" element={<SensorForm />}/>
+                  <Route path="sensor" element={<SensorForm />}/>
+                  <Route path="settings" element={<Settings />}/>
+                  <Route path="mashprofile" element={<MashProfile />}/>
+                  <Route path="fermenterprofile/:fermenterid" element={<FermenterProfile />}/>
+                  <Route path="fermenterprofile" element={<FermenterProfile />}/>
+                  <Route path="recipes" element={<Recipes />}/>
+                  <Route path="fermenterrecipes" element={<FermenterRecipes />}/>
+                  <Route path="recipe/:id" element={<RecipeEditor />}/>
+                  <Route path="fermenterrecipe/:id" element={<FermenterRecipeEditor />}/>
+                  <Route path="step/:id" element={<StepForm />}/>
+                  <Route path="step" element={<StepForm />}/>
+                  <Route path="fermenterstep/:id/:fermenterid" element={<FermenterStepForm />}/>
+                  <Route path="fermenterstep/:fermenterid" element={<FermenterStepForm />}/>
+                  <Route path="fermenterstep" element={<FermenterStepForm />}/>
+                  <Route path="charting" element={<Charting />}/>
           </Route>
-          
-        </Switch>
+        </Routes>
         </CompatRouter>
       </Router>
     </div>
