@@ -1,4 +1,4 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
+import { Container, Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -126,6 +126,7 @@ const FermenterForm = () => {
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Typography variant="h6" gutterBottom>
         Fermenter Config
       </Typography>
@@ -199,6 +200,7 @@ const FermenterForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

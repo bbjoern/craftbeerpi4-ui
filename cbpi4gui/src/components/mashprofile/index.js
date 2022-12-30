@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton, makeStyles } from "@material-ui/core";
+import { Button, Container, Divider, IconButton, makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -60,6 +60,7 @@ const MashProfile = () => {
 
   if (!state.mashBasic.name) {
     return (
+      <Container style={{ marginTop: 64 }}>
       <Grid container spacing={3}>
         <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
           <Button
@@ -73,11 +74,14 @@ const MashProfile = () => {
           </Button>
         </Grid>
       </Grid>
+      </Container>
+
     );
   }
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
@@ -169,6 +173,7 @@ const MashProfile = () => {
           </Paper>
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

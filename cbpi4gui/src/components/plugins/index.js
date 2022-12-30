@@ -102,12 +102,13 @@ const Plugins = () => {
   
 
   return (
-    <Container maxWidth="lg" >
+    <Container style={{ marginTop: 64 }}>
       <Grid
         container
         direction="row"
         justify="space-between"
         alignItems="center"
+        style={{ marginTop: 10 }}
       >
         <Grid item>
           <Typography variant="h4" gutterBottom>

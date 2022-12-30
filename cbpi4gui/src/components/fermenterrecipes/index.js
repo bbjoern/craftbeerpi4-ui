@@ -1,4 +1,4 @@
-import { Breadcrumbs, Divider, makeStyles, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@material-ui/core";
+import { Breadcrumbs, Container, Divider, makeStyles, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
@@ -68,6 +68,7 @@ const FermenterRecipes = () => {
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
@@ -120,6 +121,7 @@ const FermenterRecipes = () => {
           </ListItem>
         ))}
       </List>
+      </Container>
     </>
   );
 };

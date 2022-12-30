@@ -1,4 +1,4 @@
-import { Breadcrumbs, Divider, Grid, IconButton, Link, Typography } from "@material-ui/core";
+import { Breadcrumbs, Container, Divider, Grid, IconButton, Link, Typography } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -53,6 +53,7 @@ const RecipeEditor = () => {
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Header title="Basic Data">
         <IconButton variant="contained" onClick={back}>
           <ArrowBackIcon />
@@ -107,6 +108,7 @@ const RecipeEditor = () => {
           <MashStepList items={steps} setItems={setSteps} />
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

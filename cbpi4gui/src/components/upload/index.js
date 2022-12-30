@@ -1,4 +1,4 @@
-import { Button, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Button, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Container } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
@@ -138,6 +138,7 @@ const Upload = () => {
   };
 
   return (
+    <Container style={{ marginTop: 64 }}>
     <div>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
@@ -270,6 +271,7 @@ const Upload = () => {
 
 
     </div>
+    </Container>
   );
 };
 

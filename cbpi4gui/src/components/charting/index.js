@@ -1,4 +1,4 @@
-import { Divider, Grid, IconButton, Typography } from "@material-ui/core";
+import { Container, Divider, Grid, IconButton, Typography } from "@material-ui/core";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
@@ -55,6 +55,7 @@ const clear_logs = () => {
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
@@ -135,6 +136,7 @@ const clear_logs = () => {
           />
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

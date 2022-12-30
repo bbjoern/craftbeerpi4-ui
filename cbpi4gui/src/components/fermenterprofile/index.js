@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton, makeStyles } from "@material-ui/core";
+import { Button, Container, Divider, IconButton, makeStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -77,6 +77,7 @@ const FermenterProfile = () => {
   if (!fermenterid) { // Mashbasic finden und anpassen (vermutlich //data/index.js)
     return (
       <>
+      <Container style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
@@ -103,12 +104,14 @@ const FermenterProfile = () => {
         </Grid>
 
         </Grid>
+        </Container>
         </>
     );
   }
  {
   return (
     <>
+      <Container style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
@@ -207,6 +210,7 @@ const FermenterProfile = () => {
           </Paper>
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

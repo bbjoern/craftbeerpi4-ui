@@ -19,6 +19,7 @@ const MenuItem = ({ onClose, label, path = "/", children }) => {
     const navigate = useNavigate();
 
     const goTo = (key) => {
+        console.log(key);
         navigate(key);
         onClose()
     }

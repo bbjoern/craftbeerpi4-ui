@@ -1,4 +1,4 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
+import { Breadcrumbs, Container, Divider, Link, Paper, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -95,6 +95,7 @@ const SensorForm = () => {
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Typography variant="h6" gutterBottom>
         Sensor Config
       </Typography>
@@ -145,6 +146,7 @@ const SensorForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

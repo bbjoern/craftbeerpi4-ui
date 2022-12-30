@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton, makeStyles, Paper } from "@material-ui/core";
+import { Button, Container, Divider, IconButton, makeStyles, Paper } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
@@ -25,6 +25,7 @@ export default function Hardware() {
 
   return (
     <>
+    <Container style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
@@ -99,6 +100,7 @@ export default function Hardware() {
           </Paper>
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 }

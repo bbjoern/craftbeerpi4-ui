@@ -1,4 +1,4 @@
-import { IconButton } from "@material-ui/core";
+import { Container, IconButton } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import SaveIcon from "@material-ui/icons/Save";
@@ -406,6 +406,7 @@ export const Dashboard = ({ width, height , fixdash}) => {
     
   
   return (
+    <Container maxWidth={false}>
     <div>
       
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
@@ -452,6 +453,7 @@ export const Dashboard = ({ width, height , fixdash}) => {
         {state.draggable ? <DashboardLayer /> : null}
       </div>
     </div>
+    </Container>
   );
 };
 

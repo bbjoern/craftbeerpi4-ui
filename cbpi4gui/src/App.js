@@ -1,20 +1,20 @@
 import { Container } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import Badge from "@material-ui/core/Badge";
+//import AppBar from "@material-ui/core/AppBar";
+//import Badge from "@material-ui/core/Badge";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import IconButton from "@material-ui/core/IconButton";
+//import Drawer from "@material-ui/core/Drawer";
+//import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+//import Toolbar from "@material-ui/core/Toolbar";
+//import Typography from "@material-ui/core/Typography";
+//import MenuIcon from "@material-ui/icons/Menu";
+//import NotificationsIcon from "@material-ui/icons/Notifications";
 import React, {useRef, useLayoutEffect, useState} from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { CompatRouter, CompatRoute} from "react-router-dom-v5-compat";
 import "./App.css";
 import About from "./components/about";
-import { configapi } from "./components/data/configapi";
+//import { configapi } from "./components/data/configapi";
 import Upload from "./components/upload";
 import CBPiSystem from "./components/system";
 import {Dashboard2 , FixDashboard} from "./components/dashboard/Dashboard";
@@ -27,9 +27,9 @@ import Plugins from "./components/plugins";
 import MashProfile from "./components/mashprofile";
 import FermenterProfile from "./components/fermenterprofile";
 import Settings from "./components/settings";
-import Menu from "./components/util/Menu";
+//import Menu from "./components/util/Menu";
 //import PrivateRoute from "./components/util/PrivateRoute";
-import logo from "./images/cbpi_no_border.png";
+//import logo from "./images/cbpi_no_border.png";
 import StepForm from "./components/mashprofile/StepForm";
 import FermenterStepForm from "./components/fermenterprofile/FermenterStepForm";
 import Recipes from "./components/recipes";
@@ -37,7 +37,7 @@ import FermenterRecipes from "./components/fermenterrecipes";
 import RecipeEditor from "./components/recipes/RecipeEditor";
 import FermenterRecipeEditor from "./components/fermenterrecipes/FermenterRecipeEditor";
 import { Charting } from "./components/charting";
-
+import MainMenu from "./components/MainMenu";
 
 const drawerWidth = 240;
 
@@ -140,19 +140,8 @@ const CraftBeerPiApp = () => {
   const classes = useStyles();
   const navBarRef = useRef();
   const [appBarHeight, setAppBarHeight] = useState(64);
-  const [open, setOpen] = useState(false);
-  const [brewery,setBrewery] = useState("CraftBeerPi 4.0");
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  
-
-  configapi.getone('BREWERY_NAME', (data) => {
-    if (data){
-      setBrewery(data);
-       }
-      });
-  
+    
+ 
   useLayoutEffect(() => {
     const updateNavBarHeight = () => {
       if (!navBarRef.current)
@@ -166,35 +155,6 @@ const CraftBeerPiApp = () => {
     return () => window.removeEventListener("resize", updateNavBarHeight);
   }, []);
 
-  const MainMenu = () => {
-    
-    return (
-      <>
-            <AppBar ref={navBarRef}  position="absolute" className={classes.appBar}>
-              <Toolbar className={classes.toolbar}>
-                <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={classes.menuButton}>
-                  <MenuIcon />
-                </IconButton>
-                <div className={classes.title} style={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
-                  <img width={30} src={logo} style={{ marginRight: 10 }} />
-                  <Typography component="h1" variant="h4" color="inherit" noWrap>
-                    {brewery}
-                  </Typography>
-                </div>
-                <IconButton color="inherit">
-                  <Badge badgeContent={0} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-              </Toolbar>
-            </AppBar>
-            <Drawer open={open} onClose={() => setOpen(false)}>
-              <Menu onClose={() => setOpen(false)} />
-            </Drawer>
-      </>
-    )
-    
-    }
   
   return (
     <div className={classes.root}>
@@ -202,11 +162,11 @@ const CraftBeerPiApp = () => {
       <Router>
       <CompatRouter>
         <Switch>
-          <Route path="/"  >
-          <MainMenu />
-              <div className={classes.appBarSpacer} />          
-              <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
-                  <CompatRoute path="fixdash/:dashboardid" component={FixDashboard} />
+          <Route path="/" >
+              <MainMenu />
+            {/* <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>*/}
+                  <CompatRoute exact path="/" component={Dashboard2}/> 
+                  <CompatRoute exact path="/fixdash/:dashboardid" component={FixDashboard} />
                   <CompatRoute path="/plugins" component={Plugins} />
                   <CompatRoute path="/about" component={About} />
                   <CompatRoute path="/upload" component={Upload} />
@@ -234,8 +194,8 @@ const CraftBeerPiApp = () => {
                   <CompatRoute exact path="/fermenterstep/:fermenterid" component={FermenterStepForm}/>
                   <CompatRoute exact path="/fermenterstep" component={FermenterStepForm}/>
                   <CompatRoute path="/charting" component={Charting}/>
-                  <CompatRoute path="/" component={Dashboard2}/> 
-              </Container>
+                  
+              {/*/Container>*/}
             
 
           </Route>
