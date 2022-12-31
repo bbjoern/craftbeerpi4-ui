@@ -5,8 +5,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SaveIcon from "@material-ui/icons/Save";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import Header from "../util/Header";
 import { BasicData } from "./BasicData";

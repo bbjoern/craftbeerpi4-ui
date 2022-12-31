@@ -406,7 +406,7 @@ export const Dashboard = ({ width, height , fixdash}) => {
     
   
   return (
-    <Container maxWidth={false}>
+    
     <div>
       
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
@@ -453,7 +453,6 @@ export const Dashboard = ({ width, height , fixdash}) => {
         {state.draggable ? <DashboardLayer /> : null}
       </div>
     </div>
-    </Container>
   );
 };
 

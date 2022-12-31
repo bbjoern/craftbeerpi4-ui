@@ -12,8 +12,8 @@ import AddIcon from "@material-ui/icons/Add";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { default as React, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate } from "react-router-dom";
+
 import { useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
 import SaveDialog from "../util/SaveDialog";
@@ -81,7 +81,7 @@ const MashProfile = () => {
 
   return (
     <>
-    <Container style={{ marginTop: 64 }}>
+    <Container width={false} style={{ marginTop: 64 }}>
       <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>

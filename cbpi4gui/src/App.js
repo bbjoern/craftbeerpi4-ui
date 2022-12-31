@@ -10,8 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 //import MenuIcon from "@material-ui/icons/Menu";
 //import NotificationsIcon from "@material-ui/icons/Notifications";
 import React, {useRef, useLayoutEffect, useState} from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import { CompatRouter, CompatRoute, Routes, Route} from "react-router-dom-v5-compat";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import About from "./components/about";
 //import { configapi } from "./components/data/configapi";
@@ -141,7 +140,7 @@ const CraftBeerPiApp = () => {
   const navBarRef = useRef();
   const [appBarHeight, setAppBarHeight] = useState(64);
     
- 
+  
   useLayoutEffect(() => {
     const updateNavBarHeight = () => {
       if (!navBarRef.current)
@@ -160,11 +159,10 @@ const CraftBeerPiApp = () => {
     <div className={classes.root}>
       <CssBaseline />
       <Router>
-      <CompatRouter>
         <Routes>
-          <Route path="/" element={<MainMenu />} >
-                  <Route path="/" element={<Dashboard2 />} />
-                  <Route path="fixdash/:dashboardid" element={<FixDashboard />} />
+          <Route path="/" element={<MainMenu /> } >
+                  <Route path="/" element={<Dashboard2 />}/>   
+                  <Route path="fixdash/:dashboardid" element={<FixDashboard />}/>
                   <Route path="plugins" element={<Plugins />} />
                   <Route path="about" element={<About />}/>
                   <Route path="upload" element={<Upload />}/>
@@ -191,10 +189,9 @@ const CraftBeerPiApp = () => {
                   <Route path="fermenterstep/:id/:fermenterid" element={<FermenterStepForm />}/>
                   <Route path="fermenterstep/:fermenterid" element={<FermenterStepForm />}/>
                   <Route path="fermenterstep" element={<FermenterStepForm />}/>
-                  <Route path="charting" element={<Charting />}/>
+                  <Route path="charting" element={<Charting />}/>              
           </Route>
         </Routes>
-        </CompatRouter>
       </Router>
     </div>
   );

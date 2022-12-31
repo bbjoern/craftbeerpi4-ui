@@ -1,7 +1,7 @@
 # CraftBeerPi UI 
 
 After installation the plugin UI is available under to following url
-http://localhost:8080/cbpi_ui/static/index.html#
+http://localhost:8080#
 
 # Build Web App
 

@@ -3,8 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate } from "react-router-dom";
+
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
 import SearchIcon from "@material-ui/icons/Search";

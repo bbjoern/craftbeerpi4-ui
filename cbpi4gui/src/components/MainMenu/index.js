@@ -14,6 +14,7 @@ import { configapi } from "../data/configapi";
 import Menu from "../util/Menu";
 //import PrivateRoute from "./components/util/PrivateRoute";
 import logo from "../../images/cbpi_no_border.png";
+import { Outlet } from "react-router-dom";
 
 
 
@@ -168,6 +169,7 @@ return (
             <Drawer open={open} onClose={() => setOpen(false)}>
               <Menu onClose={() => setOpen(false)} />
             </Drawer>
+            <Outlet />
             <div className={classes.appBarSpacer} />         
             </div>
       </>

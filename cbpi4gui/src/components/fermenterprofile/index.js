@@ -12,8 +12,8 @@ import AddIcon from "@material-ui/icons/Add";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { default as React, useEffect, useState } from "react";
-import { useHistory , useParams} from "react-router-dom";
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate , useParams} from "react-router-dom";
+
 import { useCBPi } from "../data";
 import { fermenterapi } from "../data/fermenterapi"; 
 import FermenterDeleteDialog from "../util/FermenterDeleteDialog";  

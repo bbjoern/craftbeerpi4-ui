@@ -1,7 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core"
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate } from "react-router-dom";
+
 import { recipeapi } from "../data/recipeapi";
 
 

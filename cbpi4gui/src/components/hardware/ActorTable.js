@@ -10,8 +10,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useNavigate } from "react-router-dom-v5-compat";
+import { useNavigate } from 'react-router-dom';
+
 import { CBPiContext } from '../data';
 import { actorapi } from '../data/actorapi';
 import ActorButton from '../util/ActorButton';

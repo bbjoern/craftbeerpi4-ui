@@ -12,8 +12,7 @@ import TimelineIcon from '@material-ui/icons/Timeline';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ComputerIcon from '@material-ui/icons/Computer';
 import React from 'react';
-import { useHistory } from "react-router-dom";
-import { useNavigate, useLocation} from "react-router-dom-v5-compat";
+import { useNavigate, useLocation} from "react-router-dom";
 
 const MenuItem = ({ onClose, label, path = "/", children }) => {
     const navigate = useNavigate();
@@ -22,7 +21,7 @@ const MenuItem = ({ onClose, label, path = "/", children }) => {
 
     const goTo = (key) => {
         console.log(key);
-        console.log(location.state);
+        console.log(location);
         navigate(key);
         onClose()
     }
@@ -41,7 +40,7 @@ const MenuItem = ({ onClose, label, path = "/", children }) => {
 
 const Menu = ({onClose}) => {
     return <List>
-        <MenuItem onClose={onClose} label="Dashboard" ><DashboardIcon /></MenuItem>
+        <MenuItem onClose={onClose} label="Dashboard"><DashboardIcon /></MenuItem>
         <MenuItem onClose={onClose} label="Mash Profile" path="/mashprofile"><BallotIcon /></MenuItem>
         <MenuItem onClose={onClose} label="Fermenter Profile" path="/fermenterprofile"><BallotIcon /></MenuItem>
         <MenuItem onClose={onClose} label="Hardware" path="/hardware"><DeveloperBoardIcon /></MenuItem>
