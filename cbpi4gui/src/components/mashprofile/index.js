@@ -82,7 +82,7 @@ const MashProfile = () => {
   return (
     <>
     <Container width={false} style={{ marginTop: 64 }}>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             {state.mashBasic.name}{" "}

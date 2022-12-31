@@ -50,7 +50,7 @@ const FermenterStepLine = ({ item, items, setItems, onSelectType, handleInput, h
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-        <Grid container direction="row" justify="space-between" alignItems="center">
+        <Grid container direction="row" justifyContent="space-between" alignItems="center">
           <Grid item>
             {!item.type ? <ReportProblemIcon color="secondary" fontSize="small"/>  : ""}
             <Typography display="inline">{item.name || "NO NAME"}</Typography> -{" "}

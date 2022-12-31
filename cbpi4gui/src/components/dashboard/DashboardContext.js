@@ -306,7 +306,11 @@ export const DashboardProvider = ({ children }) => {
     },
   };
 
-  return <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>;
+  return (
+  <>
+  <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>
+  </>
+  );
 };
 
 export const Dashboard = ({ width, height , fixdash}) => {
@@ -327,16 +331,16 @@ export const Dashboard = ({ width, height , fixdash}) => {
             {item.label}
           </MenuItem>
         ))},
-            theme={(theme) => ({
-        ...theme,
-        borderRadius: 0,
-        colors: {
-        ...theme.colors,
-          text: 'black',
-          primary25: 'black',
-          primary: 'black',
-        },
-      })}
+        theme={(theme) => ({
+    ...theme,
+    borderRadius: 0,
+    colors: {
+    ...theme.colors,
+      text: 'black',
+      primary25: 'black',
+      primary: 'black',
+    },
+  })}
       </Select>
     </>
   );
@@ -406,7 +410,8 @@ export const Dashboard = ({ width, height , fixdash}) => {
     
   
   return (
-    
+    <>
+    <Container maxWidth={false} style={{ marginTop: 64 }}>
     <div>
       
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
@@ -453,6 +458,8 @@ export const Dashboard = ({ width, height , fixdash}) => {
         {state.draggable ? <DashboardLayer /> : null}
       </div>
     </div>
+    </Container>
+    </>
   );
 };
 

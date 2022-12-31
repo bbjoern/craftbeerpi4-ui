@@ -106,7 +106,7 @@ const Plugins = () => {
       <Grid
         container
         direction="row"
-        justify="space-between"
+        justifyContent="space-between"
         alignItems="center"
         style={{ marginTop: 10 }}
       >
