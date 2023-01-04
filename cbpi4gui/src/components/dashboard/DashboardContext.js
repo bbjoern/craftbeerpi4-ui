@@ -411,9 +411,8 @@ export const Dashboard = ({ width, height , fixdash}) => {
   
   return (
     <>
-    <Container maxWidth={false} style={{ marginTop: 64 }}>
+    <Container position="absolute" maxWidth={false} style={{ marginTop: 64 }}>
     <div>
-      
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         {state.draggable ? <DashboardWidgetList /> : null}
         <div className={state.draggable ? "divgrid" : "divnogrid"}
@@ -430,11 +429,14 @@ export const Dashboard = ({ width, height , fixdash}) => {
             overflowX: 'auto',
 			overflowY: 'hidden'
           }}
-        >
+        >    
+        {console.log(state.elements2)}   
           {state.elements2.map((value, index) => value.instance)}
           <svg ref={svgRef} style={{ position: "absolute", minWidth: svgWidth, pointerEvents: "none" }} width={width} height={height}>
             {state.pathes.map((value) => value.instance)}
           </svg>
+          "___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"
+          
           {!fixdash ?
           <div style={{ position: "absolute", top: 0, right: 0 }}>
           {state.draggable ? state.dashboardX : <SelectBox options={dashboardlist} value={state.dashboardX} onChange={DashBoardChange}/>} 
@@ -454,9 +456,11 @@ export const Dashboard = ({ width, height , fixdash}) => {
             <IconButton onClick={() => actions.setDraggable(!state.draggable)}>{state.draggable ? <LockOpenIcon /> : <LockIcon />}</IconButton>
           </div>
           : ""}
+          
         </div>
         {state.draggable ? <DashboardLayer /> : null}
-      </div>
+        
+          </div>
     </div>
     </Container>
     </>
