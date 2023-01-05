@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 //import MenuIcon from "@material-ui/icons/Menu";
 //import NotificationsIcon from "@material-ui/icons/Notifications";
 import React, {useRef, useLayoutEffect, useState} from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import "./App.css";
 import About from "./components/about";
 //import { configapi } from "./components/data/configapi";
@@ -155,12 +155,25 @@ const CraftBeerPiApp = () => {
   }, []);
 
   
+  const AppLayout = () => (
+    <>
+      <MainMenu />
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer}/>
+        <Container  maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
+          <Outlet />
+        </Container> 
+        </main>
+    </>
+  );
+
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Router>
         <Routes>
-          <Route path="/" element={<MainMenu /> } >
+          <Route path="/" element={<AppLayout /> } >
                   <Route path="/" element={<Dashboard2 />}/>   
                   <Route path="fixdash/:dashboardid" element={<FixDashboard />}/>
                   <Route path="plugins" element={<Plugins />} />

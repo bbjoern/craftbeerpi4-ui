@@ -124,7 +124,7 @@ const StepForm = () => {
 
   return (
     <>
-    <Container style={{ marginTop: 64 }}>
+     <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Step Config
       </Typography>

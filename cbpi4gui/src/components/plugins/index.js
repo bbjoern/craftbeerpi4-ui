@@ -102,7 +102,7 @@ const Plugins = () => {
   
 
   return (
-    <Container style={{ marginTop: 64 }}>
+    <Container maxWidth="lg" >
       <Grid
         container
         direction="row"

@@ -101,7 +101,7 @@ const ActorForm = () => {
 
   return (
     <>
-    <Container style={{ marginTop: 64 }}>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Actor Config
       </Typography>

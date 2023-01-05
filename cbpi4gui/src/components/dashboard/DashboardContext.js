@@ -411,7 +411,6 @@ export const Dashboard = ({ width, height , fixdash}) => {
   
   return (
     <>
-    <Container position="absolute" maxWidth={false} style={{ marginTop: 64 }}>
     <div>
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         {state.draggable ? <DashboardWidgetList /> : null}
@@ -435,7 +434,6 @@ export const Dashboard = ({ width, height , fixdash}) => {
           <svg ref={svgRef} style={{ position: "absolute", minWidth: svgWidth, pointerEvents: "none" }} width={width} height={height}>
             {state.pathes.map((value) => value.instance)}
           </svg>
-          "___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"
           
           {!fixdash ?
           <div style={{ position: "absolute", top: 0, right: 0 }}>
@@ -462,7 +460,6 @@ export const Dashboard = ({ width, height , fixdash}) => {
         
           </div>
     </div>
-    </Container>
     </>
   );
 };

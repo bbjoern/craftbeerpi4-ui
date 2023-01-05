@@ -126,7 +126,7 @@ const FermenterForm = () => {
 
   return (
     <>
-    <Container style={{ marginTop: 64 }}>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Fermenter Config
       </Typography>

@@ -53,7 +53,7 @@ const RecipeEditor = () => {
 
   return (
     <>
-    <Container style={{ marginTop: 64 }}>
+  <Container maxWidth="lg">
       <Header title="Basic Data">
         <IconButton variant="contained" onClick={back}>
           <ArrowBackIcon />

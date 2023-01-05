@@ -138,7 +138,7 @@ const Upload = () => {
   };
 
   return (
-    <Container style={{ marginTop: 64 }}>
+    <Container maxWidth="lg">
     <div>
       <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>

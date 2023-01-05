@@ -169,7 +169,7 @@ return (
             <Drawer open={open} onClose={() => setOpen(false)}>
               <Menu onClose={() => setOpen(false)} />
             </Drawer>
-            <Outlet />
+            
             <div className={classes.appBarSpacer} />         
             </div>
       </>
