@@ -429,7 +429,7 @@ export const Dashboard = ({ width, height , fixdash}) => {
 			overflowY: 'hidden'
           }}
         >    
-        {console.log(state.elements2)}   
+        {/*console.log(state.elements2)*/}   
           {state.elements2.map((value, index) => value.instance)}
           <svg ref={svgRef} style={{ position: "absolute", minWidth: svgWidth, pointerEvents: "none" }} width={width} height={height}>
             {state.pathes.map((value) => value.instance)}
