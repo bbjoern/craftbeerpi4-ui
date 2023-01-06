@@ -20,6 +20,7 @@ const theme = createTheme({
     primary: {
       main: "#00FF00"
     },
+    
     secondary: pink,
   },
   typography: {
@@ -38,7 +39,8 @@ const theme = createTheme({
       }
     },
     MuiPaper: {
-            styleOverrides: { root: { backgroundImage: 'unset' } },
+            styleOverrides: { root: { backgroundImage: 'unset',
+                              backgroundColor: '#272227' } },
            },
     MuiTooltip: {
       tooltip: {
