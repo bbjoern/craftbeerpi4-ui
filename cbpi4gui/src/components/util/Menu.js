@@ -20,8 +20,6 @@ const MenuItem = ({ onClose, label, path = "/", children }) => {
 
 
     const goTo = (key) => {
-        console.log(key);
-        console.log(location);
         navigate(key);
         onClose()
     }
