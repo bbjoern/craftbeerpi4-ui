@@ -16,7 +16,7 @@ console.log("%cCreated with ♥️ by Manuel Fritsch", "color:#8efa00; backgroun
 
 const theme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: {
       main: "#00FF00"
     },
