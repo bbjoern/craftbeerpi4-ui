@@ -1,6 +1,5 @@
 import AppBar from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
-//import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import { makeStyles } from "@mui/styles";
@@ -9,12 +8,11 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import React, {useRef, useLayoutEffect, useState} from "react";
-//import "../../App.css";
+import "../../App.css";
 import { configapi } from "../data/configapi";
 import Menu from "../util/Menu";
-//import PrivateRoute from "./components/util/PrivateRoute";
 import logo from "../../images/cbpi_no_border.png";
-import { Outlet } from "react-router-dom";
+
 
 
 
@@ -36,9 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
+    background: "#00FF00",
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+
     }),
   },
   appBarShift: {
@@ -148,7 +148,7 @@ const MainMenu = () => {
 return (
       <>
       <div>
-            <AppBar ref={navBarRef}  position="absolute" className={classes.appBar}>
+            <AppBar enableColorOnDark ref={navBarRef}  position="absolute" className={classes.appBar}>
               <Toolbar className={classes.toolbar}>
                 <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={classes.menuButton}>
                   <MenuIcon />

@@ -27,7 +27,7 @@ const theme = createTheme({
       'Advent Pro',
     ].join(','),
   },
-  overrides: {
+  components: {
     MuiTooltip: {
       tooltip: {
         fontSize: '1em',
