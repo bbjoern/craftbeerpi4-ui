@@ -1,9 +1,10 @@
-import { Breadcrumbs, Divider, makeStyles, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@material-ui/core";
+import { Breadcrumbs, Container, Divider, makeStyles, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { recipeapi } from "../data/recipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
 import SearchIcon from "@material-ui/icons/Search";
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const Recipes = () => {
   const [totalList, setTotalList] = useState([]);
   const [list, setList] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false)
   const [filter, setFilter] = useState("");
   const classes = useStyles();
@@ -54,7 +55,7 @@ const Recipes = () => {
   
 
   const openRecipe = (file) => {
-    history.push("/recipe/" + file);
+    navigate("/recipe/" + file);
   };
 
   const createRecipe = () => {
@@ -67,7 +68,8 @@ const Recipes = () => {
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Recipes
@@ -100,7 +102,7 @@ const Recipes = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/mashprofile");
+            navigate("/mashprofile");
           }}
         >
           Active Recipe
@@ -119,6 +121,7 @@ const Recipes = () => {
           </ListItem>
         ))}
       </List>
+      </Container>
     </>
   );
 };

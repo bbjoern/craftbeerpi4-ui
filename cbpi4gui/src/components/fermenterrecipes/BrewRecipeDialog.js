@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core"
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import FermenterSelect from "../util/FermenterSelect";
 import { Typography } from "@material-ui/core";
@@ -8,14 +9,14 @@ import { Typography } from "@material-ui/core";
 
 export const BrewRecipeDialog = ({id, name, open, setOpen}) => {
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const [fermenterid, setFermenterID] = useState([])
 
     const brew = () => {
       console.log(id)
       fermenterrecipeapi.brew(fermenterid, id, name);
       setOpen(false)
-      history.push("/fermenterprofile/"+ fermenterid);
+      navigate("/fermenterprofile/"+ fermenterid);
     }
     const cancel = () => {
         setOpen(false)

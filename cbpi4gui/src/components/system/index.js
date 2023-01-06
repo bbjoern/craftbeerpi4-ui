@@ -1,4 +1,4 @@
-import { Button, IconButton, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Button, Container, IconButton, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
@@ -102,8 +102,9 @@ const CBPiSystem = () => {
   };
 
   return (
+    <Container maxWidth="lg">
     <div>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             System Settings 
@@ -226,7 +227,7 @@ const CBPiSystem = () => {
         </Table>
       </TableContainer>
 
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Dashboard functions 
@@ -265,7 +266,7 @@ const CBPiSystem = () => {
         </Table>
       </TableContainer>      
 
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             System Information
@@ -351,6 +352,7 @@ const CBPiSystem = () => {
       </TableContainer>
 
     </div>
+    </Container>
   );
 };
 

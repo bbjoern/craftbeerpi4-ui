@@ -1,10 +1,11 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
+import { Container, Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useCBPi } from "../data";
 import ActorTypeSelect from "../util/ActorTypeSelect";
 import PropsEdit from "../util/PropsEdit";
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ActorForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -79,9 +80,9 @@ const ActorForm = () => {
     };
 
     if (id) {
-      actions.update_actor(id, data, () => history.push("/hardware"));
+      actions.update_actor(id, data, () => navigate("/hardware"));
     } else {
-      actions.add_actor(data, () => history.push("/hardware"));
+      actions.add_actor(data, () => navigate("/hardware"));
     }
   };
 
@@ -100,6 +101,7 @@ const ActorForm = () => {
 
   return (
     <>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Actor Config
       </Typography>
@@ -107,7 +109,7 @@ const ActorForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/hardware");
+            navigate("/hardware");
           }}
         >
           Actor
@@ -132,7 +134,7 @@ const ActorForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/hardware");
+              navigate("/hardware");
             }}
             className={classes.button}
           >
@@ -150,6 +152,7 @@ const ActorForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

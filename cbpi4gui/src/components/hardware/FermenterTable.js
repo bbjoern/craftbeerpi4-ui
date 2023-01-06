@@ -9,7 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { CBPiContext, useCBPi } from '../data';
 import { fermenterapi } from '../data/fermenterapi';
 import ActorValue from '../util/ActorValue';
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 
 const FermenterTable = () => {
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
     const { state, actions } = useCBPi()
 
     const remove_callback = (id) => {
@@ -60,7 +61,7 @@ const FermenterTable = () => {
                                 <TableCell align="right" className="hidden-xs">{row.target_temp}</TableCell>
                                 <TableCell align="right" className="hidden-xs">
                                     <DeleteDialog title="Delete Fermenter" message="Do you want to delete" id={row.id} callback={remove_callback} />
-                                    <IconButton aria-label="delete" size="small" onClick={() => { history.push("/fermenter/"+row.id) }} >
+                                    <IconButton aria-label="delete" size="small" onClick={() => { navigate("/fermenter/"+row.id) }} >
                                       <VisibilityIcon />
                                     </IconButton>
                                 </TableCell>

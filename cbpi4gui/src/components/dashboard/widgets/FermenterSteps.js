@@ -24,7 +24,7 @@ import PropsEdit from "../../util/PropsEdit";
 import SensorName from "../../util/SensorName";
 import { DashboardContext, useDraggable, useModel } from "../DashboardContext";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
@@ -259,7 +259,7 @@ export const FermenterSteps = ({ id }) => {
   const model = useModel(id);
   const { state } = useCBPi();
   const [profile, setProfile] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const draggable = useDraggable()
   const [fermenterid, setFermenterID] = useState(model.props?.fermenter);
   const [brewname, setBrewName] = useState("");
@@ -296,7 +296,7 @@ export const FermenterSteps = ({ id }) => {
           variant="outlined"
           color="primary"
           onClick={() => {
-            history.push("/fermenterrecipes");
+            navigate("/fermenterrecipes");
           }}
           startIcon={<MenuBookIcon />}
         >

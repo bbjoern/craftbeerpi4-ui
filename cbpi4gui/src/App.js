@@ -1,19 +1,19 @@
 import { Container } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import Badge from "@material-ui/core/Badge";
+//import AppBar from "@material-ui/core/AppBar";
+//import Badge from "@material-ui/core/Badge";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import IconButton from "@material-ui/core/IconButton";
+//import Drawer from "@material-ui/core/Drawer";
+//import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+//import Toolbar from "@material-ui/core/Toolbar";
+//import Typography from "@material-ui/core/Typography";
+//import MenuIcon from "@material-ui/icons/Menu";
+//import NotificationsIcon from "@material-ui/icons/Notifications";
 import React, {useRef, useLayoutEffect, useState} from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import "./App.css";
 import About from "./components/about";
-import { configapi } from "./components/data/configapi";
+//import { configapi } from "./components/data/configapi";
 import Upload from "./components/upload";
 import CBPiSystem from "./components/system";
 import {Dashboard2 , FixDashboard} from "./components/dashboard/Dashboard";
@@ -26,9 +26,9 @@ import Plugins from "./components/plugins";
 import MashProfile from "./components/mashprofile";
 import FermenterProfile from "./components/fermenterprofile";
 import Settings from "./components/settings";
-import Menu from "./components/util/Menu";
-import PrivateRoute from "./components/util/PrivateRoute";
-import logo from "./images/cbpi_no_border.png";
+//import Menu from "./components/util/Menu";
+//import PrivateRoute from "./components/util/PrivateRoute";
+//import logo from "./images/cbpi_no_border.png";
 import StepForm from "./components/mashprofile/StepForm";
 import FermenterStepForm from "./components/fermenterprofile/FermenterStepForm";
 import Recipes from "./components/recipes";
@@ -36,7 +36,7 @@ import FermenterRecipes from "./components/fermenterrecipes";
 import RecipeEditor from "./components/recipes/RecipeEditor";
 import FermenterRecipeEditor from "./components/fermenterrecipes/FermenterRecipeEditor";
 import { Charting } from "./components/charting";
-
+import MainMenu from "./components/MainMenu";
 
 const drawerWidth = 240;
 
@@ -139,17 +139,7 @@ const CraftBeerPiApp = () => {
   const classes = useStyles();
   const navBarRef = useRef();
   const [appBarHeight, setAppBarHeight] = useState(64);
-  const [open, setOpen] = useState(false);
-  const [brewery,setBrewery] = useState("CraftBeerPi 4.0");
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  configapi.getone('BREWERY_NAME', (data) => {
-    if (data){
-      setBrewery(data);
-       }
-      });
+    
   
   useLayoutEffect(() => {
     const updateNavBarHeight = () => {
@@ -163,139 +153,58 @@ const CraftBeerPiApp = () => {
     updateNavBarHeight();
     return () => window.removeEventListener("resize", updateNavBarHeight);
   }, []);
+
   
+  const AppLayout = () => (
+    <>
+      <MainMenu />
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer}/>
+        <Container  maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
+          <Outlet />
+        </Container> 
+        </main>
+    </>
+  );
+
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <Router>
-        <Switch>
-          <PrivateRoute path="/">
-            <AppBar ref={navBarRef}  position="absolute" className={classes.appBar}>
-              <Toolbar className={classes.toolbar}>
-                <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} className={classes.menuButton}>
-                  <MenuIcon />
-                </IconButton>
-                <div className={classes.title} style={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
-                  <img width={30} src={logo} style={{ marginRight: 10 }} />
-                  <Typography component="h1" variant="h4" color="inherit" noWrap>
-                    {brewery}
-                  </Typography>
-                </div>
-                <IconButton color="inherit">
-                  <Badge badgeContent={0} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton>
-              </Toolbar>
-            </AppBar>
-            <Drawer open={open} onClose={() => setOpen(false)}>
-              <Menu onClose={() => setOpen(false)} />
-            </Drawer>
-
-            <main className={classes.content}>
-              <div className={classes.appBarSpacer} />
-
-              <Container maxWidth={false} className={classes.container} style={{ top: appBarHeight }}>
-                <Route exact path="/">
-                  <Dashboard2 />
-                </Route>
-
-                <Route exact path="/fixdash/:dashboardid">
-                  <FixDashboard />
-                </Route>
-
-                <Container maxWidth="lg">
-                  <Route path="/plugins">
-                    <Plugins />
-                  </Route>
-                  <Route path="/about">
-                    <About />
-                  </Route>
-                  <Route path="/upload">
-                    <Upload />
-                  </Route>
-                  <Route path="/system">
-                    <CBPiSystem />
-                  </Route>
-                  <Route path="/hardware">
-                    <Hardware />
-                  </Route>
-                  <Route exact path="/kettle/:id">
-                    <KettleForm />
-                  </Route>
-
-                  <Route exact path="/kettle">
-                    <KettleForm />
-                  </Route>
-
-                  <Route exact path="/fermenter/:id">
-                    <FermenterForm />
-                  </Route>
-
-                  <Route exact path="/fermenter">
-                    <FermenterForm />
-                  </Route>
-
-                  <Route exact path="/actor/:id">
-                    <ActorForm />
-                  </Route>
-                  <Route exact path="/actor">
-                    <ActorForm />
-                  </Route>
-                  <Route exact path="/sensor/:id">
-                    <SensorForm />
-                  </Route>
-                  <Route exact path="/sensor">
-                    <SensorForm />
-                  </Route>
-                  <Route exact path="/settings">
-                    <Settings />
-                  </Route>
-                  <Route exact path="/mashprofile">
-                    <MashProfile/>
-                  </Route>
-                  <Route exact path="/fermenterprofile">
-                    <FermenterProfile/>
-                  </Route>
-                  <Route exact path="/fermenterprofile/:fermenterid">
-                    <FermenterProfile/>
-                  </Route>
-                  <Route exact path="/recipes">
-                    <Recipes/>
-                  </Route>
-                  <Route exact path="/fermenterrecipes">
-                    <FermenterRecipes/>
-                  </Route>
-                  <Route exact path="/recipe/:id">
-                    <RecipeEditor/>
-                  </Route>
-                  <Route exact path="/fermenterrecipe/:id">
-                    <FermenterRecipeEditor/>
-                  </Route>
-                  <Route exact path="/step">
-                    <StepForm/>
-                  </Route>
-                  <Route exact path="/fermenterstep">
-                    <FermenterStepForm/>
-                  </Route>
-                  <Route exact path="/fermenterstep/:fermenterid">
-                    <FermenterStepForm/>
-                  </Route>
-                  <Route exact path="/step/:id">
-                    <StepForm/>
-                  </Route>
-                  <Route exact path="/fermenterstep/:id/:fermenterid">
-                    <FermenterStepForm/>
-                  </Route>
-                  <Route exact path="/charting">
-                    <Charting/>
-                  </Route>                  
-                </Container>
-              </Container>
-            </main>
-          </PrivateRoute>
-        </Switch>
-        
+        <Routes>
+          <Route path="/" element={<AppLayout /> } >
+                  <Route path="/" element={<Dashboard2 />}/>   
+                  <Route path="fixdash/:dashboardid" element={<FixDashboard />}/>
+                  <Route path="plugins" element={<Plugins />} />
+                  <Route path="about" element={<About />}/>
+                  <Route path="upload" element={<Upload />}/>
+                  <Route path="system" element={<CBPiSystem />}/>
+                  <Route path="hardware" element={<Hardware />}/>
+                  <Route path="kettle/:id" element={<KettleForm />}/>
+                  <Route path="kettle" element={<KettleForm />}/>
+                  <Route path="fermenter/:id" element={<FermenterForm />}/>
+                  <Route path="fermenter" element={<FermenterForm />}/>
+                  <Route path="actor/:id" element={<ActorForm />}/>
+                  <Route path="actor" element={<ActorForm />}/>
+                  <Route path="sensor/:id" element={<SensorForm />}/>
+                  <Route path="sensor" element={<SensorForm />}/>
+                  <Route path="settings" element={<Settings />}/>
+                  <Route path="mashprofile" element={<MashProfile />}/>
+                  <Route path="fermenterprofile/:fermenterid" element={<FermenterProfile />}/>
+                  <Route path="fermenterprofile" element={<FermenterProfile />}/>
+                  <Route path="recipes" element={<Recipes />}/>
+                  <Route path="fermenterrecipes" element={<FermenterRecipes />}/>
+                  <Route path="recipe/:id" element={<RecipeEditor />}/>
+                  <Route path="fermenterrecipe/:id" element={<FermenterRecipeEditor />}/>
+                  <Route path="step/:id" element={<StepForm />}/>
+                  <Route path="step" element={<StepForm />}/>
+                  <Route path="fermenterstep/:id/:fermenterid" element={<FermenterStepForm />}/>
+                  <Route path="fermenterstep/:fermenterid" element={<FermenterStepForm />}/>
+                  <Route path="fermenterstep" element={<FermenterStepForm />}/>
+                  <Route path="charting" element={<Charting />}/>              
+          </Route>
+        </Routes>
       </Router>
     </div>
   );

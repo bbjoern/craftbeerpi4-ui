@@ -1,10 +1,11 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
+import { Breadcrumbs, Container, Divider, Link, Paper, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useAlert } from "../alert/AlertProvider";
 import { CBPiContext, useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StepForm = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const alert = useAlert();
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -88,12 +89,12 @@ const StepForm = () => {
     if (id) {
       stepapi.save(id, data, (data) => {
         
-        history.push("/mashprofile");
+        navigate("/mashprofile");
       });
     } else {
       stepapi.add(data, (data) => {
         
-        history.push("/mashprofile");
+        navigate("/mashprofile");
       });
     }
   };
@@ -123,6 +124,7 @@ const StepForm = () => {
 
   return (
     <>
+     <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Step Config
       </Typography>
@@ -130,7 +132,7 @@ const StepForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/mashprofile");
+            navigate("/mashprofile");
           }}
         >
           Mash Profile
@@ -155,7 +157,7 @@ const StepForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/mashprofile");
+              navigate("/mashprofile");
             }}
             className={classes.button}
           >
@@ -173,6 +175,7 @@ const StepForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

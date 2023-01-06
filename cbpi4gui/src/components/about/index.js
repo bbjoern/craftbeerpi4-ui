@@ -1,4 +1,4 @@
-import { Divider, Grid, Paper, Typography } from "@material-ui/core";
+import { Divider, Container, Grid, Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import logo from "../../images/cbpi.png";
@@ -24,8 +24,9 @@ const About = () => {
   const {state} = useCBPi();
   
   return (
+    <Container maxWidth="lg" >
     <div>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             About
@@ -81,9 +82,10 @@ const About = () => {
         </Grid>
         
       </Grid>
-
+      
       
     </div>
+    </Container>
   );
 };
 

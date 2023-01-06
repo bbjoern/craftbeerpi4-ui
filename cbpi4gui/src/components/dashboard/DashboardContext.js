@@ -1,4 +1,4 @@
-import { IconButton } from "@material-ui/core";
+import { Container, IconButton } from "@material-ui/core";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import SaveIcon from "@material-ui/icons/Save";
@@ -306,7 +306,11 @@ export const DashboardProvider = ({ children }) => {
     },
   };
 
-  return <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>;
+  return (
+  <>
+  <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>
+  </>
+  );
 };
 
 export const Dashboard = ({ width, height , fixdash}) => {
@@ -327,16 +331,16 @@ export const Dashboard = ({ width, height , fixdash}) => {
             {item.label}
           </MenuItem>
         ))},
-            theme={(theme) => ({
-        ...theme,
-        borderRadius: 0,
-        colors: {
-        ...theme.colors,
-          text: 'black',
-          primary25: 'black',
-          primary: 'black',
-        },
-      })}
+        theme={(theme) => ({
+    ...theme,
+    borderRadius: 0,
+    colors: {
+    ...theme.colors,
+      text: 'black',
+      primary25: 'black',
+      primary: 'black',
+    },
+  })}
       </Select>
     </>
   );
@@ -406,8 +410,8 @@ export const Dashboard = ({ width, height , fixdash}) => {
     
   
   return (
+    <>
     <div>
-      
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         {state.draggable ? <DashboardWidgetList /> : null}
         <div className={state.draggable ? "divgrid" : "divnogrid"}
@@ -424,11 +428,13 @@ export const Dashboard = ({ width, height , fixdash}) => {
             overflowX: 'auto',
 			overflowY: 'hidden'
           }}
-        >
+        >    
+        {/*console.log(state.elements2)*/}   
           {state.elements2.map((value, index) => value.instance)}
           <svg ref={svgRef} style={{ position: "absolute", minWidth: svgWidth, pointerEvents: "none" }} width={width} height={height}>
             {state.pathes.map((value) => value.instance)}
           </svg>
+          
           {!fixdash ?
           <div style={{ position: "absolute", top: 0, right: 0 }}>
           {state.draggable ? state.dashboardX : <SelectBox options={dashboardlist} value={state.dashboardX} onChange={DashBoardChange}/>} 
@@ -448,10 +454,13 @@ export const Dashboard = ({ width, height , fixdash}) => {
             <IconButton onClick={() => actions.setDraggable(!state.draggable)}>{state.draggable ? <LockOpenIcon /> : <LockIcon />}</IconButton>
           </div>
           : ""}
+          
         </div>
         {state.draggable ? <DashboardLayer /> : null}
-      </div>
+        
+          </div>
     </div>
+    </>
   );
 };
 

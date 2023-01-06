@@ -26,12 +26,14 @@ const DashboardLayerListItem = ({ item }) => {
   const selected = state.selected?.id === item.id;
 
   return (
+    <>
     <Draggable key={item.id}>
     <ListItem className="drag-handle" button selected={selected} onClick={() => actions.setSelected(() => ({ type: "E", id: item.id }))}>
       <ListItemText primary={item.name} />
       
     </ListItem>
     </Draggable>
+    </>
   );
 };
 
@@ -79,6 +81,7 @@ const DashboardLayerList = () => {
 
 const DashboardLayer = () => {
   return (
+    <>
     <div>
       <div
         onPointerDown={(e) => e.stopPropagation()}
@@ -101,6 +104,7 @@ const DashboardLayer = () => {
         <DashboardProps />
       </div>
     </div>
+    </>
   );
 };
 
@@ -151,6 +155,7 @@ const PropsEditor = ({ data }) => {
 
 const PathSettingsItem = ({ item, checked, handleToggle }) => {
   return (
+    <>
     <ListItem button onClick={handleToggle(item.id)}>
       <ListItemIcon>
         <Checkbox edge="start" checked={checked.indexOf(item.id) !== -1} tabIndex={-1} color="primary" disableRipple inputProps={{ "aria-labelledby": "A" }} />
@@ -158,6 +163,7 @@ const PathSettingsItem = ({ item, checked, handleToggle }) => {
       <ListItemText primary={item.name} />
 
     </ListItem>
+    </>
   );
 };
 
@@ -272,10 +278,11 @@ export const DashboardProps = () => {
       return "";
     }
 
-    return <TextField label="Name" fullWidth value={data?.name} onChange={(e) => handleChange(e, "name")} />;
+    return ( <> <TextField label="Name" fullWidth value={data?.name} onChange={(e) => handleChange(e, "name")} /> </>);
   };
 
   return (
+    <>
     <div onPointerDown={(e) => e.stopPropagation()}>
       <div className="section_header">Properties</div>
       <div style={{ padding: 10 }}>
@@ -288,6 +295,7 @@ export const DashboardProps = () => {
         </Typography>
       </div>
     </div>
+    </>
   );
 };
 

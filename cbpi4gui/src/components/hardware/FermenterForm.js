@@ -1,10 +1,11 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
+import { Container, Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useCBPi } from "../data";
 import ActorSelect from "../util/ActorSelect";
 import FermenterLogicSelect from "../util/FermenterLogicSelect";
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FermenterForm = () => {
   
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -83,9 +84,9 @@ const FermenterForm = () => {
     };
 
     if (id) {
-      actions.update_fermenter(id, data, () => history.push("/hardware"));
+      actions.update_fermenter(id, data, () => navigate("/hardware"));
     } else {
-      actions.add_fermenter(data, () => history.push("/hardware"));
+      actions.add_fermenter(data, () => navigate("/hardware"));
     }
   };
 
@@ -125,6 +126,7 @@ const FermenterForm = () => {
 
   return (
     <>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Fermenter Config
       </Typography>
@@ -132,7 +134,7 @@ const FermenterForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/hardware");
+            navigate("/hardware");
           }}
         >
           Fermenter
@@ -180,7 +182,7 @@ const FermenterForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/hardware");
+              navigate("/hardware");
             }}
             className={classes.button}
           >
@@ -198,6 +200,7 @@ const FermenterForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

@@ -1,9 +1,10 @@
-import { Button, Divider, IconButton, makeStyles, Paper } from "@material-ui/core";
+import { Button, Container, Divider, IconButton, makeStyles, Paper } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import Header from "../util/Header";
 import ActorTable from "./ActorTable";
 import KettleTable from "./KettleTable";
@@ -20,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Hardware() {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Hardware
@@ -41,7 +43,7 @@ export default function Hardware() {
               <IconButton
                 variant="contained"
                 onClick={() => {
-                  history.push("/kettle");
+                  navigate("/kettle");
                 }}
               >
                 <AddIcon />
@@ -56,7 +58,7 @@ export default function Hardware() {
               <IconButton
                 variant="contained"
                 onClick={() => {
-                  history.push("/fermenter");
+                  navigate("/fermenter");
                 }}
               >
                 <AddIcon />
@@ -73,7 +75,7 @@ export default function Hardware() {
               <IconButton
                 variant="contained"
                 onClick={() => {
-                  history.push("/sensor");
+                  navigate("/sensor");
                 }}
               >
                 <AddIcon />
@@ -88,7 +90,7 @@ export default function Hardware() {
             <IconButton
                 variant="contained"
                 onClick={() => {
-                  history.push("/actor");
+                  navigate("/actor");
                 }}
               >
                 <AddIcon />
@@ -98,6 +100,7 @@ export default function Hardware() {
           </Paper>
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 }

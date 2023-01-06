@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton, InputBase, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Button, Container, Divider, IconButton, InputBase, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
@@ -125,7 +125,8 @@ const Settings = () => {
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Settings
@@ -182,6 +183,7 @@ const Settings = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </Container>
     </>
   );
 };
