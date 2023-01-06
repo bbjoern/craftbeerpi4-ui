@@ -1,5 +1,5 @@
-import { createTheme, ThemeProvider } from '@material-ui/core';
-import pink from "@material-ui/core/colors/pink";
+import { createTheme, ThemeProvider } from '@mui/material';
+import pink from "@mui/material/colors/pink";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CraftBeerPiApp from './App';

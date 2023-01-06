@@ -1,8 +1,9 @@
-import { Button, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Container } from "@material-ui/core";
+import { Button, Grid, Typography, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Container } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import InputLabel from '@mui/material/InputLabel';
 import { uploadapi } from "../data/uploadapi"
 
 const useStyles = makeStyles((theme) => ({

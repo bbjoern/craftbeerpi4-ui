@@ -1,7 +1,7 @@
 
-import { InputLabel } from "@material-ui/core";
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import { InputLabel } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { CBPiContext, useCBPi } from "../data";
 
 

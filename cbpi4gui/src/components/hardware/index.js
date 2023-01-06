@@ -1,7 +1,8 @@
-import { Button, Container, Divider, IconButton, makeStyles, Paper } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
+import { Button, Container, Divider, IconButton, Paper } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 
-import { InputLabel} from "@material-ui/core"
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import { InputLabel} from "@mui/material"
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 import { useContext } from "react";
 import { CBPiContext } from "../data";
