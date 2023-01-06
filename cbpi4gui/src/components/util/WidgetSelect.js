@@ -11,7 +11,7 @@ import { useDashboard } from "../dashboard/DashboardContext";
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
             {label}
      </InputLabel>
-        <Select fullWidth
+        <Select variant="standard" fullWidth
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}

@@ -13,7 +13,7 @@ const FermenterSelect = ({ label = "Fermenter", description="", value, onChange,
         {label}
       </InputLabel>): ""}
       
-      <Select fullWidth={fullWidth} labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" fullWidth={fullWidth} labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
       <MenuItem key="actor-non" value="">---</MenuItem>
         {state.fermenter.map((item) => (
           <MenuItem key={item.id} value={item.id}>

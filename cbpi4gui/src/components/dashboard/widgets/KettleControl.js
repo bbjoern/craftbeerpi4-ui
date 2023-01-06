@@ -22,13 +22,13 @@ const TargetTempDialog = ({ onClose, kettle, open }) => {
   let TEMP_UNIT = "TEMP_UNIT";
   const [value, setValue] = useState(30);
   const [checkunit, setCheckUnit] = useState(false);
-  const [minval, setMinval] = useState(-5);
+  const [minval, setMinval] = useState(0);
   const [maxval, setMaxval] = useState(100);
   const [marks, setMarks] = useState(
     [
       {
-        value: -5,
-        label: "-5°",
+        value: 0,
+        label: "0°",
       },
             {
         value: 20,
@@ -47,8 +47,8 @@ const TargetTempDialog = ({ onClose, kettle, open }) => {
 
   const marksF = [
           {
-      value: 20,
-      label: "20°",
+      value: 32,
+      label: "32°",
     },
     {
       value: 50,
@@ -77,7 +77,7 @@ const TargetTempDialog = ({ onClose, kettle, open }) => {
   if (checkunit === false){
       configapi.getone(TEMP_UNIT, (data) => {
         if (data==="F"){
-          setMinval(20);
+          setMinval(32);
           setMaxval(212);
           setMarks(marksF);
         }

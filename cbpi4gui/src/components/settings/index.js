@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const SelectBox = ({ options, value, onChange }) => {
   return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}
@@ -64,9 +64,9 @@ const ConfigInput = ({ item, onChange, value, options }) => {
     case "actor":
       return <ActorSelect description={item.description} value={value} onChange={onChange} />;
     case "number":
-      return <TextField onChange={onChange} value={value} />;
+      return <TextField variant="standard" onChange={onChange} value={value} />;
     default:
-      return <TextField onChange={onChange} value={value} />;
+      return <TextField variant="standard" onChange={onChange} value={value} />;
   }
 
 

@@ -13,7 +13,7 @@ import { CBPiContext } from "../data";
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
             {label}
      </InputLabel>
-        <Select fullWidth
+        <Select variant="standard" fullWidth
             name="type"
             labelId="demo-simple-select-label"
             id="demo-simple-select"

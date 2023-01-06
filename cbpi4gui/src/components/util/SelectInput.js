@@ -7,7 +7,7 @@ export const SelectInput = ({ label, description="", options=[], value, onChange
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
           {label}
         </InputLabel>
-        <Select fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+        <Select variant="standard" fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         <MenuItem key="actor-non" value="">---</MenuItem>
           {options.map((item) => (
             <MenuItem key={item} value={item}>

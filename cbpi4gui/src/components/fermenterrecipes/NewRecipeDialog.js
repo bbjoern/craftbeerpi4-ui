@@ -24,7 +24,7 @@ export const NewRecipeDialog = ({open, setOpen}) => {
     <DialogTitle id="alert-dialog-title">New Fermenter Recipe</DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-            <TextField label="Name" value={name} onChange={(e)=>setName(e.target.value)} />
+            <TextField variant="standard" label="Name" value={name} onChange={(e)=>setName(e.target.value)} />
       </DialogContentText>
     </DialogContent>
     <DialogActions>

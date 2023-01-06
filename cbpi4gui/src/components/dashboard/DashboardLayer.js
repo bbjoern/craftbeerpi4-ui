@@ -136,7 +136,7 @@ const PropsEditor = ({ data }) => {
       case "number":
           return <TextField type="number" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange_number(e, s.name)} value={data.props[s.name]} />;
       case "select":
-        return <SelectInput label={s.name} value={data.props[s.name]} key={s.name} onChange={(e) => handlechange(e, s.name)} options={s?.options || []} />;
+        return <SelectInput variant="standard" label={s.name} value={data.props[s.name]} key={s.name} onChange={(e) => handlechange(e, s.name)} options={s?.options || []} />;
       case "actor":
         return <ActorSelect value={data.props[s.name]} key={s.name} onChange={(e) => handlechange(e, s.name)} />;
       case "sensor":

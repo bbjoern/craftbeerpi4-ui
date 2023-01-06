@@ -28,6 +28,18 @@ const theme = createTheme({
     ].join(','),
   },
   components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 1,
+          }
+        }
+      }
+    },
+    MuiPaper: {
+            styleOverrides: { root: { backgroundImage: 'unset' } },
+           },
     MuiTooltip: {
       tooltip: {
         fontSize: '1em',

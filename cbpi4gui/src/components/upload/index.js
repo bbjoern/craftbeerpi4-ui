@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const SelectBox = ({ options, value, onChange }) => {
   return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}

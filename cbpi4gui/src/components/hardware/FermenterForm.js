@@ -146,7 +146,7 @@ const FermenterForm = () => {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <TextField required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField variant="standard" required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
             <FermenterLogicSelect value={type} onChange={onChangeType} />
@@ -167,13 +167,13 @@ const FermenterForm = () => {
             <SensorSelect label="Pressure Sensor" value={pressure_sensor} onChange={(e) => setPressure_Sensor(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField label="BrewName" fullWidth value={brewname} onChange={(e) => setBrewname(e.target.value)} />
+            <TextField variant="standard"label="BrewName" fullWidth value={brewname} onChange={(e) => setBrewname(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField type="number" label="TargetTemp" fullWidth value={target_temp} onChange={(e) => setTargettemp(e.target.value)} />
+            <TextField variant="standard"type="number" label="TargetTemp" fullWidth value={target_temp} onChange={(e) => setTargettemp(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField type="number" label="TargetPressure" fullWidth value={target_pressure} onChange={(e) => setTargetpressure(e.target.value)} />
+            <TextField variant="standard"type="number" label="TargetPressure" fullWidth value={target_pressure} onChange={(e) => setTargetpressure(e.target.value)} />
           </Grid>
           <PropsEdit config={propsConfig} data={props} onChange={onChangeProps} />
         </Grid>

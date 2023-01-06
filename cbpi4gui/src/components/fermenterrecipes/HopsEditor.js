@@ -37,7 +37,7 @@ export const HopsEditor = ({items =[], setItems = ()=>{} }) => {
           return (
             <>
               <Grid item xs={12} sm={7}>
-                <TextField fullWidth label="name" name="name" value={item.name} onChange={(e) => handleInput(index, e)} />
+                <TextField variant="standard" fullWidth label="name" name="name" value={item.name} onChange={(e) => handleInput(index, e)} />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField

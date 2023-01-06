@@ -91,7 +91,7 @@ const FermenterStepLine = ({ item, items, setItems, onSelectType, handleInput, h
       <AccordionDetails>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={2}>
-            <TextField label="Name" name="name" onChange={(e) => handleInput(index, e)} value={item.name} fullWidth />
+            <TextField variant="standard" label="Name" name="name" onChange={(e) => handleInput(index, e)} value={item.name} fullWidth />
           </Grid>
           <Grid item xs={12} lg={2}>
             <FermenterStepTypeSelect value={item.type} onChange={(e) => onSelectType(index, e.target.value)} />

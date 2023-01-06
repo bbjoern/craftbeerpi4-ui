@@ -52,7 +52,7 @@ const SetRangeDialog = ({ open, onClose, onSubmit }) => {
                 onChange={(newValue) => {
                   setFromTime(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} sx={{ '& .MuiInputLabel-root': {marginTop: '2px'}, }} />}
+                renderInput={(params) => <TextField variant="standard" {...params} sx={{ '& .MuiInputLabel-root': {marginTop: '2px'}, }} />}
               />
               <DateTimePicker
                 label="end datetime"
@@ -63,7 +63,7 @@ const SetRangeDialog = ({ open, onClose, onSubmit }) => {
                 onChange={(newValue) => {
                   setToTime(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} sx={{ '& .MuiInputLabel-root': {marginTop: '2px'}, }} />}
+                renderInput={(params) => <TextField variant="standard" {...params} sx={{ '& .MuiInputLabel-root': {marginTop: '2px'}, }} />}
               />
               <FormGroup>
                 <FormControlLabel 

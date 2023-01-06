@@ -25,7 +25,7 @@ export const CloneRecipeDialog = ({id, open, setOpen}) => {
     <DialogTitle id="alert-dialog-title">Clone Recipe</DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-            <TextField label="New Name" value={name} onChange={(e)=>setName(e.target.value)} />
+            <TextField variant="standard" label="New Name" value={name} onChange={(e)=>setName(e.target.value)} />
       </DialogContentText>
     </DialogContent>
     <DialogActions>

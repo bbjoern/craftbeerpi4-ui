@@ -13,7 +13,7 @@ const KettleSelect = ({ label = "Kettle", description="", value, onChange, fullW
         {label}
       </InputLabel>): ""}
       
-      <Select fullWidth={fullWidth} labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" fullWidth={fullWidth} labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
       <MenuItem key="actor-non" value="">---</MenuItem>
         {state.kettle.map((item) => (
           <MenuItem key={item.id} value={item.id}>
