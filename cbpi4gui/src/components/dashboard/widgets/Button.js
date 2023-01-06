@@ -7,6 +7,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { actorapi } from "../../data/actorapi";
 import PropsEdit from "../../util/PropsEdit";
 import Confetti from "react-dom-confetti";
+import { red } from "@mui/material/colors";
 
 const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit }) => {
   const [props, setProps] = useState({});
@@ -15,6 +16,7 @@ const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit 
     setProps({ ...props, [name]: value });
   };
 
+  
   return (
     <Dialog open={open} fullWidth>
       <DialogTitle id="simple-dialog-title">{action.label}</DialogTitle>
@@ -29,7 +31,7 @@ const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit 
         <Button onClick={onClose} variant="contained" color="secondary" autoFocus>
           Close
         </Button>
-        <Button onClick={() => onSubmit(props)} variant="contained" color="Primary" autoFocus>
+        <Button onClick={() => onSubmit(props)} variant="contained" /*color="Primary"*/ autoFocus>
           Submit
         </Button>
       </DialogActions>
@@ -57,13 +59,15 @@ const ActionButton = ({ action, actorid }) => {
           <ListItemText primary={action.label} onClick={() => setOpen(true)} />
         </ListItem>
         <ButtonActionPropsDialog open={open} action={action} onSubmit={handle_submit} onClose={handleClose}/>
-      </>
+        </>
     );
   } else {
     return (
+      <>
       <ListItem button  onClick={() => handle_action(actorid, action)}>
         <ListItemText primary={action.label}   />
       </ListItem>
+      </>
     );
   }
 };
@@ -71,7 +75,6 @@ const ActionButton = ({ action, actorid }) => {
 const ButtonActionDialog = ({ open, onClose, model, actor }) => {
   const type = useActorType(actor.type);
   const { actor: actorid } = model.props;
-
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">{model.name}</DialogTitle>

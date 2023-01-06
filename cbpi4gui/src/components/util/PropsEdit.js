@@ -47,9 +47,9 @@ const PropsEdit = ({ config, onChange = () => {}, data={}}) => {
       case "actor":
         return <ActorSelect description={item.description} value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} />;
       case "number":
-        return <TextField variant="standard" helperText={item.description}  value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} type="number" label={item.label} fullWidth helperText={item.description}/>;
+        return <TextField variant="standard" helperText={item.description}  value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} type="number" label={item.label} fullWidth/>;
       default:
-        return <TextField variant="standard" helperText={item.description} value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} label={item.label} fullWidth helperText={item.description}/>;
+        return <TextField variant="standard" helperText={item.description} value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} label={item.label} fullWidth/>;
     }
   };
 

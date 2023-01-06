@@ -4,7 +4,7 @@ import LockOpenIcon from "@mui/icons-material/LockOpen";
 import SaveIcon from "@mui/icons-material/Save";
 import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "../../App.css";
+//import "../../App.css";
 import { useAlert } from "../alert/AlertProvider";
 import { dashboardapi } from "../data/dashboardapi";
 import DeleteDialog from "../util/DeleteDialog";
@@ -16,7 +16,7 @@ import { widget_list } from "./widgets/config";
 import { Path } from "./widgets/Path";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import axios from "axios";
+//import axios from "axios";
 
 export const DashboardContext = createContext({});
 
@@ -437,7 +437,7 @@ export const Dashboard = ({ width, height , fixdash}) => {
           
           {!fixdash ?
           <div style={{ position: "absolute", top: 0, right: 0 }}>
-          {state.draggable ? state.dashboardX : <Select variant="standard" Box options={dashboardlist} value={state.dashboardX} onChange={DashBoardChange}/>} 
+          {state.draggable ? state.dashboardX : <SelectBox options={dashboardlist} value={state.dashboardX} onChange={DashBoardChange}/>} 
             {state.draggable ? 
             
             <DeleteDialog
