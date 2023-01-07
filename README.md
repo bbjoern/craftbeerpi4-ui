@@ -21,7 +21,7 @@ http://localhost:8000#
 
 ### Changelog
 
-06.01.22: (0.3.2.a2) UI migrated to @mui V5 and react 18.2.0 (Alpha version not officially released)
-05.01.22: (0.3.0.a1) UI migrated to React Router V6 (Alpha version not officially released)
-10.12.22: (0.2.3) Some updates, fixes and additional features
-12.05.22: (0.2.2) First working release
+- 06.01.22: (0.3.2.a2) UI migrated to @mui V5 and react 18.2.0 (Alpha version not officially released)
+- 05.01.22: (0.3.0.a1) UI migrated to React Router V6 (Alpha version not officially released)
+- 10.12.22: (0.2.3) Some updates, fixes and additional features
+- 12.05.22: (0.2.2) First working release
