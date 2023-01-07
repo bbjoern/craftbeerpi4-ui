@@ -40,7 +40,7 @@ const theme = createTheme({
     },
     MuiPaper: {
             styleOverrides: { root: { backgroundImage: 'unset',
-                              backgroundColor: '#272227' } },
+                              backgroundColor: '#333333' } },
            },
     MuiTooltip: {
       tooltip: {

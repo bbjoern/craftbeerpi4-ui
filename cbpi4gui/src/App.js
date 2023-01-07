@@ -173,7 +173,7 @@ const CraftBeerPiApp = () => {
       <CssBaseline />
       <GlobalStyles
           styles={{
-            body: { backgroundColor: "#282c34" },
+            body: { backgroundColor: "#444444" },
           }}
         />
       <Router>
