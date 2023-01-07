@@ -14,6 +14,7 @@ import { useCBPi } from "../data";
         <Select variant="standard" fullWidth
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            size="small"
             value={value}
             onChange={onChange}>
                 <MenuItem  key="none" value="">---</MenuItem>

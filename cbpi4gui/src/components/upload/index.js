@@ -151,13 +151,13 @@ const Upload = () => {
       </Grid>
       <Divider style={{ marginBottom: 10, marginTop: 10 }} />
 
-      <Grid container spacing={2} className={classes.root}>
+      <Grid component={Paper} container spacing={2} className={classes.root}>
         <Grid item spacing={2} xs={12}>
           <Paper style={{ padding: 10 }}>
             <p>You can upload recipes from BeerXML, MMuM-JSON, Brewfather or the Kleiner Brauhelfer V2 database .</p>
           </Paper>
         </Grid>
-
+        
         <Grid item spacing={2} xs={12}>
           <Paper style={{ padding: 10 }}>
             <Button variant="contained" component="label">
@@ -170,7 +170,10 @@ const Upload = () => {
               />
             </Button>
           </Paper>
+          <Divider style={{ marginBottom: 10, marginTop: 10 }} />
         </Grid>
+
+        
 
         <Divider style={{ marginBottom: 10, marginTop: 10 }} />
         <TableContainer component={Paper}>

@@ -2,7 +2,7 @@
 import { InputLabel} from "@mui/material"
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-
+import FormControl from '@mui/material/FormControl';
 import { useContext } from "react";
 import { CBPiContext } from "../data";
 
@@ -15,6 +15,7 @@ import { CBPiContext } from "../data";
      </InputLabel>
         <Select variant="standard" fullWidth
             name="type"
+            size="small"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}
@@ -22,6 +23,7 @@ import { CBPiContext } from "../data";
                 <MenuItem  key="none" value="">---</MenuItem>
             {state.stepTypes.map((item) => <MenuItem  key={item.name} value={item.name}>{item.name}</MenuItem>)}
         </Select>
+
     </>
 }
 

@@ -17,7 +17,7 @@ import KettleSelect from "../util/KettleSelect";
 import FermenterSelect from "../util/FermenterSelect";
 import SensorSelect from "../util/SensorSelect";
 import StepTypeSelect from "../util/StepTypeSelect";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,7 +81,7 @@ const Settings = () => {
   const [filter, setFilter] = useState("");
   const classes = useStyles();
   const alert = useAlert();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setConfig({ ...state });
@@ -97,7 +97,7 @@ const Settings = () => {
       if (parameter.changed) {
         configapi.update(key, parameter.value);
         setConfig((curret_config) => ({ ...curret_config, [key]: { ...curret_config[key], changed: false } }));
-        //navigate(0);
+        navigate("/settings");
       }
 
     });

@@ -15,6 +15,7 @@ import { CBPiContext } from "../data";
      </InputLabel>
         <Select variant="standard" fullWidth
             name="type"
+            size="small"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}

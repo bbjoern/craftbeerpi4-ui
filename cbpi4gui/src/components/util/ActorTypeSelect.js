@@ -15,6 +15,7 @@ import { CBPiContext, useCBPi } from "../data";
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}
+            size="small"
             onChange={onChange}>
                 <MenuItem  key="none" value="">---</MenuItem>
             {state.actorTypes.map((item) => <MenuItem  key={item.name} value={item.name}>{item.name}</MenuItem>)}

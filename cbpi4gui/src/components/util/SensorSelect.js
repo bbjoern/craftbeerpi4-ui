@@ -12,7 +12,7 @@ const SensorSelect = ({ label = "Sensor", description="", value, onChange }) => 
       <InputLabel shrink id="demo-simple-select-placeholder-label-label">
         {label}
       </InputLabel>
-      <Select variant="standard" fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" size="small" fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         <MenuItem key="sensor-non" value={""}>
           ---
         </MenuItem>
