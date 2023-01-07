@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, GlobalStyles } from "@mui/material";
 //import AppBar from "@mui/material/AppBar";
 //import Badge from "@mui/material/Badge";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -171,6 +171,11 @@ const CraftBeerPiApp = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
+      <GlobalStyles
+          styles={{
+            body: { backgroundColor: "#282c34" },
+          }}
+        />
       <Router>
         <Routes>
           <Route path="/" element={<AppLayout /> } >

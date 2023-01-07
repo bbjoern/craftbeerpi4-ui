@@ -144,7 +144,7 @@ const StepForm = () => {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <TextField variant="standard" required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField size="medium" variant="standard" required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
             <StepTypeSelct value={type} onChange={onSelectType} />
@@ -174,7 +174,7 @@ const StepForm = () => {
             Save
           </Button>
         </div>
-      </Paper>
+        </Paper>
       </Container>
     </>
   );

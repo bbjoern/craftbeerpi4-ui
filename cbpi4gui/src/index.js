@@ -21,7 +21,6 @@ const theme = createTheme({
     primary: {
       main: "#00FF00"
     },
-    
     secondary: pink,
   },
   typography: {
