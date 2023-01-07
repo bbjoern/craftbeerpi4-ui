@@ -5,20 +5,19 @@ http://localhost:8000#
 
 ## Build Web App
 
-'npm start' for testing the web app
+```npm start``` for testing the web app
 
 - Server needs to be started on the same host and UI is accessible via http://localhost:3000
 
-'npm run build' to build the webapp
+```npm run build``` to build the webapp
 
 ## Install Plugin for Development
 
-'python3 setup.py develop'
+```python3 setup.py develop```
 
 ## Package Plugin 
 
-'python3 setup.py sdist'
-
+```python3 setup.py sdist```
 
 ### Changelog
 
