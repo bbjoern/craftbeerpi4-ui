@@ -132,9 +132,9 @@ const PropsEditor = ({ data }) => {
 
     switch (s.type) {
       case "text":
-        return <TextField InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange(e, s.name)} value={data.props[s.name]} />;
+        return <TextField variant="standard" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange(e, s.name)} value={data.props[s.name]} />;
       case "number":
-          return <TextField type="number" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange_number(e, s.name)} value={data.props[s.name]} />;
+          return <TextField variant="standard" type="number" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange_number(e, s.name)} value={data.props[s.name]} />;
       case "select":
         return <SelectInput label={s.name} value={data.props[s.name]} key={s.name} onChange={(e) => handlechange(e, s.name)} options={s?.options || []} />;
       case "actor":
@@ -251,7 +251,7 @@ const PathSettings = () => {
             <PathSettingsItem item={item} checked={checked} handleToggle={handleToggle} />
           ))}
         </List>
-        <TextField label="Condition expression for left" helperText={helperTextExpression} fullWidth value={item?.condition?.leftExpression} onChange={(e) => handleChange(e, "left")} />
+        <TextField variant="standard" label="Condition expression for left" helperText={helperTextExpression} fullWidth value={item?.condition?.leftExpression} onChange={(e) => handleChange(e, "left")} />
 
         Flow Right
         <List disableGutters={true} dense component="nav" aria-label="main mailbox folders">
@@ -259,7 +259,7 @@ const PathSettings = () => {
             <PathSettingsItem item={item} checked={checkedRight} handleToggle={(id) => handleToggle(id, "right")} />
           ))}
         </List>
-        <TextField label="Condition expression for right" helperText={helperTextExpression} fullWidth value={item?.condition?.rightExpression} onChange={(e) => handleChange(e, "right")} />
+        <TextField variant="standard" label="Condition expression for right" helperText={helperTextExpression} fullWidth value={item?.condition?.rightExpression} onChange={(e) => handleChange(e, "right")} />
       </div>
     </>
   );
@@ -278,7 +278,7 @@ export const DashboardProps = () => {
       return "";
     }
 
-    return ( <> <TextField label="Name" fullWidth value={data?.name} onChange={(e) => handleChange(e, "name")} /> </>);
+    return ( <> <TextField variant="standard" label="Name" fullWidth value={data?.name} onChange={(e) => handleChange(e, "name")} /> </>);
   };
 
   return (
