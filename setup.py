@@ -20,7 +20,7 @@ print(version)
 setup(name='cbpi4gui',
       version=version,
       description='CraftBeerPi4 User Interface',
-      author='Alexander Vollkopf',
+      author='Manuel Fritsch / Alexander Vollkopf',
       author_email='avollkopf@web.de',
       url='https://openbrewing.gitbook.io/craftbeerpi4_support/',
       include_package_data=True,

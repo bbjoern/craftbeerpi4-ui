@@ -42,11 +42,17 @@ const FermenterProfile = () => {
   const { fermenterid } = useParams();
   
   useEffect(() => {
-   if (fermenterid) {
+   if ((fermenterid) && (state.fermentersteps.length != 0)) {
+    try {
       const step= state.fermentersteps.find(step => step.id === fermenterid).steps;
       const name= state.fermenter.find(fermenter => fermenter.id === fermenterid).brewname + "                              ";
       setData(step);
-      setBrewName(name.substring(0,30))};
+      setBrewName(name.substring(0,30))}
+    catch (e) {
+      console.log(e);
+    }
+    
+    };
    }, [state.fermentersteps,fermenterid]);
 
   

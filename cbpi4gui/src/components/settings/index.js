@@ -77,7 +77,6 @@ const ConfigInput = ({ item, onChange, value, options }) => {
 const Settings = () => {
   const { config: state } = useCBPi();
   const [config, setConfig] = useState({});
-
   const [filter, setFilter] = useState("");
   const classes = useStyles();
   const alert = useAlert();
@@ -85,7 +84,7 @@ const Settings = () => {
 
   useEffect(() => {
     setConfig({ ...state });
-  }, []);
+  }, [state]);
 
   const onChange = (field, e) => {
     setConfig({ ...config, [field]: { ...config[field], changed: true, value: e.target.value } });
@@ -104,13 +103,6 @@ const Settings = () => {
     
   };
 
-  const shutdown = () => {
-    configapi.shutdown();
-  };
-
-  const restart = () => {
-    configapi.restart();
-  };
 
   const reset = () => {
     setConfig({ ...state });

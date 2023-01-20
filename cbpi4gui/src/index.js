@@ -2,6 +2,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import { pink } from "@mui/material/colors";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import CraftBeerPiApp from './App';
 import { AlertProvider } from './components/alert/AlertProvider';
 import { CBPiProvider } from './components/data';
@@ -52,7 +53,10 @@ const theme = createTheme({
   }
 });
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
     <AlertProvider>
@@ -65,8 +69,7 @@ ReactDOM.render(
     </CBPiProvider>
     </AlertProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

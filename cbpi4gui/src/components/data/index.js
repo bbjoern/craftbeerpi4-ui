@@ -185,10 +185,13 @@ export const CBPiProvider = ({ children }) => {
     },
   };
 
-  return <CBPiContext.Provider value={value}>{children}</CBPiContext.Provider>;
+  return ( <>
+  <CBPiContext.Provider value={value}>{children}</CBPiContext.Provider>
+    </>
+  );
 };
 
-export const useCBPi = (Context) => {
+export const useCBPi = () => {
   const { state, actions } = useContext(CBPiContext);
   const value = useMemo(() => {
     return {
