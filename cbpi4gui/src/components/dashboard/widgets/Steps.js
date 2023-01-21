@@ -254,7 +254,7 @@ const StepItem = ({ size, item }) => {
 };
 
 export const Steps = ({ id }) => {
-  const { state: state2, actions } = useContext(DashboardContext);
+  const { state: state2 } = useContext(DashboardContext);
 
   const model = useModel(id);
   const { state } = useCBPi();

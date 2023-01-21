@@ -1,11 +1,9 @@
-import { Container, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import SaveIcon from "@mui/icons-material/Save";
 import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-//import "../../App.css";
-import { useAlert } from "../alert/AlertProvider";
 import { dashboardapi } from "../data/dashboardapi";
 import DeleteDialog from "../util/DeleteDialog";
 import DashboardLayer from "./DashboardLayer";
@@ -16,12 +14,10 @@ import { widget_list } from "./widgets/config";
 import { Path } from "./widgets/Path";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-//import axios from "axios";
 
 export const DashboardContext = createContext({});
 
 export const DashboardProvider = ({ children }) => {
-  const alert = useAlert();
   const [selected, setSelected] = useState(null);
   const [selectedPath, setSelectedPath] = useState(null);
   const [current, setCurrent] = useState("INFO");
@@ -376,12 +372,12 @@ export const Dashboard = ({ width, height , fixdash}) => {
 
   };
   
-  const refresh_dashboard = () => {
-    actions.setDraggable(!state.draggable);
+//  const refresh_dashboard = () => {
+//  actions.setDraggable(!state.draggable);
 //	if (state.draggable) {
 //       window.location.reload();
 //	}
-  };
+//  };
   
   // get bounding box of svg
   const useBBox = () => {

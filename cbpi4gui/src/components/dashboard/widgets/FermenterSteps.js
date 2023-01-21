@@ -15,7 +15,7 @@ import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { default as React, useContext, useEffect, useState } from "react";
-import { useCBPi, useFermenter } from "../../data";
+import { useCBPi } from "../../data";
 import { fermenterapi } from "../../data/fermenterapi";
 import ActorName from "../../util/ActorName";
 import FermenterName from "../../util/FermenterName";
@@ -274,9 +274,9 @@ export const FermenterSteps = ({ id }) => {
   }, [model.props.fermenter, state.fermenter]);
 
   useEffect(() => {
-    if (fermenterid && (fermenterid !=1)) {
+    if (fermenterid && (fermenterid !==1)) {
       if (state.fermentersteps){
-        const step= state.fermentersteps.find(step => step.id == fermenterid).steps;
+        const step= state.fermentersteps.find(step => step.id === fermenterid).steps;
         setProfile(step)};
     };
   }, [state.fermentersteps, fermenterid]);

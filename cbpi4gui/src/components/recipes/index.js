@@ -5,11 +5,9 @@ import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { recipeapi } from "../data/recipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
 import SearchIcon from "@mui/icons-material/Search";
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import { CBPiBeerIcon } from "../util/icons/CBPiSensorIcon";
 const useStyles = makeStyles((theme) => ({
   root: {

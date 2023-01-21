@@ -2,19 +2,17 @@ import { Breadcrumbs, Container, Divider } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import Paper from "@mui/material/Paper";
+import logo from '../../images/cbpi.png';
+//import IconButton from "@mui/material/IconButton";
+//import InputBase from "@mui/material/InputBase";
+//import Paper from "@mui/material/Paper";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
-import SearchIcon from "@mui/icons-material/Search";
-import React, { useEffect, useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { CBPiContext } from "../data";
+//import SearchIcon from "@mui/icons-material/Search";
+import React, { useEffect, useState } from "react";
 import { pluginapi } from "../data/pluginapi";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +30,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const styles = {
+  media: {
+    height: 0,
+    width: 40,
+    paddingTop: '12%', // 16:9,
+    marginTop:'5px',
+    marginLeft:'10px'
+  }
+};
+
 const CBPiCard = ({item}) => {
   const classes = useStyles();
   let homepage = true;
@@ -44,8 +52,9 @@ const CBPiCard = ({item}) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          image={logo}
+          title="Logo"
+          style={styles.media}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h3">
@@ -82,8 +91,8 @@ const CBPiCard = ({item}) => {
 };
 
 const Plugins = () => {
-  const classes = useStyles();
-  const { state } = useContext(CBPiContext);
+  //const classes = useStyles();
+  //const { state } = useContext(CBPiContext);
 
   const [plugininfo, setPluginInfo] = useState([]);
 
@@ -93,12 +102,12 @@ const Plugins = () => {
     });
   }, []);
 
-  const [filter, setFilter] = useState("")
+  //const [filter, setFilter] = useState("")
  
-  let plugins = state.plugins
-  if(filter) {
-    plugins  = state.plugins.filter(item => item.name.includes(filter) )
-  }
+  //let plugins = state.plugins
+  //if(filter) {
+  //plugins  = state.plugins.filter(item => item.name.includes(filter) )
+ // }
   
 
   return (
@@ -115,7 +124,7 @@ const Plugins = () => {
             Plugins
           </Typography>
         </Grid>
-        <Grid item>
+        {/*<Grid item>
           <Paper component="form" className={classes.root}>
             <InputBase
               className={classes.input}
@@ -132,7 +141,7 @@ const Plugins = () => {
               <SearchIcon />
             </IconButton>
           </Paper>
-        </Grid>
+  </Grid>*/}
       </Grid>
       <Breadcrumbs aria-label="breadcrumb">
         <Typography color="textPrimary">Plugins</Typography>

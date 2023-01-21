@@ -1,13 +1,12 @@
 import { Container, Divider, Grid, IconButton, Typography } from "@mui/material";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ToggleButton from "@mui/lab/ToggleButton";
-import ToggleButtonGroup from "@mui/lab/ToggleButtonGroup";
+import { ToggleButtonGroup } from '@mui/material';
 import { useState } from "react";
 import Plot from "react-plotly.js";
 import { useSensor } from "../data";
 import { logapi } from "../data/logapi";
 import DeleteDialog from "../util/DeleteDialog";
-import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 
 export const Charting = () => {
   const sensors = useSensor();
@@ -40,7 +39,7 @@ export const Charting = () => {
         /*
 [
             */
-        console.log(`${key}: ${value}`);
+        //console.log(`${key}: ${value}`);
       }
 	  setLoading(false);
       setData(temp);

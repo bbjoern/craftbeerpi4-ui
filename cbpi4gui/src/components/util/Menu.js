@@ -12,11 +12,10 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ComputerIcon from '@mui/icons-material/Computer';
 import React from 'react';
-import { useNavigate, useLocation} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ onClose, label, path = "/", children }) => {
     const navigate = useNavigate();
-    const location = useLocation();
 
 
     const goTo = (key) => {

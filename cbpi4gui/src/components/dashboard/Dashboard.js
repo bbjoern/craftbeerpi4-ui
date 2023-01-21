@@ -1,8 +1,7 @@
 import React from "react";
 import "../../App.css";
-import { useParams , Outlet} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Dashboard, DashboardProvider } from "./DashboardContext";
-import { Container } from "@mui/material";
 
 
 const Dashboard2 = () => {  

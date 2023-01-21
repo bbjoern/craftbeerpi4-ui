@@ -1,4 +1,4 @@
-import { Button, Container, IconButton, Grid, Typography, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Container, IconButton, Grid, Typography, Divider, Paper, Table, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
@@ -45,7 +45,6 @@ const CBPiSystem = () => {
   const hiddenFileInput = React.useRef(null);
   const handleChange = event => {
     const fileUploaded = event.target.files[0];
-    const FileName = fileUploaded.name;
     let formData = new FormData();
     formData.append("File", fileUploaded);
     systemapi.restoreConfig(formData, ReloadPage());
@@ -54,15 +53,13 @@ const CBPiSystem = () => {
   const svghiddenFileInput = React.useRef(null);
   const svghandleChange = event => {
     const svgfileUploaded = event.target.files[0];
-    const FileName = svgfileUploaded.name;
-    const FileSize = svgfileUploaded.size;
     let svgformData = new FormData();
     svgformData.append("File", svgfileUploaded);
     systemapi.uploadSVG(svgformData, ReloadPage());
   };
 
   const ReloadPage = () => {
-    console.log("Reload page");
+    //console.log("Reload page");
     /*window.location.reload();*/
   };
 
@@ -71,7 +68,7 @@ const CBPiSystem = () => {
   useEffect(() => {
     systemapi.getsysteminfo((data) => {
       setSystemInfo(data);
-      console.log(data['system']);
+      //console.log(data['system']);
     });
   }, []);
 

@@ -1,7 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material';
 import { pink } from "@mui/material/colors";
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import CraftBeerPiApp from './App';
 import { AlertProvider } from './components/alert/AlertProvider';

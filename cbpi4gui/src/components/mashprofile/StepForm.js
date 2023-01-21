@@ -5,29 +5,10 @@ import { makeStyles } from "@mui/styles";
 import TextField from "@mui/material/TextField";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
-import { useAlert } from "../alert/AlertProvider";
 import { CBPiContext, useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
 import PropsEdit from "../util/PropsEdit";
 import StepTypeSelct from "../util/StepTypeSelect";
-
-const props = [
-  {
-    label: "Parameter1",
-    type: "number",
-    configurable: true,
-    description: "",
-    default_value: null,
-  },
-  {
-    label: "Parameter2",
-    type: "text",
-    configurable: true,
-    default_value: "HALLO",
-    description: "",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -68,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
 
 const StepForm = () => {
   const navigate = useNavigate();
-  const alert = useAlert();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");

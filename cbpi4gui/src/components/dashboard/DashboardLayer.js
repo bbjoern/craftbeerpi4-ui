@@ -1,11 +1,8 @@
-import { Checkbox, InputAdornment, ListItemSecondaryAction, TextField, Typography } from "@mui/material";
+import { Checkbox, InputAdornment, TextField, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CropSquareIcon from "@mui/icons-material/CropSquare";
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import React, { useContext, useEffect, useState } from "react";
 import { useActor } from "../data";
 import ActorSelect from "../util/ActorSelect";
@@ -17,9 +14,7 @@ import WidgetSelet from "../util/WidgetSelect";
 import { DashboardContext, useModel } from "./DashboardContext";
 import { widget_list } from "./widgets/config";
 import { Container, Draggable } from "react-smooth-dnd";
-import DragHandleIcon from "@mui/icons-material/DragHandle";
 import { arrayMove } from "../util/arraymove";
-import { update } from "plotly.js";
 
 const DashboardLayerListItem = ({ item }) => {
   const { state, actions } = useContext(DashboardContext);
@@ -40,17 +35,9 @@ const DashboardLayerListItem = ({ item }) => {
 const DashboardLayerList = () => {
   const { state, actions } = useContext(DashboardContext);
   const data = state.elements2;
-  const [items, setItems] = useState([
-    { id: "1", text: "Item 1" },
-    { id: "2", text: "Item 2" },
-    { id: "3", text: "Item 3" },
-    { id: "4", text: "Item 4" }
-  ]);
-
   const onDrop = ({ removedIndex, addedIndex }) => {
     console.log(removedIndex,addedIndex)
     const data = arrayMove(state.elements2, removedIndex, addedIndex)
-    console.log(data)
     actions.setElements2((current) => [...data])
   };
 
@@ -208,7 +195,6 @@ const PathSettings = () => {
   };
 
     // Handle change of the boolean expression for path animation.
-    const data = useModel(selected_id);
     const handleChange = (e, direction) => {
       if (direction === "left")
       {

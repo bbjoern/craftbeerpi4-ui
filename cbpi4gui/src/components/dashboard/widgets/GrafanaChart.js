@@ -1,13 +1,11 @@
-import { ClickAwayListener, Dialog, DialogTitle, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
+import { ClickAwayListener, Dialog, DialogTitle, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import Button from "@mui/material/Button";
-import { TextField, DialogActions, DialogContent, DialogContentText, Stack, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { TextField, DialogActions, DialogContent, Stack, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useRef, useState } from "react";
-import Plot from "react-plotly.js";
-import { logapi } from "../../data/logapi";
 import { useDraggable, useModel } from "../DashboardContext";
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
@@ -95,14 +93,12 @@ const SetRangeDialog = ({ open, onClose, onSubmit }) => {
 
 
 const GrafanaChart = ({ id }) => {
-  const [data, setData] = useState([]);
   const model = useModel(id);
   const draggable = useDraggable();
   const [open, setOpen] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const anchorRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [props, setProps] = useState({});
   const [counter, setCounter] = useState(0);
   const [fromTime, setFromTime] = useState("now-12h");
   const [toTime, setToTime] = useState("now");
@@ -125,7 +121,7 @@ const GrafanaChart = ({ id }) => {
     if (model?.props?.url) {
       setLoading(true);
       console.log(toTime)
-      if(toTime == "now"){
+      if(toTime === "now"){
         setCounter(counter => counter + 1);
       }
       setLoading(false);
@@ -140,7 +136,7 @@ const GrafanaChart = ({ id }) => {
   const handle_submit = (props) => {
     setOpen(false);
     setFromTime(props.fromT);
-    if(props.box=="true"){
+    if(props.box==="true"){
       setToTime("now");
     }
     else {

@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import AppsIcon from "@mui/icons-material/Apps";
 import React, { useContext } from "react";
 import "../../App.css";
-import { CBPiGrainIcon, CBPiHopsIcon, CBPiLiquidIcon, CBPiPipeIcon, CBPiYeastIcon } from "../util/icons/CBPiSensorIcon";
+import { CBPiPipeIcon } from "../util/icons/CBPiSensorIcon";
 import { DashboardContext } from "./DashboardContext";
 const useStyles = makeStyles((theme) => ({
   active: {

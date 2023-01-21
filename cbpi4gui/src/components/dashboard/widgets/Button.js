@@ -6,8 +6,7 @@ import { useDraggable, useModel } from "../DashboardContext";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { actorapi } from "../../data/actorapi";
 import PropsEdit from "../../util/PropsEdit";
-import Confetti from "react-dom-confetti";
-import { red } from "@mui/material/colors";
+
 
 const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit }) => {
   const [props, setProps] = useState({});
@@ -98,19 +97,6 @@ export const DashboardButton = ({ id, width, height }) => {
   const { actor: actorid, action } = model.props;
   const [open, setOpen] = useState(false);
   const [boom, setBoom] = useState(false);
-  const config = {
-    angle: 90,
-    spread: 360,
-    startVelocity: 40,
-    elementCount: 70,
-    dragFriction: 0.12,
-    duration: 3000,
-    stagger: 3,
-    width: "10px",
-    height: "10px",
-    perspective: "500px",
-    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
-  };
 
   return useMemo(() => {
     let cssStyle = { width: model.width + "px", height: model.height + "px" };

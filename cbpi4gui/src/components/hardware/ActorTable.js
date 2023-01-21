@@ -1,6 +1,5 @@
 import { makeStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { CBPiContext } from '../data';
 import { actorapi } from '../data/actorapi';
-import ActorButton from '../util/ActorButton';
 import ActorSwitch from '../util/ActorSwitch';
 import DeleteDialog from '../util/DeleteDialog';
 

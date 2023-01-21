@@ -40,7 +40,6 @@ const Upload = () => {
   const hiddenFileInput = React.useRef(null);
   const handleChange = event => {
     const fileUploaded = event.target.files[0];
-    const FileName = fileUploaded.name;
     let formData = new FormData();
     formData.append("File", fileUploaded);
     console.log("Start upload");

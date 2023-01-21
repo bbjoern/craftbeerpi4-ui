@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
 const MainMenu = () => {
   const classes = useStyles();
   const navBarRef = useRef();
-  const [appBarHeight, setAppBarHeight] = useState(64);
+//  const [appBarHeight, setAppBarHeight] = useState(64);
   const [open, setOpen] = useState(false);
   const [brewery,setBrewery] = useState("CraftBeerPi 4.0");
   const handleDrawerOpen = () => {
@@ -136,9 +136,9 @@ const MainMenu = () => {
     const updateNavBarHeight = () => {
       if (!navBarRef.current)
         return;
-      const newHeight = navBarRef.current.clientHeight;
+//     const newHeight = navBarRef.current.clientHeight;
 //	  console.log("Navbar height = " + newHeight);
-      setAppBarHeight(newHeight);
+//      setAppBarHeight(newHeight);
     };
     window.addEventListener("resize", updateNavBarHeight);
     updateNavBarHeight();
@@ -154,7 +154,7 @@ return (
                   <MenuIcon />
                 </IconButton>
                 <div className={classes.title} style={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
-                  <img width={30} src={logo} style={{ marginRight: 10 }} />
+                  <img width={30} src={logo} style={{ marginRight: 10 }} alt="CBPi Logo"/>
                   <Typography component="h1" variant="h4" color="inherit" noWrap>
                     {brewery}
                   </Typography>

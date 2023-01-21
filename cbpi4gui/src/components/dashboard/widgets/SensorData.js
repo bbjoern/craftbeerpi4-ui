@@ -1,10 +1,10 @@
 import { default as React } from "react";
 import SensorValue from "../../util/SensorValue";
 import { useDraggable, useModel } from "../DashboardContext";
-import { useSensor, useSensorType, useCBPi } from "../../data";
-import { ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemText } from "@mui/material";
+import { useSensor, useSensorType } from "../../data";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemText } from "@mui/material";
 import Button from "@mui/material/Button";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { sensorapi } from "../../data/sensorapi";
 import PropsEdit from "../../util/PropsEdit";
@@ -89,7 +89,6 @@ const ActionButton = ({ action, sensorid }) => {
 };
 
 export const SensorData = ({ id }) => {
-    const cbpi = useCBPi();
     const model = useModel(id);
     const draggable = useDraggable();
     const [open, setOpen] = useState(false);

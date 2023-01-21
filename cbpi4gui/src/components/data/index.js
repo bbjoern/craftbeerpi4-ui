@@ -7,13 +7,6 @@ import { useAlert } from "../alert/AlertProvider";
 import { kettleapi } from "./kettleapi";
 import { fermenterapi } from "./fermenterapi";
 import { sensorapi } from "./sensorapi";
-let MQTTPattern = require("mqtt-pattern");
-
-const messageTypes = {
-  "sensor/+id/data": "SENSOR_UPDATE",
-  "config/+id/update": "CONFIG_UPDATE",
-  "step/update": "STEP_UPDATE",
-};
 
 export const CBPiContext = createContext({});
 
@@ -51,7 +44,7 @@ export const CBPiProvider = ({ children }) => {
         break;
       case "fermenterupdate":
         setFermenter(() => data.data);
-        console.log(data.data);
+        //console.log(data.data);
         break;
       case "fermenterstepupdate":
         setFermenterSteps(() => data.data);
@@ -96,7 +89,7 @@ export const CBPiProvider = ({ children }) => {
 
     axios.get("/system/").then((res) => {
       const data = res.data;
-      console.log(data)
+      //console.log(data)
       setKettle(data.kettle.data);
       setFermenter(data.fermenter.data);
       setFermenterLogic(Object.values(data.fermenter.types));
@@ -213,7 +206,7 @@ export const useCBPi = () => {
 };
 
 export const useSensor = (id = null) => {
-  const { sensor, state } = useCBPi();
+  const { sensor } = useCBPi();
   const value = useMemo(() => {
     return id === null ? sensor : sensor.find((item) => item.id === id);
   }, [sensor, id]);

@@ -46,7 +46,7 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
       if (!p.condition?.left || p.condition?.left.length === 0) 
       {
         setFlowLeft(false);
-        console.log("SetFlow Left OFF");
+        //console.log("SetFlow Left OFF");
       } 
       else 
       {
@@ -57,7 +57,7 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
     {
       if (!p.condition?.right || p.condition?.right.length === 0) 
       {
-        console.log("SetFlow Right OFF");
+        //console.log("SetFlow Right OFF");
         setFlowRight(false);
       }
       else 
@@ -72,7 +72,7 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
       bStateAction = false;
       var boolExpressionRight = p.condition.rightExpression;
       const actorsId =p.condition.rightExpression.split("\"");
-      console.log("On check l'expression RIGHT : "+ boolExpressionRight);
+      //console.log("On check l'expression RIGHT : "+ boolExpressionRight);
 
       // For each part of the string, we check if this is an actor name, if so we replace the actor name by the resulting state.  
       for(var actorId of actorsId) 
@@ -81,7 +81,7 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
         if(typeof actor_cacheFromName[actorId] === "boolean") // Check if this is an actor ID or just an operator.
         {
           boolExpressionRight = boolExpressionRight.replace('\"' +  actorId + '\"', actor_cacheFromName[actorId].toString());
-          console.log("Eval right after replace : " + boolExpressionRight)
+          //console.log("Eval right after replace : " + boolExpressionRight)
         }
       }
       // Evaluation of the expression
@@ -89,9 +89,9 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
       try
       {
         bStateAction = eval(boolExpressionRight);
-        console.log("right, Eval de : " + boolExpressionRight + "  Result = " + bStateAction.toString());
+        //console.log("right, Eval de : " + boolExpressionRight + "  Result = " + bStateAction.toString());
         if(bStateAction.toString() === "true" || bStateAction.toString() === "false"){   
-          console.log("On anime a right ..." + bStateAction);     
+          //console.log("On anime a right ..." + bStateAction);     
           setFlowRight(bStateAction.toString() === "true" ? true : false);
         } 
 
@@ -108,7 +108,7 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
        var boolExpressionLeft = p.condition.leftExpression;
        
        const actorsId = p.condition.leftExpression.split("\"");
-       console.log("On check l'expression LEFT : "+ boolExpressionLeft);
+       //console.log("On check l'expression LEFT : "+ boolExpressionLeft);
        
        // For each part of the string, we check if this is an actor name, if so we replace the actor name by the resulting state.  
        
@@ -118,7 +118,7 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
          if(typeof actor_cacheFromName[actorId] === "boolean") 
          {            
            boolExpressionLeft =  boolExpressionLeft.replace('\"'+ actorId + '\"', actor_cacheFromName[actorId].toString());
-           console.log("Eval left after replace : " + boolExpressionLeft)
+           //console.log("Eval left after replace : " + boolExpressionLeft)
          }
        }
        // Evaluation of the expression
@@ -126,9 +126,9 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
        try 
        {
          bStateAction = eval(boolExpressionLeft);
-         console.log("Left, Eval de : " + boolExpressionLeft + "  Result = " + bStateAction.toString());
+         //console.log("Left, Eval de : " + boolExpressionLeft + "  Result = " + bStateAction.toString());
          if(bStateAction.toString() === "true" || bStateAction.toString() === "false"){      
-           console.log("On anime a left ..." + bStateAction);
+           //console.log("On anime a left ..." + bStateAction);
            setFlowLeft(bStateAction.toString() === "true" ? true : false);
          }
        } 

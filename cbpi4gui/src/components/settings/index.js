@@ -1,14 +1,12 @@
-import { Button, Container, Divider, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
+import { Container, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
-import AddIcon from "@mui/icons-material/Add";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "../alert/AlertProvider";
 import { useCBPi } from "../data";
 import { configapi } from "../data/configapi";
 import SaveIcon from "@mui/icons-material/Save";
@@ -79,7 +77,6 @@ const Settings = () => {
   const [config, setConfig] = useState({});
   const [filter, setFilter] = useState("");
   const classes = useStyles();
-  const alert = useAlert();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -96,7 +93,7 @@ const Settings = () => {
       if (parameter.changed) {
         configapi.update(key, parameter.value);
         setConfig((curret_config) => ({ ...curret_config, [key]: { ...curret_config[key], changed: false } }));
-        navigate("/settings");
+        navigate(0);
       }
 
     });

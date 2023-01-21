@@ -1,4 +1,4 @@
-import { ClickAwayListener, Dialog, DialogTitle, Divider, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
+import { ClickAwayListener, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useRef, useState } from "react";
 import Plot from "react-plotly.js";
@@ -7,15 +7,6 @@ import { useDraggable, useModel } from "../DashboardContext";
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import DeleteIcon from "@mui/icons-material/Delete";
-
-
-const ContextMenu = ({ open, handleClose, doRefresh }) => {
-  return <Dialog open={open} onClose={handleClose} aria-labelledby="simple-dialog-title">
-
-<DialogTitle id="simple-dialog-title">Chart</DialogTitle>
-      
-  </Dialog>;
-};
 
 const Chart = ({ id }) => {
   const [data, setData] = useState([]);

@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
 import SearchIcon from "@mui/icons-material/Search";
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import { CBPiBeerIcon } from "../util/icons/CBPiSensorIcon";
 const useStyles = makeStyles((theme) => ({
   root: {
