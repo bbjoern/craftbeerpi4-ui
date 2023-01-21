@@ -21,6 +21,7 @@ http://localhost:8000#
 
 ### Changelog
 
+- 20.01.23: (0.3.2.b1) Some bugs fixed where reload page via browser caused an issue (e.g. settings page)
 - 08.01.23: (0.3.2.a5) Some style updates
 - 06.01.23: (0.3.2.a2) UI migrated to @mui V5 and react 18.2.0 (Alpha version not officially released)
 - 05.01.23: (0.3.0.a1) UI migrated to React Router V6 (Alpha version not officially released)
