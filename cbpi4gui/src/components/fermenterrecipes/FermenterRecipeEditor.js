@@ -1,9 +1,9 @@
-import { Breadcrumbs, Container, Divider, Grid, IconButton, Link, Typography } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import DeleteIcon from "@material-ui/icons/Delete";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SaveIcon from "@material-ui/icons/Save";
+import { Breadcrumbs, Container, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DeleteIcon from "@mui/icons-material/Delete";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import SaveIcon from "@mui/icons-material/Save";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import Header from "../util/Header";
 import { BasicData } from "./BasicData";
 import { FermenterStepList } from "./FermenterStepList";
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import DeleteDialog from "../util/DeleteDialog";
 import { CloneRecipeDialog } from "./CloneRecipeDialog";
 import { BrewRecipeDialog } from "./BrewRecipeDialog";

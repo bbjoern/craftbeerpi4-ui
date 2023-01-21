@@ -1,4 +1,4 @@
-import { FormHelperText, Grid, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
+import { FormHelperText, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useEffect } from "react";
 import ActorSelect from "./ActorSelect";
 import KettleSelect from "./KettleSelect";
@@ -11,7 +11,7 @@ const SelectInput = ({ label, description="", options=[], value, onChange }) => 
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
           {label}
         </InputLabel>
-        <Select fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+        <Select variant="standard" fullWidth labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         <MenuItem key="actor-non" value="">---</MenuItem>
           {options.map((item) => (
             <MenuItem key={item} value={item}>
@@ -47,9 +47,9 @@ const PropsEdit = ({ config, onChange = () => {}, data={}}) => {
       case "actor":
         return <ActorSelect description={item.description} value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} />;
       case "number":
-        return <TextField helperText={item.description}  value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} type="number" label={item.label} fullWidth helperText={item.description}/>;
+        return <TextField variant="standard" helperText={item.description}  value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} type="number" label={item.label} fullWidth/>;
       default:
-        return <TextField helperText={item.description} value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} label={item.label} fullWidth helperText={item.description}/>;
+        return <TextField variant="standard" helperText={item.description} value={data[item.label]} onChange={(e) => onChange(item.label, e.target.value)} label={item.label} fullWidth/>;
     }
   };
 

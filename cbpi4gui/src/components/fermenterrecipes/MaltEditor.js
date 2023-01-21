@@ -1,6 +1,6 @@
-import { Divider, Grid, IconButton, InputAdornment, TextField } from "@material-ui/core";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Divider, Grid, IconButton, InputAdornment, TextField } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Header from "../util/Header";
 
 export const MaltEditor = ({items =[], setItems = ()=>{} }) => {
@@ -38,7 +38,7 @@ export const MaltEditor = ({items =[], setItems = ()=>{} }) => {
           return (
             <>
               <Grid item xs={12} sm={7}>
-                <TextField fullWidth label="name" name="name" value={item.name} onChange={(e) => handleInput(index, e)} />
+                <TextField variant="standard" fullWidth label="name" name="name" value={item.name} onChange={(e) => handleInput(index, e)} />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField

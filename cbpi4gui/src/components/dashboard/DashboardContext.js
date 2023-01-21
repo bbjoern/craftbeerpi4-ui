@@ -1,10 +1,10 @@
-import { Container, IconButton } from "@material-ui/core";
-import LockIcon from "@material-ui/icons/Lock";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import SaveIcon from "@material-ui/icons/Save";
+import { Container, IconButton } from "@mui/material";
+import LockIcon from "@mui/icons-material/Lock";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import SaveIcon from "@mui/icons-material/Save";
 import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "../../App.css";
+//import "../../App.css";
 import { useAlert } from "../alert/AlertProvider";
 import { dashboardapi } from "../data/dashboardapi";
 import DeleteDialog from "../util/DeleteDialog";
@@ -14,9 +14,9 @@ import { DashboardContainer } from "./Elements";
 import useKeyPress from "./GlobalKeyPress";
 import { widget_list } from "./widgets/config";
 import { Path } from "./widgets/Path";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import axios from "axios";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+//import axios from "axios";
 
 export const DashboardContext = createContext({});
 
@@ -325,7 +325,7 @@ export const Dashboard = ({ width, height , fixdash}) => {
   const SelectBox = ({ options, value, onChange }) => {
     return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}

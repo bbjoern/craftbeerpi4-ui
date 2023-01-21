@@ -1,7 +1,7 @@
 
-import { InputLabel } from "@material-ui/core";
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import { InputLabel } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { CBPiContext, useCBPi } from "../data";
 
 
@@ -11,10 +11,11 @@ import { CBPiContext, useCBPi } from "../data";
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
             {label}
      </InputLabel>
-        <Select fullWidth
+        <Select variant="standard" fullWidth
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}
+            size="small"
             onChange={onChange}>
                 <MenuItem  key="none" value="">---</MenuItem>
             {state.actorTypes.map((item) => <MenuItem  key={item.name} value={item.name}>{item.name}</MenuItem>)}

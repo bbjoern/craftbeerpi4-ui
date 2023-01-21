@@ -1,7 +1,8 @@
-import { Collapse, ListItemIcon, makeStyles, Paper, Tooltip } from "@material-ui/core";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import AppsIcon from "@material-ui/icons/Apps";
+import { Collapse, ListItemIcon, Paper, Tooltip } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import AppsIcon from "@mui/icons-material/Apps";
 import React, { useContext } from "react";
 import "../../App.css";
 import { CBPiGrainIcon, CBPiHopsIcon, CBPiLiquidIcon, CBPiPipeIcon, CBPiYeastIcon } from "../util/icons/CBPiSensorIcon";

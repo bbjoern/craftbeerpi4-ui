@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import axios from "axios";
 import CBPiWebSocket from "./websocket";
 import { actorapi } from "./actorapi";
-import { useEventCallback } from "@material-ui/core";
+import { useEventCallback } from "@mui/material";
 import { useAlert } from "../alert/AlertProvider";
 import { kettleapi } from "./kettleapi";
 import { fermenterapi } from "./fermenterapi";
@@ -185,10 +185,13 @@ export const CBPiProvider = ({ children }) => {
     },
   };
 
-  return <CBPiContext.Provider value={value}>{children}</CBPiContext.Provider>;
+  return ( <>
+  <CBPiContext.Provider value={value}>{children}</CBPiContext.Provider>
+    </>
+  );
 };
 
-export const useCBPi = (Context) => {
+export const useCBPi = () => {
   const { state, actions } = useContext(CBPiContext);
   const value = useMemo(() => {
     return {

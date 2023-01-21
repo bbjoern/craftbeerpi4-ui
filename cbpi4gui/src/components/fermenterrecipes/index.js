@@ -1,14 +1,15 @@
-import { Breadcrumbs, Container, Divider, makeStyles, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
+import { Breadcrumbs, Container, Divider, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
-import SearchIcon from "@material-ui/icons/Search";
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import SearchIcon from "@mui/icons-material/Search";
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import { CBPiBeerIcon } from "../util/icons/CBPiSensorIcon";
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,4 +1,4 @@
-import { TextField } from "@material-ui/core";
+import { TextField } from "@mui/material";
 import { default as React, useState } from "react";
 
 export const BasicData = ({data, setData}) => {
@@ -11,9 +11,9 @@ export const BasicData = ({data, setData}) => {
   }
   return (
     <>
-      <TextField fullWidth name="name" value={data.name} onChange={handleChange}  id="name" label="Name" />
-      {/*<TextField fullWidth name="author" value={data.author} onChange={handleChange}  id="author" label="Author" />*/}
-      <TextField  name="desc" fullWidth multiline value={data.desc} onChange={handleChange} id="desc" label="Description" />
+      <TextField variant="standard" fullWidth name="name" value={data.name} onChange={handleChange}  id="name" label="Name" />
+      {/*<TextField variant="standard"fullWidth name="author" value={data.author} onChange={handleChange}  id="author" label="Author" />*/}
+      <TextField variant="standard" name="desc" fullWidth multiline value={data.desc} onChange={handleChange} id="desc" label="Description" />
     </>
   );
 };
