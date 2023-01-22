@@ -249,7 +249,14 @@ export const DashboardProvider = ({ children }) => {
 
   const save = (DashboardID = 1) => {
     let e = elements2.map((value) => ({ id: value.id, name: value.name, x: value.x, y: value.y, type: value.type, props: { ...value.props } }));
-    let p = pathes.map((value) => ({ id: value.id, coordinates: value.coordinates, condition: value.condition }));
+    // let p = pathes.map((value) => ({ id: value.id, coordinates: value.coordinates, condition: value.condition }));
+    var p = [];
+    pathes.forEach(function(value) {  // remove pathes with empty coordinates
+        if (value.coordinates.length != 0) {
+            var newValue = {id: value.id, coordinates: value.coordinates, condition: value.condition };
+            p.push(newValue);
+        }
+    });
     //console.log("DEBUG CONDITION SAVED")
     //console.log(p);
     dashboardapi.save(DashboardID, { elements: e, pathes: p }, () => {
