@@ -77,7 +77,7 @@ const SensorTable = () => {
                   {row.id} 
                 </TableCell>
                 <TableCell align="right" className="hidden-xs">
-                  <SensorValue id={row.id}/>
+                  <SensorValue id={row.id} digits={1} />
                 </TableCell>
                 <TableCell align="right" className="hidden-xs">
                   <DeleteDialog title="Delete Sensor" message="Do you want to delete the Sensor" id={row.id} callback={remove_callback} />

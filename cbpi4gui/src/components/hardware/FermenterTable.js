@@ -54,7 +54,7 @@ const FermenterTable = () => {
                                 <TableCell align="right" className="hidden-xs">{row.type}</TableCell>
                                 <TableCell align="right" className="hidden-xs"><ActorValue id={row.heater}/></TableCell>
                                 <TableCell align="right" className="hidden-xs" ><ActorValue id={row.cooler}/></TableCell>
-                                <TableCell align="right" className="hidden-xs"><SensorValue id={row.sensor}/></TableCell>
+                                <TableCell align="right" className="hidden-xs"><SensorValue id={row.sensor} digits={1}/></TableCell>
                                 <TableCell align="right" className="hidden-xs">{row.target_temp}</TableCell>
                                 <TableCell align="right" className="hidden-xs">
                                     <DeleteDialog title="Delete Fermenter" message="Do you want to delete" id={row.id} callback={remove_callback} />
