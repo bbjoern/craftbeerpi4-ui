@@ -1,7 +1,8 @@
 import { Divider, Container, Grid, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import React from "react";
 import logo from "../../images/cbpi.png";
+import pythonlogo from "../../images/python-powered.png"
+import reactlogo from "../../images/Reacticon.png"
 import { useCBPi } from "../data";
 import paypal_logo from "./paypal.png";
 import Button from "@mui/material/Button";
@@ -50,6 +51,26 @@ const About = () => {
             Pypi: https://pypi.org/project/cbpi4/ <br />
             Openbrewing Documentation: <Button color="primary" target="_blank" href="https://openbrewing.gitbook.io/craftbeerpi4_support/" rel="noreferrer noopener">Link to Documentation</Button>
             <br />
+            <br />
+            <br />
+            <div
+              style={{
+              display: "flex",
+              alignItems: "center",
+              }}
+              >
+            The server is based on python: https://www.python.org/ -<img width={30} src={pythonlogo} alt="PythonLogo"/>
+            </div>
+            <br/>
+            <div
+              style={{
+              display: "flex",
+              alignItems: "center",
+              }}
+              >
+            The User Interface is based on React components: https://reactjs.org/ -<img width={30} src={reactlogo} alt="ReactLogo"/>
+            </div>
+            <br/>
             <p>Cheers,</p>
             <p> Manuel Fritsch / Alexander Vollkopf</p>
             <img width={30} src={logo} alt="Logo" /> CraftBeerPi

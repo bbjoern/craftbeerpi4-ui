@@ -5,7 +5,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
-import logo from '../../images/cbpi.png';
+import logo from '../../images/python-powered.png';
 //import IconButton from "@mui/material/IconButton";
 //import InputBase from "@mui/material/InputBase";
 //import Paper from "@mui/material/Paper";
@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
 
 const styles = {
   media: {
-    height: 0,
-    width: 40,
-    paddingTop: '12%', // 16:9,
-    marginTop:'5px',
-    marginLeft:'10px'
+    height: '30px',
+    width: '50px',
+    paddingTop: '15%', // 16:9,
+    marginTop:'1px',
+    marginLeft:'1px'
   }
 };
 

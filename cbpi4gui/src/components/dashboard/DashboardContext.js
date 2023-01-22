@@ -252,7 +252,7 @@ export const DashboardProvider = ({ children }) => {
     // let p = pathes.map((value) => ({ id: value.id, coordinates: value.coordinates, condition: value.condition }));
     var p = [];
     pathes.forEach(function(value) {  // remove pathes with empty coordinates
-        if (value.coordinates.length != 0) {
+        if (value.coordinates.length !== 0) {
             var newValue = {id: value.id, coordinates: value.coordinates, condition: value.condition };
             p.push(newValue);
         }
