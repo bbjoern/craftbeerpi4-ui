@@ -2,7 +2,7 @@ import { default as React } from "react";
 import SensorValue from "../../util/SensorValue";
 import { useDraggable, useModel } from "../DashboardContext";
 import { useSensor, useSensorType } from "../../data";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItemButton, ListItemText } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";

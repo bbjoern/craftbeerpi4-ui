@@ -12,8 +12,8 @@ export const Path = ({ id, coordinates, condition = {left: [], right: [], leftEx
   const [active, setActive] = useState(false);
   const [flowLeft, setFlowLeft] = useState(false)
   const [flowRight, setFlowRight] = useState(false)
-  const [rightExpression, SetFlowExpRight] = useState(false); // rightExpression and useState Hook for SetFlowRightExp
-  const [leftExpression, SetFlowExpLeft] = useState(false);   // leftExpression and useState Hook for SetFlowleftExp
+  //const [rightExpression, SetFlowExpRight] = useState(false); // rightExpression and useState Hook for SetFlowRightExp
+  //const [leftExpression, SetFlowExpLeft] = useState(false);   // leftExpression and useState Hook for SetFlowleftExp
   const [animation, setAnimation] = useState("");
   const [animationFast, setAnimationFast] = useState("");
   
