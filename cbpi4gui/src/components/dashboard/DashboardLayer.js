@@ -15,6 +15,7 @@ import { DashboardContext, useModel } from "./DashboardContext";
 import { widget_list } from "./widgets/config";
 import { Container, Draggable } from "react-smooth-dnd";
 import { arrayMove } from "../util/arraymove";
+import { ListItemButton } from "@mui/material";
 
 const DashboardLayerListItem = ({ item }) => {
   const { state, actions } = useContext(DashboardContext);
@@ -143,13 +144,13 @@ const PropsEditor = ({ data }) => {
 const PathSettingsItem = ({ item, checked, handleToggle }) => {
   return (
     <>
-    <ListItem button onClick={handleToggle(item.id)}>
+    <ListItemButton onClick={handleToggle(item.id)}>
       <ListItemIcon>
         <Checkbox edge="start" checked={checked.indexOf(item.id) !== -1} tabIndex={-1} color="primary" disableRipple inputProps={{ "aria-labelledby": "A" }} />
       </ListItemIcon>
       <ListItemText primary={item.name} />
 
-    </ListItem>
+    </ListItemButton>
     </>
   );
 };

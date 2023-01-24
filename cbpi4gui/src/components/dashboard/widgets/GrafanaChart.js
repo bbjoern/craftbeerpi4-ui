@@ -1,4 +1,4 @@
-import { ClickAwayListener, Dialog, DialogTitle, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
+import { ClickAwayListener, Dialog, DialogTitle, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import Button from "@mui/material/Button";
 import { TextField, DialogActions, DialogContent, Stack, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import DateTimePicker from '@mui/lab/DateTimePicker';
@@ -192,27 +192,27 @@ const GrafanaChart = ({ id }) => {
       <ClickAwayListener onClickAway={handleClose}>
       <Paper>
       <List>
-        <ListItem button color="secondary" onClick={() => setOpenDialog(true)} >
+        <ListItemButton color="secondary" onClick={() => setOpenDialog(true)} >
           <ListItemIcon onClick={() => setOpenDialog(true)}>
             <DateRangeIcon />
           </ListItemIcon>
           <ListItemText primary="set Range" />
-        </ListItem>
+        </ListItemButton>
         <SetRangeDialog open={openDialog} onSubmit={handle_submit} onClose={handleDialogClose}/>
         
-        <ListItem button color="secondary" onClick={update} >
+        <ListItemButton color="secondary" onClick={update} >
           <ListItemIcon onClick={update}>
             <AutorenewIcon />
           </ListItemIcon>
           <ListItemText primary="Update Chart" />
-        </ListItem>
+        </ListItemButton>
         
-        <ListItem button color="secondary" onClick={clear_data} >
+        <ListItemButton color="secondary" onClick={clear_data} >
           <ListItemIcon onClick={clear_data}>
             <DeleteIcon />
           </ListItemIcon>
           <ListItemText primary="Clear Chart" />
-        </ListItem>
+        </ListItemButton>
       </List>
       </Paper>
       </ClickAwayListener>

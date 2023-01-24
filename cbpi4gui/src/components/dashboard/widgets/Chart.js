@@ -1,4 +1,4 @@
-import { ClickAwayListener, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
+import { ClickAwayListener, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useRef, useState } from "react";
 import Plot from "react-plotly.js";
@@ -143,18 +143,18 @@ const Chart = ({ id }) => {
       <ClickAwayListener onClickAway={handleClose}>
       <Paper>
       <List>
-        <ListItem button color="secondary" onClick={load_data} >
+        <ListItemButton color="secondary" onClick={load_data} >
           <ListItemIcon onClick={load_data}>
             <AutorenewIcon />
           </ListItemIcon>
           <ListItemText primary="Refresh" />
-        </ListItem>
-        <ListItem button color="secondary" onClick={clear_data} >
+        </ListItemButton>
+        <ListItemButton color="secondary" onClick={clear_data} >
           <ListItemIcon onClick={clear_data}>
             <DeleteIcon />
           </ListItemIcon>
           <ListItemText primary="Clear" />
-        </ListItem>
+        </ListItemButton>
       </List>
       </Paper>
       </ClickAwayListener>

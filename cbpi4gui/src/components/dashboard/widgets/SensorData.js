@@ -2,7 +2,7 @@ import { default as React } from "react";
 import SensorValue from "../../util/SensorValue";
 import { useDraggable, useModel } from "../DashboardContext";
 import { useSensor, useSensorType } from "../../data";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemText } from "@mui/material";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -50,9 +50,9 @@ const SensorActionDialog = ({ open, onClose, model, sensor }) => {
         {type.actions.map((action, index) => (
           <ActionButton sensorid={sensorid} action={action} key={index} />
         ))}
-        <ListItem button color="secondary">
+        <ListItemButton color="secondary">
           <ListItemText primary="Close" onClick={onClose} />
-        </ListItem>
+        </ListItemButton>
       </List>
     </Dialog>
   );
@@ -73,17 +73,17 @@ const ActionButton = ({ action, sensorid }) => {
   if (action.parameters.length > 0) {
     return (
       <>
-        <ListItem button>
+        <ListItemButton>
           <ListItemText primary={action.label} onClick={() => setOpen(true)} />
-        </ListItem>
+        </ListItemButton>
         <ButtonActionPropsDialog open={open} action={action} onSubmit={handle_submit} onClose={handleClose}/>
       </>
     );
   } else {
     return (
-      <ListItem button  onClick={() => handle_action(sensorid, action)}>
+      <ListItemButton  onClick={() => handle_action(sensorid, action)}>
         <ListItemText primary={action.label}   />
-      </ListItem>
+      </ListItemButton>
     );
   }
 };

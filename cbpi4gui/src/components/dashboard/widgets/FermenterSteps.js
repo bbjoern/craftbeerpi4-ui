@@ -4,7 +4,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { makeStyles } from "@mui/styles";
@@ -242,12 +242,12 @@ const StepItem = ({ size, item }) => {
 
   return (
     <>
-      <ListItem button={!draggable} onClick={handleClickOpen}>
+      <ListItemButton disabled={!draggable} onClick={handleClickOpen}>
         <ListItemIcon>
           <State state={item.status} />
         </ListItemIcon>
         <ListItemText primaryTypographyProps={{ style: primaryprops }} primary={item.name} secondaryTypographyProps={{ style: secondaryprops }} secondary={item.state_text} />
-      </ListItem>
+      </ListItemButton>
       <StepDetailsDialog item={item} selectedValue={selectedValue} open={open} onClose={handleClose} />
     </>
   );
@@ -275,9 +275,15 @@ export const FermenterSteps = ({ id }) => {
 
   useEffect(() => {
     if (fermenterid && (fermenterid !==1)) {
-      if (state.fermentersteps){
-        const step= state.fermentersteps.find(step => step.id === fermenterid).steps;
-        setProfile(step)};
+      if (state.fermentersteps) {
+        try {
+          const step= state.fermentersteps.find(step => step.id === fermenterid).steps;
+          setProfile(step)}
+        catch{
+          console.log("no steps")
+        }
+        };
+
     };
   }, [state.fermentersteps, fermenterid]);
 

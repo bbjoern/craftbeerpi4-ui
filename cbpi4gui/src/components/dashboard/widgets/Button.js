@@ -1,4 +1,4 @@
-import { ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemText } from "@mui/material";
+import { ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItemText } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useMemo, useState } from "react";
 import { useActor, useActorType, useCBPi } from "../../data";
@@ -6,6 +6,7 @@ import { useDraggable, useModel } from "../DashboardContext";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { actorapi } from "../../data/actorapi";
 import PropsEdit from "../../util/PropsEdit";
+import { ListItemButton } from "@mui/material";
 
 
 const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit }) => {
@@ -54,18 +55,18 @@ const ActionButton = ({ action, actorid }) => {
   if (action.parameters.length > 0) {
     return (
       <>
-        <ListItem button>
+        <ListItemButton>
           <ListItemText primary={action.label} onClick={() => setOpen(true)} />
-        </ListItem>
+        </ListItemButton>
         <ButtonActionPropsDialog open={open} action={action} onSubmit={handle_submit} onClose={handleClose}/>
         </>
     );
   } else {
     return (
       <>
-      <ListItem button  onClick={() => handle_action(actorid, action)}>
+      <ListItemButton  onClick={() => handle_action(actorid, action)}>
         <ListItemText primary={action.label}   />
-      </ListItem>
+      </ListItemButton>
       </>
     );
   }
@@ -81,9 +82,9 @@ const ButtonActionDialog = ({ open, onClose, model, actor }) => {
         {type.actions.map((action, index) => (
           <ActionButton actorid={actorid} action={action} key={index} />
         ))}
-        <ListItem button color="secondary">
+        <ListItemButton color="secondary">
           <ListItemText primary="Close" onClick={onClose} />
-        </ListItem>
+        </ListItemButton>
       </List>
     </Dialog>
   );

@@ -1,8 +1,6 @@
 import { Container, Breadcrumbs, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import DeleteIcon from "@mui/icons-material/Delete";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import SaveIcon from "@mui/icons-material/Save";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";

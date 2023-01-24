@@ -1,5 +1,4 @@
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import BallotIcon from '@mui/icons-material/Ballot';
@@ -13,6 +12,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ComputerIcon from '@mui/icons-material/Computer';
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { ListItemButton } from '@mui/material';
 
 const MenuItem = ({ onClose, label, path = "/", children }) => {
     const navigate = useNavigate();
@@ -23,13 +23,13 @@ const MenuItem = ({ onClose, label, path = "/", children }) => {
         onClose()
     }
 
-    return <><ListItem button onClick={()=>goTo(path)}>
+    return <><ListItemButton onClick={()=>goTo(path)}>
         <ListItemIcon>
             {children}
         </ListItemIcon>
         <ListItemText primary={label} />
      
-    </ListItem>
+    </ListItemButton>
     
     </>
 }

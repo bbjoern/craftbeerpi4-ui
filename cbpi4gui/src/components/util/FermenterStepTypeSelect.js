@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useContext } from "react";
 import { CBPiContext } from "../data";
 
- const FermenterStepTypeSelect = ({label="Logic", value, onChange, }) => {
+ const FermenterStepTypeSelect = ({label="Step Type", value, onChange, }) => {
     const { state } = useContext(CBPiContext);
 
     return <>
