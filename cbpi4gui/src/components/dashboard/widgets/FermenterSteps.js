@@ -242,7 +242,7 @@ const StepItem = ({ size, item }) => {
 
   return (
     <>
-      <ListItemButton disabled={!draggable} onClick={handleClickOpen}>
+      <ListItemButton style={{opacity: 1}} disabled={!draggable} onClick={handleClickOpen}>
         <ListItemIcon>
           <State state={item.status} />
         </ListItemIcon>
