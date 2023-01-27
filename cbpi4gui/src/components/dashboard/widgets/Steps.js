@@ -234,10 +234,12 @@ const StepItem = ({ size, item }) => {
   };
 
   const primaryprops = {
-    fontSize: (size -3 )+"pt"
+    fontSize: (size -3 )+"pt",
+    "&:hover": {opacity: 0.7}
  };
   const secondaryprops = {
-    fontSize: size+"pt"
+    fontSize: size+"pt",
+    "&:hover": {opacity: 0.7}
  };
 
   return (
@@ -246,7 +248,7 @@ const StepItem = ({ size, item }) => {
         <ListItemIcon>
           <State state={item.status} />
         </ListItemIcon>
-        <ListItemText primaryTypographyProps={{ style: primaryprops }} primary={item.name} secondaryTypographyProps={{ style: secondaryprops }} secondary={item.state_text} />
+        <ListItemText primaryTypographyProps={{ sx: primaryprops }} primary={item.name} secondaryTypographyProps={{ style: secondaryprops }} secondary={item.state_text} />
       </ListItemButton>
       <StepDetailsDialog item={item} selectedValue={selectedValue} open={open} onClose={handleClose} />
     </>

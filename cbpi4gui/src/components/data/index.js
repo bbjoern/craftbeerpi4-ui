@@ -28,6 +28,7 @@ export const CBPiProvider = ({ children }) => {
   const [plugins, setPlugins] = useState([]);
   const [temp, setTemp] = useState("");
   const [version, setVersion] = useState("---");
+  const [guiversion, setGUIersion] = useState("---");
   const [codename, setCodename] = useState("---");
   const a = useAlert();
   const [notification, setNotifiaction] = useState("");
@@ -89,7 +90,7 @@ export const CBPiProvider = ({ children }) => {
 
     axios.get("/system/").then((res) => {
       const data = res.data;
-      //console.log(data)
+      console.log(data)
       setKettle(data.kettle.data);
       setFermenter(data.fermenter.data);
       setFermenterLogic(Object.values(data.fermenter.types));
@@ -104,6 +105,7 @@ export const CBPiProvider = ({ children }) => {
       setMashBasic(data.step.basic);
       setConfig(data.config);
       setVersion(data.version);
+      setGUIersion(data.guiversion);
       setCodename(data.codename);
       setStepTypes(Object.values(data.step.types));
       setStepTypesFermenter(Object.values(data.fermenter.steptypes));
@@ -150,7 +152,7 @@ export const CBPiProvider = ({ children }) => {
   const get_sensor_by_id = (id) => sensors.find((item) => item.id === id);
 
   const value = {
-    state: { sensors, version, codename, actors, logic, kettle, fermenter, fermenterlogic, auth, plugins, temp, sensorData, 
+    state: { sensors, version, guiversion, codename, actors, logic, kettle, fermenter, fermenterlogic, auth, plugins, temp, sensorData, 
              actorTypes, sensorTypes, config, mashProfile, fermentersteps, FermenterProfile, mashBasic, stepTypes, stepTypesFermenter, connection },
     actions: {
       delete_kettle,
@@ -191,6 +193,7 @@ export const useCBPi = () => {
       state,
       connection: state.connection,
       version: state.version,
+      guiversion: state.guiversion,
       codename: state.codename,
       kettle: state.kettle,
       fermenter: state.fermenter,
