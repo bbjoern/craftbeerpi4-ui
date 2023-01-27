@@ -30,7 +30,7 @@ const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit 
         <Button onClick={onClose} variant="contained" color="secondary" autoFocus>
           Close
         </Button>
-        <Button onClick={() => onSubmit(props)} variant="contained" color="Primary" autoFocus>
+        <Button onClick={() => onSubmit(props)} variant="contained" /*color="Primary"*/ autoFocus>
           Submit
         </Button>
       </DialogActions>
