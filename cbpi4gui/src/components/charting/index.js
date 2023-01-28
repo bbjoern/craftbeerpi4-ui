@@ -1,6 +1,6 @@
 import { Container, Divider, Grid, IconButton, Typography } from "@mui/material";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
-import ToggleButton from "@mui/lab/ToggleButton";
+import { ToggleButton } from "@mui/material";
 import { ToggleButtonGroup } from '@mui/material';
 import { useState } from "react";
 import Plot from "react-plotly.js";
@@ -122,6 +122,7 @@ const clear_logs = () => {
                 tickfont: {
                   size: 8,
                   color: "#fff",
+                  tickformat: '.1f',
                 },
               },
               yaxis: {
@@ -129,6 +130,8 @@ const clear_logs = () => {
                 tickfont: {
                   size: 8,
                   color: "#fff",
+                  tickformat: '.0f',
+                  nticks: 1,
                 },
               },
             }}
