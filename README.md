@@ -21,6 +21,8 @@ http://localhost:8000#
 
 ### Changelog
 
+- 29.01.23: (0.3.2.rc6) Axis styling on analytics page adapted to allow for better reading
+- 28.01.23: (0.3.2.rc5) Togglebutton import changed to new requirements on analytics page
 - 27.01.23: (0.3.2.rc4) Fixed bug for sensor action, added hover effect on steps and fermentersteps, added gui version info on about page
 - 26.01.23: (0.3.2.rc2) Replaced some deprecated functions and adapted style for step/fermenterstep widget
 - 23.01.23: (0.3.2.b5) Fixed sensor digits of harware table to 1

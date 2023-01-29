@@ -101,9 +101,9 @@ const clear_logs = () => {
               paper_bgcolor: "rgba(0,0,0,0)",
               plot_bgcolor: "rgba(0,0,0,0)",
               margin: {
-                l: 20,
+                l: 80,
                 r: 20,
-                b: 20,
+                b: 50,
                 t: 30,
                 pad: 0,
               },
@@ -120,18 +120,16 @@ const clear_logs = () => {
               xaxis: {
                 showgrid: false,
                 tickfont: {
-                  size: 8,
+                  size: 10,
                   color: "#fff",
-                  tickformat: '.1f',
                 },
               },
               yaxis: {
                 showgrid: true,
+                tickformat: '.1f',
                 tickfont: {
-                  size: 8,
+                  size: 10,
                   color: "#fff",
-                  tickformat: '.0f',
-                  nticks: 1,
                 },
               },
             }}
