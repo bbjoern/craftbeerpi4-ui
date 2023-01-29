@@ -4,7 +4,7 @@ const action = (notifiaction_id, action_id, data, callback_susscess = () => {}, 
   axios
     .post(`/notification/${notifiaction_id}/action/${action_id}`)
     .then(function (response) {
-      console.log(response);
+      //console.log(response);
       callback_susscess(response.data);
     })
     .catch(function (error) {

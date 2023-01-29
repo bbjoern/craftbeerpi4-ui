@@ -31,7 +31,7 @@ export const DashboardContainer = ({ name, id, index, type }) => {
   };
 
   const stopDrag = () => {
-    console.log(x, y)
+    //console.log(x, y)
     actions.update_coordinates(id, x, y)
   }
 
