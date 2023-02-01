@@ -1,18 +1,20 @@
-import { Button, Divider, IconButton, makeStyles } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Button, Container, Divider, IconButton } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { default as React, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
 import SaveDialog from "../util/SaveDialog";
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const MashProfile = () => {
   const classes = useStyles();
   const { state } = useCBPi();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -59,25 +61,28 @@ const MashProfile = () => {
 
   if (!state.mashBasic.name) {
     return (
+      <Container maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
           <Button
             variant="outlined"
             color="primary"
             onClick={() => {
-              history.push("/recipes");
+              navigate("/recipes");
             }} startIcon={<MenuBookIcon />}
           >
             Please select a Recipe
           </Button>
         </Grid>
       </Grid>
+      </Container>
     );
   }
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             {state.mashBasic.name}{" "}
@@ -96,7 +101,7 @@ const MashProfile = () => {
           <IconButton
             variant="contained"
             onClick={() => {
-              history.push("/recipes");
+              navigate("/recipes");
             }}
           >
             <MenuBookIcon />
@@ -112,7 +117,7 @@ const MashProfile = () => {
             <Header title="Profile">
               <div style={{ display: "flex" }}>
                 <MashControl />
-                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => history.push("/step")}>
+                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => navigate("/step")}>
                   ADD
                 </Button>
               </div>
@@ -156,7 +161,7 @@ const MashProfile = () => {
                       <TableCell align="right" className="hidden-xs">
                         <DeleteDialog title="Delete Step" message="Do you want to delete the step" id={row.id} callback={remove_callback} />
                         
-                        <IconButton aria-label="add" size="small" onClick={() => history.push("/step/" + row.id)}>
+                        <IconButton aria-label="add" size="small" onClick={() => navigate("/step/" + row.id)}>
                           <VisibilityIcon />
                         </IconButton>                        
                       </TableCell>
@@ -168,6 +173,7 @@ const MashProfile = () => {
           </Paper>
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

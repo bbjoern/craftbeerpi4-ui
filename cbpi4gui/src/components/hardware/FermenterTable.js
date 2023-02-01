@@ -1,17 +1,15 @@
-import { makeStyles } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { CBPiContext, useCBPi } from '../data';
-import { fermenterapi } from '../data/fermenterapi';
+import { makeStyles } from '@mui/styles';
+import IconButton from '@mui/material/IconButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCBPi } from '../data';
 import ActorValue from '../util/ActorValue';
 import DeleteDialog from '../util/DeleteDialog';
 import SensorValue from '../util/SensorValue';
@@ -24,7 +22,7 @@ const useStyles = makeStyles({
 
 const FermenterTable = () => {
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
     const { state, actions } = useCBPi()
 
     const remove_callback = (id) => {
@@ -56,11 +54,11 @@ const FermenterTable = () => {
                                 <TableCell align="right" className="hidden-xs">{row.type}</TableCell>
                                 <TableCell align="right" className="hidden-xs"><ActorValue id={row.heater}/></TableCell>
                                 <TableCell align="right" className="hidden-xs" ><ActorValue id={row.cooler}/></TableCell>
-                                <TableCell align="right" className="hidden-xs"><SensorValue id={row.sensor}/></TableCell>
+                                <TableCell align="right" className="hidden-xs"><SensorValue id={row.sensor} digits={1}/></TableCell>
                                 <TableCell align="right" className="hidden-xs">{row.target_temp}</TableCell>
                                 <TableCell align="right" className="hidden-xs">
                                     <DeleteDialog title="Delete Fermenter" message="Do you want to delete" id={row.id} callback={remove_callback} />
-                                    <IconButton aria-label="delete" size="small" onClick={() => { history.push("/fermenter/"+row.id) }} >
+                                    <IconButton aria-label="delete" size="small" onClick={() => { navigate("/fermenter/"+row.id) }} >
                                       <VisibilityIcon />
                                     </IconButton>
                                 </TableCell>

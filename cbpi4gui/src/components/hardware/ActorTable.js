@@ -1,19 +1,18 @@
-import { makeStyles } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import VisibilityIcon from '@material-ui/icons/Visibility';
+import { makeStyles } from '@mui/styles';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { CBPiContext } from '../data';
 import { actorapi } from '../data/actorapi';
-import ActorButton from '../util/ActorButton';
 import ActorSwitch from '../util/ActorSwitch';
 import DeleteDialog from '../util/DeleteDialog';
 
@@ -25,7 +24,7 @@ const useStyles = makeStyles({
 
 const ActorTable = () => {
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
     const { state, actions } = useContext(CBPiContext);
 
     
@@ -60,7 +59,7 @@ const ActorTable = () => {
                                 <TableCell align="right" className="hidden-xs"><ActorSwitch id={row.id}/></TableCell>
                                 <TableCell align="right" className="hidden-xs">
                                     <DeleteDialog title="Delete Actor" message="Do you want to delete the Actor" id={row.id} callback={remove_callback} />
-                                    <IconButton aria-label="delete" size="small" onClick={() => { history.push("/actor/"+row.id) }} >
+                                    <IconButton aria-label="delete" size="small" onClick={() => { navigate("/actor/"+row.id) }} >
                                       <VisibilityIcon />
                                     </IconButton>
                                 </TableCell>

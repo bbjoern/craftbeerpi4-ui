@@ -1,7 +1,7 @@
 
-import { InputLabel } from "@material-ui/core";
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import { InputLabel } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { useCBPi } from "../data";
 
 
@@ -11,9 +11,10 @@ import { useCBPi } from "../data";
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
             {label} {value}
      </InputLabel>
-        <Select fullWidth
+        <Select variant="standard" fullWidth
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+            size="small"
             value={value}
             onChange={onChange}>
                 <MenuItem  key="none" value="">---</MenuItem>

@@ -1,18 +1,20 @@
-import { Button, Divider, IconButton, makeStyles } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Button, Container, Divider, IconButton } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { default as React, useEffect, useState } from "react";
-import { useHistory , useParams} from "react-router-dom";
+import { useNavigate , useParams} from "react-router-dom";
+
 import { useCBPi } from "../data";
 import { fermenterapi } from "../data/fermenterapi"; 
 import FermenterDeleteDialog from "../util/FermenterDeleteDialog";  
@@ -34,17 +36,23 @@ const useStyles = makeStyles((theme) => ({
 const FermenterProfile = () => {
   const classes = useStyles();
   const { state } = useCBPi();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [brewname, setBrewName] = useState("");
   const { fermenterid } = useParams();
   
   useEffect(() => {
-   if (fermenterid) {
+   if ((fermenterid) && (state.fermentersteps.length !== 0)) {
+    try {
       const step= state.fermentersteps.find(step => step.id === fermenterid).steps;
       const name= state.fermenter.find(fermenter => fermenter.id === fermenterid).brewname + "                              ";
       setData(step);
-      setBrewName(name.substring(0,30))};
+      setBrewName(name.substring(0,30))}
+    catch (e) {
+      console.log(e);
+    }
+    
+    };
    }, [state.fermentersteps,fermenterid]);
 
   
@@ -68,7 +76,7 @@ const FermenterProfile = () => {
     if (e.target.value) {
     fermenterapi.getsteps(e.target.value, (data) => {
     setData(data.steps)
-    history.push("/fermenterprofile/"+e.target.value)});
+    navigate("/fermenterprofile/"+e.target.value)});
     };
   };
 
@@ -76,7 +84,8 @@ const FermenterProfile = () => {
   if (!fermenterid) { // Mashbasic finden und anpassen (vermutlich //data/index.js)
     return (
       <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             {"                              "}
@@ -93,7 +102,7 @@ const FermenterProfile = () => {
         <IconButton
             variant="contained"
             onClick={() => {
-              history.push("/fermenterrecipes");
+              navigate("/fermenterrecipes");
             }}
           >
             <MenuBookIcon />
@@ -102,13 +111,15 @@ const FermenterProfile = () => {
         </Grid>
 
         </Grid>
+        </Container>
         </>
     );
   }
  {
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             {brewname}
@@ -134,7 +145,7 @@ const FermenterProfile = () => {
           <IconButton
             variant="contained"
             onClick={() => {
-              history.push("/fermenterrecipes");
+              navigate("/fermenterrecipes");
             }}
           >
             <MenuBookIcon />
@@ -150,7 +161,7 @@ const FermenterProfile = () => {
             <Header title="Profile">
               <div style={{ display: "flex" }}>
                 <FermenterControl fermenterid={fermenterid} />
-                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => history.push("/fermenterstep/"+fermenterid)}>
+                <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={() => navigate("/fermenterstep/"+fermenterid)}>
                   ADD
                 </Button>
               </div>
@@ -194,7 +205,7 @@ const FermenterProfile = () => {
                       <TableCell align="right" className="hidden-xs">
                         <FermenterDeleteDialog title="Delete Step" message="Do you want to delete the step" fermenterid={fermenterid} id={row.id} callback={remove_callback} />
                         
-                        <IconButton aria-label="add" size="small" onClick={() => history.push("/fermenterstep/" + row.id + "/" + fermenterid)}>
+                        <IconButton aria-label="add" size="small" onClick={() => navigate("/fermenterstep/" + row.id + "/" + fermenterid)}>
                           <VisibilityIcon />
                         </IconButton>                        
                       </TableCell>
@@ -206,6 +217,7 @@ const FermenterProfile = () => {
           </Paper>
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

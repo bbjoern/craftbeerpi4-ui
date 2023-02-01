@@ -1,20 +1,21 @@
 
-import { InputLabel} from "@material-ui/core"
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import { InputLabel} from "@mui/material"
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 import { useContext } from "react";
 import { CBPiContext } from "../data";
 
- const FermenterStepTypeSelect = ({label="Logic", value, onChange, }) => {
+ const FermenterStepTypeSelect = ({label="Step Type", value, onChange, }) => {
     const { state } = useContext(CBPiContext);
 
     return <>
         <InputLabel shrink id="demo-simple-select-placeholder-label-label">
             {label}
      </InputLabel>
-        <Select fullWidth
+        <Select variant="standard" fullWidth
             name="type"
+            size="small"
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}

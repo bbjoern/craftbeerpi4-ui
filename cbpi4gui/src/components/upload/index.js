@@ -1,8 +1,9 @@
-import { Button, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Button, Grid, Typography, Divider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Container } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import InputLabel from '@mui/material/InputLabel';
 import { uploadapi } from "../data/uploadapi"
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const SelectBox = ({ options, value, onChange }) => {
   return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}
@@ -39,7 +40,6 @@ const Upload = () => {
   const hiddenFileInput = React.useRef(null);
   const handleChange = event => {
     const fileUploaded = event.target.files[0];
-    const FileName = fileUploaded.name;
     let formData = new FormData();
     formData.append("File", fileUploaded);
     console.log("Start upload");
@@ -138,8 +138,9 @@ const Upload = () => {
   };
 
   return (
+    <Container maxWidth="lg">
     <div>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Recipe Upload
@@ -149,13 +150,13 @@ const Upload = () => {
       </Grid>
       <Divider style={{ marginBottom: 10, marginTop: 10 }} />
 
-      <Grid container spacing={2} className={classes.root}>
+      <Grid component={Paper} container spacing={2} className={classes.root}>
         <Grid item spacing={2} xs={12}>
           <Paper style={{ padding: 10 }}>
             <p>You can upload recipes from BeerXML, MMuM-JSON, Brewfather or the Kleiner Brauhelfer V2 database .</p>
           </Paper>
         </Grid>
-
+        
         <Grid item spacing={2} xs={12}>
           <Paper style={{ padding: 10 }}>
             <Button variant="contained" component="label">
@@ -168,7 +169,10 @@ const Upload = () => {
               />
             </Button>
           </Paper>
+          <Divider style={{ marginBottom: 10, marginTop: 10 }} />
         </Grid>
+
+        
 
         <Divider style={{ marginBottom: 10, marginTop: 10 }} />
         <TableContainer component={Paper}>
@@ -270,6 +274,7 @@ const Upload = () => {
 
 
     </div>
+    </Container>
   );
 };
 

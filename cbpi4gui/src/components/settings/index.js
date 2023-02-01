@@ -1,21 +1,21 @@
-import { Button, Divider, IconButton, InputBase, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import SearchIcon from "@material-ui/icons/Search";
+import { Container, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import Typography from "@mui/material/Typography";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
+import SearchIcon from "@mui/icons-material/Search";
 import React, { useEffect, useState } from "react";
-import { useAlert } from "../alert/AlertProvider";
 import { useCBPi } from "../data";
 import { configapi } from "../data/configapi";
-import SaveIcon from "@material-ui/icons/Save";
+import SaveIcon from "@mui/icons-material/Save";
 import ActorSelect from "../util/ActorSelect";
 import KettleSelect from "../util/KettleSelect";
 import FermenterSelect from "../util/FermenterSelect";
 import SensorSelect from "../util/SensorSelect";
 import StepTypeSelect from "../util/StepTypeSelect";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const SelectBox = ({ options, value, onChange }) => {
   return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}
@@ -62,9 +62,9 @@ const ConfigInput = ({ item, onChange, value, options }) => {
     case "actor":
       return <ActorSelect description={item.description} value={value} onChange={onChange} />;
     case "number":
-      return <TextField onChange={onChange} value={value} />;
+      return <TextField variant="standard" onChange={onChange} value={value} />;
     default:
-      return <TextField onChange={onChange} value={value} />;
+      return <TextField variant="standard" onChange={onChange} value={value} />;
   }
 
 
@@ -75,13 +75,13 @@ const ConfigInput = ({ item, onChange, value, options }) => {
 const Settings = () => {
   const { config: state } = useCBPi();
   const [config, setConfig] = useState({});
-
   const [filter, setFilter] = useState("");
   const classes = useStyles();
-  const alert = useAlert();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setConfig({ ...state });
-  }, []);
+  }, [state]);
 
   const onChange = (field, e) => {
     setConfig({ ...config, [field]: { ...config[field], changed: true, value: e.target.value } });
@@ -93,19 +93,13 @@ const Settings = () => {
       if (parameter.changed) {
         configapi.update(key, parameter.value);
         setConfig((curret_config) => ({ ...curret_config, [key]: { ...curret_config[key], changed: false } }));
-        
+        navigate(0);
       }
+
     });
     
   };
 
-  const shutdown = () => {
-    configapi.shutdown();
-  };
-
-  const restart = () => {
-    configapi.restart();
-  };
 
   const reset = () => {
     setConfig({ ...state });
@@ -125,7 +119,8 @@ const Settings = () => {
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Settings
@@ -182,6 +177,7 @@ const Settings = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </Container>
     </>
   );
 };

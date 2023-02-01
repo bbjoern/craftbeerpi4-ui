@@ -1,10 +1,11 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import { Container, Breadcrumbs, Divider, Link, Paper, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
+import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { useCBPi } from "../data";
 import ActorSelect from "../util/ActorSelect";
 import FermenterLogicSelect from "../util/FermenterLogicSelect";
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FermenterForm = () => {
   
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -83,9 +84,9 @@ const FermenterForm = () => {
     };
 
     if (id) {
-      actions.update_fermenter(id, data, () => history.push("/hardware"));
+      actions.update_fermenter(id, data, () => navigate("/hardware"));
     } else {
-      actions.add_fermenter(data, () => history.push("/hardware"));
+      actions.add_fermenter(data, () => navigate("/hardware"));
     }
   };
 
@@ -125,6 +126,7 @@ const FermenterForm = () => {
 
   return (
     <>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Fermenter Config
       </Typography>
@@ -132,7 +134,7 @@ const FermenterForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/hardware");
+            navigate("/hardware");
           }}
         >
           Fermenter
@@ -144,7 +146,7 @@ const FermenterForm = () => {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <TextField required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField variant="standard" required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
             <FermenterLogicSelect value={type} onChange={onChangeType} />
@@ -165,13 +167,13 @@ const FermenterForm = () => {
             <SensorSelect label="Pressure Sensor" value={pressure_sensor} onChange={(e) => setPressure_Sensor(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField label="BrewName" fullWidth value={brewname} onChange={(e) => setBrewname(e.target.value)} />
+            <TextField variant="standard"label="BrewName" fullWidth value={brewname} onChange={(e) => setBrewname(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField type="number" label="TargetTemp" fullWidth value={target_temp} onChange={(e) => setTargettemp(e.target.value)} />
+            <TextField variant="standard"type="number" label="TargetTemp" fullWidth value={target_temp} onChange={(e) => setTargettemp(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <TextField type="number" label="TargetPressure" fullWidth value={target_pressure} onChange={(e) => setTargetpressure(e.target.value)} />
+            <TextField variant="standard"type="number" label="TargetPressure" fullWidth value={target_pressure} onChange={(e) => setTargetpressure(e.target.value)} />
           </Grid>
           <PropsEdit config={propsConfig} data={props} onChange={onChangeProps} />
         </Grid>
@@ -180,7 +182,7 @@ const FermenterForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/hardware");
+              navigate("/hardware");
             }}
             className={classes.button}
           >
@@ -198,6 +200,7 @@ const FermenterForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

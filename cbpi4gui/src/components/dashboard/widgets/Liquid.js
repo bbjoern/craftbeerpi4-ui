@@ -22,12 +22,12 @@ export const Liquid = ({ id }) => {
   const { state } = useCBPi();
   const [height, setHeight] = useState(model.props.height || 40);
   const [width, setWidth] = useState(model.props.width || 40);
-  const [opacity, setOpacity] = useState(model.props.width || 0.9);
+  //const [opacity, setOpacity] = useState(model.props.width || 0.9);
   const [color, setColor] = useState(model.props.color || {r: 0, g:0, b:255});
   const [percent, setPerent] = useState(model.props.percent || 0);
   const [maxvalue, setMaxValue] = useState(model.props.maxvalue || 100);
   const [sensorid, setSensor] = useState(model.props.sensor || null);
-  const draggable = useDraggable();
+  //const draggable = useDraggable();
 
   useEffect(() => {
     setHeight(model.props.height);

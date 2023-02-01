@@ -1,11 +1,8 @@
-import { Checkbox, InputAdornment, ListItemSecondaryAction, TextField, Typography } from "@material-ui/core";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import CropSquareIcon from "@material-ui/icons/CropSquare";
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import { Checkbox, InputAdornment, TextField, Typography } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import React, { useContext, useEffect, useState } from "react";
 import { useActor } from "../data";
 import ActorSelect from "../util/ActorSelect";
@@ -17,38 +14,31 @@ import WidgetSelet from "../util/WidgetSelect";
 import { DashboardContext, useModel } from "./DashboardContext";
 import { widget_list } from "./widgets/config";
 import { Container, Draggable } from "react-smooth-dnd";
-import DragHandleIcon from "@material-ui/icons/DragHandle";
 import { arrayMove } from "../util/arraymove";
-import { update } from "plotly.js";
+import { ListItemButton } from "@mui/material";
 
 const DashboardLayerListItem = ({ item }) => {
   const { state, actions } = useContext(DashboardContext);
   const selected = state.selected?.id === item.id;
 
   return (
+    <>
     <Draggable key={item.id}>
     <ListItem className="drag-handle" button selected={selected} onClick={() => actions.setSelected(() => ({ type: "E", id: item.id }))}>
       <ListItemText primary={item.name} />
       
     </ListItem>
     </Draggable>
+    </>
   );
 };
 
 const DashboardLayerList = () => {
   const { state, actions } = useContext(DashboardContext);
   const data = state.elements2;
-  const [items, setItems] = useState([
-    { id: "1", text: "Item 1" },
-    { id: "2", text: "Item 2" },
-    { id: "3", text: "Item 3" },
-    { id: "4", text: "Item 4" }
-  ]);
-
   const onDrop = ({ removedIndex, addedIndex }) => {
     console.log(removedIndex,addedIndex)
     const data = arrayMove(state.elements2, removedIndex, addedIndex)
-    console.log(data)
     actions.setElements2((current) => [...data])
   };
 
@@ -79,6 +69,7 @@ const DashboardLayerList = () => {
 
 const DashboardLayer = () => {
   return (
+    <>
     <div>
       <div
         onPointerDown={(e) => e.stopPropagation()}
@@ -101,6 +92,7 @@ const DashboardLayer = () => {
         <DashboardProps />
       </div>
     </div>
+    </>
   );
 };
 
@@ -128,9 +120,9 @@ const PropsEditor = ({ data }) => {
 
     switch (s.type) {
       case "text":
-        return <TextField InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange(e, s.name)} value={data.props[s.name]} />;
+        return <TextField variant="standard" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange(e, s.name)} value={data.props[s.name]} />;
       case "number":
-          return <TextField type="number" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange_number(e, s.name)} value={data.props[s.name]} />;
+          return <TextField variant="standard" type="number" InputProps={unit} label={s.name} key={s.name} fullWidth onChange={(e) => handlechange_number(e, s.name)} value={data.props[s.name]} />;
       case "select":
         return <SelectInput label={s.name} value={data.props[s.name]} key={s.name} onChange={(e) => handlechange(e, s.name)} options={s?.options || []} />;
       case "actor":
@@ -151,13 +143,15 @@ const PropsEditor = ({ data }) => {
 
 const PathSettingsItem = ({ item, checked, handleToggle }) => {
   return (
-    <ListItem button onClick={handleToggle(item.id)}>
+    <>
+    <ListItemButton onClick={handleToggle(item.id)}>
       <ListItemIcon>
         <Checkbox edge="start" checked={checked.indexOf(item.id) !== -1} tabIndex={-1} color="primary" disableRipple inputProps={{ "aria-labelledby": "A" }} />
       </ListItemIcon>
       <ListItemText primary={item.name} />
 
-    </ListItem>
+    </ListItemButton>
+    </>
   );
 };
 
@@ -202,7 +196,6 @@ const PathSettings = () => {
   };
 
     // Handle change of the boolean expression for path animation.
-    const data = useModel(selected_id);
     const handleChange = (e, direction) => {
       if (direction === "left")
       {
@@ -245,7 +238,7 @@ const PathSettings = () => {
             <PathSettingsItem item={item} checked={checked} handleToggle={handleToggle} />
           ))}
         </List>
-        <TextField label="Condition expression for left" helperText={helperTextExpression} fullWidth value={item?.condition?.leftExpression} onChange={(e) => handleChange(e, "left")} />
+        <TextField variant="standard" label="Condition expression for left" helperText={helperTextExpression} fullWidth value={item?.condition?.leftExpression} onChange={(e) => handleChange(e, "left")} />
 
         Flow Right
         <List disableGutters={true} dense component="nav" aria-label="main mailbox folders">
@@ -253,7 +246,7 @@ const PathSettings = () => {
             <PathSettingsItem item={item} checked={checkedRight} handleToggle={(id) => handleToggle(id, "right")} />
           ))}
         </List>
-        <TextField label="Condition expression for right" helperText={helperTextExpression} fullWidth value={item?.condition?.rightExpression} onChange={(e) => handleChange(e, "right")} />
+        <TextField variant="standard" label="Condition expression for right" helperText={helperTextExpression} fullWidth value={item?.condition?.rightExpression} onChange={(e) => handleChange(e, "right")} />
       </div>
     </>
   );
@@ -272,10 +265,11 @@ export const DashboardProps = () => {
       return "";
     }
 
-    return <TextField label="Name" fullWidth value={data?.name} onChange={(e) => handleChange(e, "name")} />;
+    return ( <> <TextField variant="standard" label="Name" fullWidth value={data?.name} onChange={(e) => handleChange(e, "name")} /> </>);
   };
 
   return (
+    <>
     <div onPointerDown={(e) => e.stopPropagation()}>
       <div className="section_header">Properties</div>
       <div style={{ padding: 10 }}>
@@ -288,6 +282,7 @@ export const DashboardProps = () => {
         </Typography>
       </div>
     </div>
+    </>
   );
 };
 

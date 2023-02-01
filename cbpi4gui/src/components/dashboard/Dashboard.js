@@ -6,18 +6,22 @@ import { Dashboard, DashboardProvider } from "./DashboardContext";
 
 const Dashboard2 = () => {  
   return (
+    <>
     <DashboardProvider>
-        <Dashboard width="100%" height={1000} />
+      <Dashboard width="100%" height={1000} />
     </DashboardProvider>  
-  );
+    </>
+    );
 };
 
 const FixDashboard = () => {  
   const { dashboardid } = useParams();
   return (
+    <>
     <DashboardProvider>
         <Dashboard width="100%" height={1000} fixdash={dashboardid}/>
-    </DashboardProvider>  
+    </DashboardProvider> 
+    </>
   );
 };
 

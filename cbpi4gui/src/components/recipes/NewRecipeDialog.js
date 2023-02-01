@@ -1,17 +1,18 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@material-ui/core"
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material"
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { recipeapi } from "../data/recipeapi";
 
 
 export const NewRecipeDialog = ({open, setOpen}) => {
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const [name, setName] = useState("")
 
     const create = () => {
         recipeapi.create(name, (id)=> {
-            history.push("/recipe/" + id);
+            navigate("/recipe/" + id);
           })
     }
 
@@ -23,7 +24,7 @@ export const NewRecipeDialog = ({open, setOpen}) => {
     <DialogTitle id="alert-dialog-title">New Recipe</DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-            <TextField label="Name" value={name} onChange={(e)=>setName(e.target.value)} />
+            <TextField variant="standard" label="Name" value={name} onChange={(e)=>setName(e.target.value)} />
       </DialogContentText>
     </DialogContent>
     <DialogActions>

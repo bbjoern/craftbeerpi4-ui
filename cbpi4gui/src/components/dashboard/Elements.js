@@ -1,6 +1,6 @@
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import React, { useContext, useState, useMemo} from "react";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import React, { useContext, useState } from "react";
 import Draggable from "react-draggable";
 import "../../App.css";
 import "../../led.css";
@@ -31,7 +31,7 @@ export const DashboardContainer = ({ name, id, index, type }) => {
   };
 
   const stopDrag = () => {
-    console.log(x, y)
+    //console.log(x, y)
     actions.update_coordinates(id, x, y)
   }
 
@@ -61,7 +61,7 @@ export const DashboardContainer = ({ name, id, index, type }) => {
   return (
     <Draggable disabled={!draggable} onStop={stopDrag} onDrag={handleDrag} grid={[5, 5]} defaultPosition={{ x, y }}>
       <div onPointerDown={select} style={inputStyle}>
-        { typeof type === 'string' ? <div><img className="no-drag" width={model.props?.width} height={model.props?.height}  src={type}/></div> :
+        { typeof type === 'string' ? <div><img className="no-drag" width={model.props?.width} height={model.props?.height}  src={type} alt="Element"/></div> :
         <Widget id={id} width={model.props?.width} height={model.props?.height} />}
         {render_icons()}
       </div>

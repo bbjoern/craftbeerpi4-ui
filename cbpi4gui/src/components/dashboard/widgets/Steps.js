@@ -1,19 +1,19 @@
-import { Button, ButtonGroup, Divider, Grid, List, Paper, Typography } from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
-import CachedIcon from "@material-ui/icons/Cached";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import ErrorIcon from "@material-ui/icons/Error";
-import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import { Button, ButtonGroup, Divider, Grid, List, Paper, Typography } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import ListItemButton from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { makeStyles } from "@mui/styles";
+import CachedIcon from "@mui/icons-material/Cached";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ErrorIcon from "@mui/icons-material/Error";
+import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { default as React, useContext, useEffect, useState } from "react";
 import { useCBPi } from "../../data";
 import { stepapi } from "../../data/stepapi";
@@ -23,8 +23,8 @@ import MashControl from "../../util/MashControl";
 import PropsEdit from "../../util/PropsEdit";
 import SensorName from "../../util/SensorName";
 import { DashboardContext, useDraggable, useModel } from "../DashboardContext";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import { useHistory } from "react-router-dom";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   paper: {
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
@@ -234,32 +234,34 @@ const StepItem = ({ size, item }) => {
   };
 
   const primaryprops = {
-    fontSize: (size -3 )+"pt"
+    fontSize: (size -3 )+"pt",
+    "&:hover": {opacity: 0.7}
  };
   const secondaryprops = {
-    fontSize: size+"pt"
+    fontSize: size+"pt",
+    "&:hover": {opacity: 0.7}
  };
 
   return (
     <>
-      <ListItem button={!draggable} onClick={handleClickOpen}>
+      <ListItemButton style={{opacity: 1}} disabled={!draggable} onClick={handleClickOpen}>
         <ListItemIcon>
           <State state={item.status} />
         </ListItemIcon>
-        <ListItemText primaryTypographyProps={{ style: primaryprops }} primary={item.name} secondaryTypographyProps={{ style: secondaryprops }} secondary={item.state_text} />
-      </ListItem>
+        <ListItemText primaryTypographyProps={{ sx: primaryprops }} primary={item.name} secondaryTypographyProps={{ style: secondaryprops }} secondary={item.state_text} />
+      </ListItemButton>
       <StepDetailsDialog item={item} selectedValue={selectedValue} open={open} onClose={handleClose} />
     </>
   );
 };
 
 export const Steps = ({ id }) => {
-  const { state: state2, actions } = useContext(DashboardContext);
+  const { state: state2 } = useContext(DashboardContext);
 
   const model = useModel(id);
   const { state } = useCBPi();
   const [profile, setProfile] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const draggable = useDraggable()
 
 
@@ -282,7 +284,7 @@ export const Steps = ({ id }) => {
           variant="outlined"
           color="primary"
           onClick={() => {
-            history.push("/recipes");
+            navigate("/recipes");
           }}
           startIcon={<MenuBookIcon />}
         >

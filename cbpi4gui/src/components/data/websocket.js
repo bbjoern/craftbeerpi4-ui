@@ -24,8 +24,8 @@ class CBPiWebSocket {
             this.ws = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL, []);
 
         } else {
-            const protocol = document.location.protocol == 'https:' ? 'wss:' : 'ws:'
-            const port = document.location.port == '' ? '' : `:${document.location.port}`
+            const protocol = document.location.protocol === 'https:' ? 'wss:' : 'ws:'
+            const port = document.location.port === '' ? '' : `:${document.location.port}`
             const url = `${protocol}//${document.location.hostname}${port}/ws`
             this.ws = new WebSocket(url, []);
 

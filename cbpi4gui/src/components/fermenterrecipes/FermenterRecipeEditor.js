@@ -1,16 +1,15 @@
-import { Breadcrumbs, Divider, Grid, IconButton, Link, Typography } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import DeleteIcon from "@material-ui/icons/Delete";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SaveIcon from "@material-ui/icons/Save";
+import { Breadcrumbs, Container, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from "@mui/icons-material/Save";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import Header from "../util/Header";
 import { BasicData } from "./BasicData";
 import { FermenterStepList } from "./FermenterStepList";
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import DeleteDialog from "../util/DeleteDialog";
 import { CloneRecipeDialog } from "./CloneRecipeDialog";
 import { BrewRecipeDialog } from "./BrewRecipeDialog";
@@ -20,7 +19,7 @@ const FermenterRecipeEditor = () => {
   const { id } = useParams();
   const [open, setOpen] = useState(false)
   const [openferment, setOpenferment] = useState(false)
-  const history = useHistory();
+  const navigate = useNavigate();
   const [steps, setSteps] = useState([]);
   const [basicData, setBasicData] = useState({ name: "", author: "", desc: "" });
   
@@ -37,17 +36,17 @@ const FermenterRecipeEditor = () => {
 
   const save = () => fermenterrecipeapi.save(id, { basic: basicData, steps });
   const addStep = () => setSteps([...steps, { name: "", props: {}, type: "" }]);
-  const back = () => history.push("/fermenterrecipes");
+  const back = () => navigate("/fermenterrecipes");
 
   //--> Fermenter / fermenterid needs to be selcted in form
  // const brew = () => {
  //   fermenterrecipeapi.brew(id)
- //   history.push("/fermenterprofile")
+ //   navigate("/fermenterprofile")
  // }
 
   const remove = () => {
     fermenterrecipeapi.remove(id);
-    history.goBack();
+    navigate(-1);
   };
 
   const clone = () => {
@@ -60,6 +59,7 @@ const FermenterRecipeEditor = () => {
 
   return (
     <>
+    <Container maxWidth="lg">
       <Header title="Basic Data">
         <IconButton variant="contained" onClick={back}>
           <ArrowBackIcon />
@@ -88,7 +88,7 @@ const FermenterRecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterprofile");
+            navigate("/fermenterprofile");
           }}
         >
           Active Recipe
@@ -96,7 +96,7 @@ const FermenterRecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterrecipes");
+            navigate("/fermenterrecipes");
           }}
         >
           Fermenter Recipe Book
@@ -116,6 +116,7 @@ const FermenterRecipeEditor = () => {
           <FermenterStepList items={steps} setItems={setSteps} />
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

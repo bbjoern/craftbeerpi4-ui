@@ -1,11 +1,9 @@
-import { IconButton } from "@material-ui/core";
-import LockIcon from "@material-ui/icons/Lock";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import SaveIcon from "@material-ui/icons/Save";
+import { IconButton } from "@mui/material";
+import LockIcon from "@mui/icons-material/Lock";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import SaveIcon from "@mui/icons-material/Save";
 import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "../../App.css";
-import { useAlert } from "../alert/AlertProvider";
 import { dashboardapi } from "../data/dashboardapi";
 import DeleteDialog from "../util/DeleteDialog";
 import DashboardLayer from "./DashboardLayer";
@@ -14,14 +12,12 @@ import { DashboardContainer } from "./Elements";
 import useKeyPress from "./GlobalKeyPress";
 import { widget_list } from "./widgets/config";
 import { Path } from "./widgets/Path";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import axios from "axios";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 export const DashboardContext = createContext({});
 
 export const DashboardProvider = ({ children }) => {
-  const alert = useAlert();
   const [selected, setSelected] = useState(null);
   const [selectedPath, setSelectedPath] = useState(null);
   const [current, setCurrent] = useState("INFO");
@@ -253,7 +249,14 @@ export const DashboardProvider = ({ children }) => {
 
   const save = (DashboardID = 1) => {
     let e = elements2.map((value) => ({ id: value.id, name: value.name, x: value.x, y: value.y, type: value.type, props: { ...value.props } }));
-    let p = pathes.map((value) => ({ id: value.id, coordinates: value.coordinates, condition: value.condition }));
+    // let p = pathes.map((value) => ({ id: value.id, coordinates: value.coordinates, condition: value.condition }));
+    var p = [];
+    pathes.forEach(function(value) {  // remove pathes with empty coordinates
+        if (value.coordinates.length !== 0) {
+            var newValue = {id: value.id, coordinates: value.coordinates, condition: value.condition };
+            p.push(newValue);
+        }
+    });
     //console.log("DEBUG CONDITION SAVED")
     //console.log(p);
     dashboardapi.save(DashboardID, { elements: e, pathes: p }, () => {
@@ -306,7 +309,11 @@ export const DashboardProvider = ({ children }) => {
     },
   };
 
-  return <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>;
+  return (
+  <>
+  <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>
+  </>
+  );
 };
 
 export const Dashboard = ({ width, height , fixdash}) => {
@@ -321,22 +328,22 @@ export const Dashboard = ({ width, height , fixdash}) => {
   const SelectBox = ({ options, value, onChange }) => {
     return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}
           </MenuItem>
         ))},
-            theme={(theme) => ({
-        ...theme,
-        borderRadius: 0,
-        colors: {
-        ...theme.colors,
-          text: 'black',
-          primary25: 'black',
-          primary: 'black',
-        },
-      })}
+        theme={(theme) => ({
+    ...theme,
+    borderRadius: 0,
+    colors: {
+    ...theme.colors,
+      text: 'black',
+      primary25: 'black',
+      primary: 'black',
+    },
+  })}
       </Select>
     </>
   );
@@ -372,12 +379,12 @@ export const Dashboard = ({ width, height , fixdash}) => {
 
   };
   
-  const refresh_dashboard = () => {
-    actions.setDraggable(!state.draggable);
+//  const refresh_dashboard = () => {
+//  actions.setDraggable(!state.draggable);
 //	if (state.draggable) {
 //       window.location.reload();
 //	}
-  };
+//  };
   
   // get bounding box of svg
   const useBBox = () => {
@@ -406,8 +413,8 @@ export const Dashboard = ({ width, height , fixdash}) => {
     
   
   return (
+    <>
     <div>
-      
       <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
         {state.draggable ? <DashboardWidgetList /> : null}
         <div className={state.draggable ? "divgrid" : "divnogrid"}
@@ -424,11 +431,13 @@ export const Dashboard = ({ width, height , fixdash}) => {
             overflowX: 'auto',
 			overflowY: 'hidden'
           }}
-        >
+        >    
+        {/*console.log(state.elements2)*/}   
           {state.elements2.map((value, index) => value.instance)}
           <svg ref={svgRef} style={{ position: "absolute", minWidth: svgWidth, pointerEvents: "none" }} width={width} height={height}>
             {state.pathes.map((value) => value.instance)}
           </svg>
+          
           {!fixdash ?
           <div style={{ position: "absolute", top: 0, right: 0 }}>
           {state.draggable ? state.dashboardX : <SelectBox options={dashboardlist} value={state.dashboardX} onChange={DashBoardChange}/>} 
@@ -448,10 +457,13 @@ export const Dashboard = ({ width, height , fixdash}) => {
             <IconButton onClick={() => actions.setDraggable(!state.draggable)}>{state.draggable ? <LockOpenIcon /> : <LockIcon />}</IconButton>
           </div>
           : ""}
+          
         </div>
         {state.draggable ? <DashboardLayer /> : null}
-      </div>
+        
+          </div>
     </div>
+    </>
   );
 };
 

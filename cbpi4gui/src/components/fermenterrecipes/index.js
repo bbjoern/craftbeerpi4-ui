@@ -1,13 +1,14 @@
-import { Breadcrumbs, Divider, makeStyles, Paper,InputBase, IconButton, Link, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
+import { Breadcrumbs, Container, Divider, Paper,InputBase, IconButton, Link, List, ListItemButton, ListItemSecondaryAction, ListItemText, ListItemIcon } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import AddIcon from "@mui/icons-material/Add";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { fermenterrecipeapi } from "../data/fermenterrecipeapi";
 import { NewRecipeDialog } from "./NewRecipeDialog";
-import SearchIcon from "@material-ui/icons/Search";
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import SearchIcon from "@mui/icons-material/Search";
 import { CBPiBeerIcon } from "../util/icons/CBPiSensorIcon";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const FermenterRecipes = () => {
   const [totalList, setTotalList] = useState([]);
   const [list, setList] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false)
   const [filter, setFilter] = useState("");
   const classes = useStyles();
@@ -54,7 +55,7 @@ const FermenterRecipes = () => {
   
 
   const openRecipe = (file) => {
-    history.push("/fermenterrecipe/" + file);
+    navigate("/fermenterrecipe/" + file);
   };
 
   const createRecipe = () => {
@@ -67,7 +68,8 @@ const FermenterRecipes = () => {
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Fermenter Recipes
@@ -100,7 +102,7 @@ const FermenterRecipes = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterprofile");
+            navigate("/fermenterprofile");
           }}
         >
           Active Recipe
@@ -110,15 +112,16 @@ const FermenterRecipes = () => {
       <Divider style={{ marginBottom: 10, marginTop: 10 }} />
       <List>
         {list.map((item) => (
-          <ListItem button onClick={() => openRecipe(item.file)}>
+          <ListItemButton onClick={() => openRecipe(item.file)}>
             <ListItemIcon>
               <CBPiBeerIcon/>
             </ListItemIcon>
             <ListItemText primary={item.name || "No Name"} secondary={item.desc} />
             <ListItemSecondaryAction>x</ListItemSecondaryAction>
-          </ListItem>
+          </ListItemButton>
         ))}
       </List>
+      </Container>
     </>
   );
 };

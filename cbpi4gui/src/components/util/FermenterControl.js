@@ -1,11 +1,11 @@
-import { Button, ButtonGroup, Tooltip } from "@material-ui/core";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import StopIcon from "@material-ui/icons/Stop";
+import { Button, ButtonGroup, Tooltip } from "@mui/material";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import RotateLeftIcon from "@mui/icons-material/RotateLeft";
+import StopIcon from "@mui/icons-material/Stop";
 import { default as React, useEffect, useState } from "react";
 import { useCBPi } from "../data";
 import { fermenterapi } from "../data/fermenterapi";
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 
 const FermenterControl = ({fermenterid=null, disabled=false}) => {
@@ -18,7 +18,7 @@ const FermenterControl = ({fermenterid=null, disabled=false}) => {
   
   useEffect(() => {
   
-    if (fermenterid) {  
+    if ((fermenterid) && (state.fermentersteps.length !== 0 )) {  
       const step= state.fermentersteps.find(step => step.id === fermenterid).steps;
       setSteps(step)};
    }, [state.fermentersteps, fermenterid]);

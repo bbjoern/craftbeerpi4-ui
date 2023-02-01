@@ -1,14 +1,15 @@
-import { Button, IconButton, Grid, Typography, Divider, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Container, IconButton, Grid, Typography, Divider, Paper, Table, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import InputLabel from '@mui/material/InputLabel';
 import { systemapi } from "../data/systemapi"
 import RestartDialog from "../util/RestartDialog";
 import ShutdownDialog from "../util/ShutDownDialog"; // Correct include
-import SaveIcon from "@material-ui/icons/Save";
-import RestoreIcon from '@material-ui/icons/Restore';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import SaveIcon from "@mui/icons-material/Save";
+import RestoreIcon from '@mui/icons-material/Restore';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const SelectBox = ({ options, value, onChange }) => {
   return (
     <>
-      <Select labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
+      <Select variant="standard" labelId="demo-simple-select-label" id="demo-simple-select" value={value} onChange={onChange}>
         {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.label}
@@ -44,7 +45,6 @@ const CBPiSystem = () => {
   const hiddenFileInput = React.useRef(null);
   const handleChange = event => {
     const fileUploaded = event.target.files[0];
-    const FileName = fileUploaded.name;
     let formData = new FormData();
     formData.append("File", fileUploaded);
     systemapi.restoreConfig(formData, ReloadPage());
@@ -53,15 +53,13 @@ const CBPiSystem = () => {
   const svghiddenFileInput = React.useRef(null);
   const svghandleChange = event => {
     const svgfileUploaded = event.target.files[0];
-    const FileName = svgfileUploaded.name;
-    const FileSize = svgfileUploaded.size;
     let svgformData = new FormData();
     svgformData.append("File", svgfileUploaded);
     systemapi.uploadSVG(svgformData, ReloadPage());
   };
 
   const ReloadPage = () => {
-    console.log("Reload page");
+    //console.log("Reload page");
     /*window.location.reload();*/
   };
 
@@ -70,7 +68,7 @@ const CBPiSystem = () => {
   useEffect(() => {
     systemapi.getsysteminfo((data) => {
       setSystemInfo(data);
-      console.log(data['system']);
+      //console.log(data['system']);
     });
   }, []);
 
@@ -102,8 +100,9 @@ const CBPiSystem = () => {
   };
 
   return (
+    <Container maxWidth="lg">
     <div>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             System Settings 
@@ -226,7 +225,7 @@ const CBPiSystem = () => {
         </Table>
       </TableContainer>
 
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             Dashboard functions 
@@ -265,7 +264,7 @@ const CBPiSystem = () => {
         </Table>
       </TableContainer>      
 
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
             System Information
@@ -351,6 +350,7 @@ const CBPiSystem = () => {
       </TableContainer>
 
     </div>
+    </Container>
   );
 };
 

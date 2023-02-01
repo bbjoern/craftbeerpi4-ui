@@ -1,32 +1,14 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import { Breadcrumbs, Container, Divider, Link, Paper, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
+import TextField from "@mui/material/TextField";
 import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { useAlert } from "../alert/AlertProvider";
+import { useNavigate, useParams } from "react-router-dom";
 import { CBPiContext, useCBPi } from "../data";
 import { stepapi } from "../data/stepapi";
 import PropsEdit from "../util/PropsEdit";
 import StepTypeSelct from "../util/StepTypeSelect";
-
-const props = [
-  {
-    label: "Parameter1",
-    type: "number",
-    configurable: true,
-    description: "",
-    default_value: null,
-  },
-  {
-    label: "Parameter2",
-    type: "text",
-    configurable: true,
-    default_value: "HALLO",
-    description: "",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -66,8 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StepForm = () => {
-  const history = useHistory();
-  const alert = useAlert();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -88,12 +69,12 @@ const StepForm = () => {
     if (id) {
       stepapi.save(id, data, (data) => {
         
-        history.push("/mashprofile");
+        navigate("/mashprofile");
       });
     } else {
       stepapi.add(data, (data) => {
         
-        history.push("/mashprofile");
+        navigate("/mashprofile");
       });
     }
   };
@@ -123,6 +104,7 @@ const StepForm = () => {
 
   return (
     <>
+     <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Step Config
       </Typography>
@@ -130,7 +112,7 @@ const StepForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/mashprofile");
+            navigate("/mashprofile");
           }}
         >
           Mash Profile
@@ -142,7 +124,7 @@ const StepForm = () => {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <TextField required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField size="medium" variant="standard" required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
             <StepTypeSelct value={type} onChange={onSelectType} />
@@ -155,7 +137,7 @@ const StepForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/mashprofile");
+              navigate("/mashprofile");
             }}
             className={classes.button}
           >
@@ -172,7 +154,8 @@ const StepForm = () => {
             Save
           </Button>
         </div>
-      </Paper>
+        </Paper>
+      </Container>
     </>
   );
 };

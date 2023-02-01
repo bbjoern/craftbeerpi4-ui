@@ -1,13 +1,12 @@
-import { Divider, Grid, IconButton, Typography } from "@material-ui/core";
-import AutorenewIcon from "@material-ui/icons/Autorenew";
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
+import { Container, Divider, Grid, IconButton, Typography } from "@mui/material";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
+import { ToggleButton } from "@mui/material";
+import { ToggleButtonGroup } from '@mui/material';
 import { useState } from "react";
 import Plot from "react-plotly.js";
 import { useSensor } from "../data";
 import { logapi } from "../data/logapi";
 import DeleteDialog from "../util/DeleteDialog";
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 
 export const Charting = () => {
   const sensors = useSensor();
@@ -40,7 +39,7 @@ export const Charting = () => {
         /*
 [
             */
-        console.log(`${key}: ${value}`);
+        //console.log(`${key}: ${value}`);
       }
 	  setLoading(false);
       setData(temp);
@@ -55,7 +54,8 @@ const clear_logs = () => {
 
   return (
     <>
-      <Grid container direction="row" justify="space-between" alignItems="center" style={{ marginTop: 10 }}>
+    <Container maxWidth="lg">
+      <Grid container direction="row" justifyContent="space-between" alignItems="center" style={{ marginTop: 10 }}>
         <Grid item>
           <Typography variant="h5" gutterBottom>
           Analytics
@@ -101,9 +101,9 @@ const clear_logs = () => {
               paper_bgcolor: "rgba(0,0,0,0)",
               plot_bgcolor: "rgba(0,0,0,0)",
               margin: {
-                l: 20,
+                l: 80,
                 r: 20,
-                b: 20,
+                b: 50,
                 t: 30,
                 pad: 0,
               },
@@ -120,14 +120,15 @@ const clear_logs = () => {
               xaxis: {
                 showgrid: false,
                 tickfont: {
-                  size: 8,
+                  size: 10,
                   color: "#fff",
                 },
               },
               yaxis: {
                 showgrid: true,
+                tickformat: '.1f',
                 tickfont: {
-                  size: 8,
+                  size: 10,
                   color: "#fff",
                 },
               },
@@ -135,6 +136,7 @@ const clear_logs = () => {
           />
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

@@ -1,16 +1,14 @@
-import { Breadcrumbs, Divider, Grid, IconButton, Link, Typography } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import DeleteIcon from "@material-ui/icons/Delete";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SaveIcon from "@material-ui/icons/Save";
+import { Breadcrumbs, Container, Divider, Grid, IconButton, Link, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from "@mui/icons-material/Save";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { recipeapi } from "../data/recipeapi";
 import Header from "../util/Header";
 import { BasicData } from "./BasicData";
 import { MashStepList } from "./MashStepList";
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import DeleteDialog from "../util/DeleteDialog";
 import { CloneRecipeDialog } from "./CloneRecipeDialog";
 import { CBPiPaddleIcon } from "../util/icons/CBPiSensorIcon";
@@ -18,7 +16,7 @@ import { CBPiPaddleIcon } from "../util/icons/CBPiSensorIcon";
 const RecipeEditor = () => {
   const { id } = useParams();
   const [open, setOpen] = useState(false)
-  const history = useHistory();
+  const navigate = useNavigate();
   const [steps, setSteps] = useState([]);
   const [basicData, setBasicData] = useState({ name: "", author: "", desc: "" });
   
@@ -35,15 +33,15 @@ const RecipeEditor = () => {
 
   const save = () => recipeapi.save(id, { basic: basicData, steps });
   const addStep = () => setSteps([...steps, { name: "", props: {}, type: "" }]);
-  const back = () => history.push("/recipes");
+  const back = () => navigate("/recipes");
   const brew = () => {
     recipeapi.brew(id)
-    history.push("/mashprofile")
+    navigate("/mashprofile")
   }
 
   const remove = () => {
     recipeapi.remove(id);
-    history.goBack();
+    navigate(-1);
   };
 
   const clone = () => {
@@ -52,6 +50,7 @@ const RecipeEditor = () => {
 
   return (
     <>
+  <Container maxWidth="lg">
       <Header title="Basic Data">
         <IconButton variant="contained" onClick={back}>
           <ArrowBackIcon />
@@ -78,7 +77,7 @@ const RecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/mashprofile");
+            navigate("/mashprofile");
           }}
         >
           Active Recipe
@@ -86,7 +85,7 @@ const RecipeEditor = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/recipes");
+            navigate("/recipes");
           }}
         >
           Recipe Book
@@ -106,6 +105,7 @@ const RecipeEditor = () => {
           <MashStepList items={steps} setItems={setSteps} />
         </Grid>
       </Grid>
+      </Container>
     </>
   );
 };

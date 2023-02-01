@@ -1,4 +1,4 @@
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import React from "react";
 import Title from "./Title";
 
@@ -9,7 +9,7 @@ const Header = ({ title, children }) => {
         <Grid
           container
           direction="row"
-          justify="space-between"
+          justifyContent="space-between"
           alignItems="center"
           style={{ marginTop: 10 }}
         >

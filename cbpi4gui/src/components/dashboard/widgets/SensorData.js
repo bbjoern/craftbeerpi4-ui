@@ -1,11 +1,11 @@
 import { default as React } from "react";
 import SensorValue from "../../util/SensorValue";
 import { useDraggable, useModel } from "../DashboardContext";
-import { useSensor, useSensorType, useCBPi } from "../../data";
-import { ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemText } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import { useMemo, useState } from "react";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { useSensor, useSensorType } from "../../data";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItemButton, ListItemText } from "@mui/material";
+import Button from "@mui/material/Button";
+import { useState } from "react";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { sensorapi } from "../../data/sensorapi";
 import PropsEdit from "../../util/PropsEdit";
 
@@ -30,7 +30,7 @@ const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit 
         <Button onClick={onClose} variant="contained" color="secondary" autoFocus>
           Close
         </Button>
-        <Button onClick={() => onSubmit(props)} variant="contained" color="Primary" autoFocus>
+        <Button onClick={() => onSubmit(props)} variant="contained" /*color="Primary"*/ autoFocus>
           Submit
         </Button>
       </DialogActions>
@@ -50,9 +50,9 @@ const SensorActionDialog = ({ open, onClose, model, sensor }) => {
         {type.actions.map((action, index) => (
           <ActionButton sensorid={sensorid} action={action} key={index} />
         ))}
-        <ListItem button color="secondary">
+        <ListItemButton color="secondary">
           <ListItemText primary="Close" onClick={onClose} />
-        </ListItem>
+        </ListItemButton>
       </List>
     </Dialog>
   );
@@ -73,23 +73,22 @@ const ActionButton = ({ action, sensorid }) => {
   if (action.parameters.length > 0) {
     return (
       <>
-        <ListItem button>
+        <ListItemButton>
           <ListItemText primary={action.label} onClick={() => setOpen(true)} />
-        </ListItem>
+        </ListItemButton>
         <ButtonActionPropsDialog open={open} action={action} onSubmit={handle_submit} onClose={handleClose}/>
       </>
     );
   } else {
     return (
-      <ListItem button  onClick={() => handle_action(sensorid, action)}>
+      <ListItemButton  onClick={() => handle_action(sensorid, action)}>
         <ListItemText primary={action.label}   />
-      </ListItem>
+      </ListItemButton>
     );
   }
 };
 
 export const SensorData = ({ id }) => {
-    const cbpi = useCBPi();
     const model = useModel(id);
     const draggable = useDraggable();
     const [open, setOpen] = useState(false);

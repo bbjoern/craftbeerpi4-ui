@@ -1,15 +1,16 @@
-import { makeStyles } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import { makeStyles } from "@mui/styles";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { CBPiContext } from "../data";
 import { sensorapi } from "../data/sensorapi";
 import DeleteDialog from "../util/DeleteDialog";
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 
 const SensorTable = () => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { state, actions } = useContext(CBPiContext);
 
   const remove_callback = (id) => {
@@ -76,7 +77,7 @@ const SensorTable = () => {
                   {row.id} 
                 </TableCell>
                 <TableCell align="right" className="hidden-xs">
-                  <SensorValue id={row.id}/>
+                  <SensorValue id={row.id} digits={1} />
                 </TableCell>
                 <TableCell align="right" className="hidden-xs">
                   <DeleteDialog title="Delete Sensor" message="Do you want to delete the Sensor" id={row.id} callback={remove_callback} />
@@ -84,7 +85,7 @@ const SensorTable = () => {
                     aria-label="delete"
                     size="small"
                     onClick={() => {
-                      history.push("/sensor/" + row.id);
+                      navigate("/sensor/" + row.id);
                     }}
                   >
                     <VisibilityIcon />

@@ -1,32 +1,14 @@
-import { Breadcrumbs, Divider, Link, Paper, Typography } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import { Breadcrumbs, Container, Divider, Link, Paper, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
+import TextField from "@mui/material/TextField";
 import { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { useAlert } from "../alert/AlertProvider";
+import { useNavigate, useParams } from "react-router-dom";
 import { CBPiContext, useCBPi } from "../data";
 import { fermenterapi } from "../data/fermenterapi";
 import PropsEdit from "../util/PropsEdit";
 import FermenterStepTypeSelct from "../util/FermenterStepTypeSelect";
-
-const props = [
-  {
-    label: "Parameter1",
-    type: "number",
-    configurable: true,
-    description: "",
-    default_value: null,
-  },
-  {
-    label: "Parameter2",
-    type: "text",
-    configurable: true,
-    default_value: "HALLO",
-    description: "",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -66,8 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const FermenterStepForm = () => {
-  const history = useHistory();
-  const alert = useAlert();
+  const navigate = useNavigate();
   const classes = useStyles();
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -76,8 +57,6 @@ const FermenterStepForm = () => {
   const { id } = useParams();
   const { fermenterid } = useParams();
   const { state } = useCBPi();
-  const {step, setStep} = useState({});
- 
   const { actions } = useContext(CBPiContext);
 
   const save = () => {
@@ -91,11 +70,11 @@ const FermenterStepForm = () => {
       fermenterapi.updatestep(fermenterid, id, data, (data) => {
         //console.log("Test");
          });
-         history.push("/fermenterprofile/"+fermenterid);
+         navigate("/fermenterprofile/"+fermenterid);
     } else {
       fermenterapi.addstep(fermenterid, data, (data) => {
         
-        history.push("/fermenterprofile/"+fermenterid);
+        navigate("/fermenterprofile/"+fermenterid);
       });
     }
   };
@@ -126,6 +105,7 @@ const FermenterStepForm = () => {
 
   return (
     <>
+    <Container maxWidth="lg">
       <Typography variant="h6" gutterBottom>
         Step Config
       </Typography>
@@ -133,7 +113,7 @@ const FermenterStepForm = () => {
         <Link
           color="inherit"
           onClick={() => {
-            history.push("/fermenterprofile/"+fermenterid);
+            navigate("/fermenterprofile/"+fermenterid);
           }}
         >
           Fermenter Profile
@@ -145,7 +125,7 @@ const FermenterStepForm = () => {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <TextField required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField variant="standard" required id="name" label="Name" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
           </Grid>
           <Grid item xs={12} md={6}>
             <FermenterStepTypeSelct value={type} onChange={onSelectType} />
@@ -158,7 +138,7 @@ const FermenterStepForm = () => {
             variant="contained"
             color="secondary"
             onClick={() => {
-              history.push("/fermenterprofile/"+fermenterid);
+              navigate("/fermenterprofile/"+fermenterid);
             }}
             className={classes.button}
           >
@@ -176,6 +156,7 @@ const FermenterStepForm = () => {
           </Button>
         </div>
       </Paper>
+      </Container>
     </>
   );
 };

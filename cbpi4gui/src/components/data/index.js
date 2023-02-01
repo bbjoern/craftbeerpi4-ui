@@ -2,18 +2,11 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import axios from "axios";
 import CBPiWebSocket from "./websocket";
 import { actorapi } from "./actorapi";
-import { useEventCallback } from "@material-ui/core";
+import { useEventCallback } from "@mui/material";
 import { useAlert } from "../alert/AlertProvider";
 import { kettleapi } from "./kettleapi";
 import { fermenterapi } from "./fermenterapi";
 import { sensorapi } from "./sensorapi";
-let MQTTPattern = require("mqtt-pattern");
-
-const messageTypes = {
-  "sensor/+id/data": "SENSOR_UPDATE",
-  "config/+id/update": "CONFIG_UPDATE",
-  "step/update": "STEP_UPDATE",
-};
 
 export const CBPiContext = createContext({});
 
@@ -35,6 +28,7 @@ export const CBPiProvider = ({ children }) => {
   const [plugins, setPlugins] = useState([]);
   const [temp, setTemp] = useState("");
   const [version, setVersion] = useState("---");
+  const [guiversion, setGUIersion] = useState("---");
   const [codename, setCodename] = useState("---");
   const a = useAlert();
   const [notification, setNotifiaction] = useState("");
@@ -51,7 +45,7 @@ export const CBPiProvider = ({ children }) => {
         break;
       case "fermenterupdate":
         setFermenter(() => data.data);
-        console.log(data.data);
+        //console.log(data.data);
         break;
       case "fermenterstepupdate":
         setFermenterSteps(() => data.data);
@@ -111,6 +105,7 @@ export const CBPiProvider = ({ children }) => {
       setMashBasic(data.step.basic);
       setConfig(data.config);
       setVersion(data.version);
+      setGUIersion(data.guiversion);
       setCodename(data.codename);
       setStepTypes(Object.values(data.step.types));
       setStepTypesFermenter(Object.values(data.fermenter.steptypes));
@@ -157,7 +152,7 @@ export const CBPiProvider = ({ children }) => {
   const get_sensor_by_id = (id) => sensors.find((item) => item.id === id);
 
   const value = {
-    state: { sensors, version, codename, actors, logic, kettle, fermenter, fermenterlogic, auth, plugins, temp, sensorData, 
+    state: { sensors, version, guiversion, codename, actors, logic, kettle, fermenter, fermenterlogic, auth, plugins, temp, sensorData, 
              actorTypes, sensorTypes, config, mashProfile, fermentersteps, FermenterProfile, mashBasic, stepTypes, stepTypesFermenter, connection },
     actions: {
       delete_kettle,
@@ -185,16 +180,20 @@ export const CBPiProvider = ({ children }) => {
     },
   };
 
-  return <CBPiContext.Provider value={value}>{children}</CBPiContext.Provider>;
+  return ( <>
+  <CBPiContext.Provider value={value}>{children}</CBPiContext.Provider>
+    </>
+  );
 };
 
-export const useCBPi = (Context) => {
+export const useCBPi = () => {
   const { state, actions } = useContext(CBPiContext);
   const value = useMemo(() => {
     return {
       state,
       connection: state.connection,
       version: state.version,
+      guiversion: state.guiversion,
       codename: state.codename,
       kettle: state.kettle,
       fermenter: state.fermenter,
@@ -210,7 +209,7 @@ export const useCBPi = (Context) => {
 };
 
 export const useSensor = (id = null) => {
-  const { sensor, state } = useCBPi();
+  const { sensor } = useCBPi();
   const value = useMemo(() => {
     return id === null ? sensor : sensor.find((item) => item.id === id);
   }, [sensor, id]);

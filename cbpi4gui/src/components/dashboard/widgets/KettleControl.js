@@ -1,79 +1,34 @@
-import { Slider, Tooltip } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Typography from "@material-ui/core/Typography";
-import CachedIcon from "@material-ui/icons/Cached";
-import DriveEtaIcon from "@material-ui/icons/DriveEta";
-import TrackChangesIcon from "@material-ui/icons/TrackChanges";
-import WhatshotIcon from "@material-ui/icons/Whatshot";
+import { Slider, Tooltip } from "@mui/material";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Typography from "@mui/material/Typography";
+import CachedIcon from "@mui/icons-material/Cached";
+import DriveEtaIcon from "@mui/icons-material/DriveEta";
+import TrackChangesIcon from "@mui/icons-material/TrackChanges";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
 import React, { useContext, useEffect, useState, useMemo } from "react";
 import { useCBPi, useKettle } from "../../data";
 import { useActor } from "../../data/index";
 import { DashboardContext, useModel } from "../DashboardContext";
 import { configapi } from "../../data/configapi";
-import { createTheme , ThemeProvider} from '@material-ui/core/styles';
-import pink from "@material-ui/core/colors/pink";
-/*
-const theme = createTheme({
-  overrides: {
-    palette:{
-      type: 'dark',
-    primary: {
-      main: "#00FF00"
-    },
-    secondary: pink,
-    },
-    MuiButton: {
-      outlinedPrimary:{
-        color: "#00FF00",
-        border: "1px solid #00FF00"
-      },
-      containedPrimary:{
-        color: "#00FF00",
-        backgroundColor: "#00FF00",
-        '&:hover': {
-          backgroundColor: "#00B200",
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: "#00FF00"
-          }}
-      },
-      iconSizeSmall: {
-        "& > *:first-child": {
-          fontSize: 20
-        }
-      },
-      iconSizeMedium: {
-        "& > *:first-child": {
-          fontSize: 25
-        }
-      },
-      iconSizeLarge: {
-        "& > *:first-child": {
-          fontSize: 32
-        }
-      }
-    },
-  },
-});
-*/
+
 
 const TargetTempDialog = ({ onClose, kettle, open }) => {
   let TEMP_UNIT = "TEMP_UNIT";
   const [value, setValue] = useState(30);
   const [checkunit, setCheckUnit] = useState(false);
-  const [minval, setMinval] = useState(-5);
+  const [minval, setMinval] = useState(0);
   const [maxval, setMaxval] = useState(100);
   const [marks, setMarks] = useState(
     [
       {
-        value: -5,
-        label: "-5°",
+        value: 0,
+        label: "0°",
       },
             {
         value: 20,
@@ -92,8 +47,8 @@ const TargetTempDialog = ({ onClose, kettle, open }) => {
 
   const marksF = [
           {
-      value: 20,
-      label: "20°",
+      value: 32,
+      label: "32°",
     },
     {
       value: 50,
@@ -122,7 +77,7 @@ const TargetTempDialog = ({ onClose, kettle, open }) => {
   if (checkunit === false){
       configapi.getone(TEMP_UNIT, (data) => {
         if (data==="F"){
-          setMinval(20);
+          setMinval(32);
           setMaxval(212);
           setMarks(marksF);
         }

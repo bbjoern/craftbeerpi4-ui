@@ -1,12 +1,13 @@
-import { ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItem, ListItemText } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import { ButtonGroup, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, List, ListItemText } from "@mui/material";
+import Button from "@mui/material/Button";
 import React, { useMemo, useState } from "react";
 import { useActor, useActorType, useCBPi } from "../../data";
 import { useDraggable, useModel } from "../DashboardContext";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { actorapi } from "../../data/actorapi";
 import PropsEdit from "../../util/PropsEdit";
-import Confetti from "react-dom-confetti";
+import { ListItemButton } from "@mui/material";
+
 
 const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit }) => {
   const [props, setProps] = useState({});
@@ -15,6 +16,7 @@ const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit 
     setProps({ ...props, [name]: value });
   };
 
+  
   return (
     <Dialog open={open} fullWidth>
       <DialogTitle id="simple-dialog-title">{action.label}</DialogTitle>
@@ -29,7 +31,7 @@ const ButtonActionPropsDialog = ({ action = {}, config, open, onClose, onSubmit 
         <Button onClick={onClose} variant="contained" color="secondary" autoFocus>
           Close
         </Button>
-        <Button onClick={() => onSubmit(props)} variant="contained" color="Primary" autoFocus>
+        <Button onClick={() => onSubmit(props)} variant="contained" /*color="Primary"*/ autoFocus>
           Submit
         </Button>
       </DialogActions>
@@ -53,17 +55,19 @@ const ActionButton = ({ action, actorid }) => {
   if (action.parameters.length > 0) {
     return (
       <>
-        <ListItem button>
+        <ListItemButton>
           <ListItemText primary={action.label} onClick={() => setOpen(true)} />
-        </ListItem>
+        </ListItemButton>
         <ButtonActionPropsDialog open={open} action={action} onSubmit={handle_submit} onClose={handleClose}/>
-      </>
+        </>
     );
   } else {
     return (
-      <ListItem button  onClick={() => handle_action(actorid, action)}>
+      <>
+      <ListItemButton  onClick={() => handle_action(actorid, action)}>
         <ListItemText primary={action.label}   />
-      </ListItem>
+      </ListItemButton>
+      </>
     );
   }
 };
@@ -71,7 +75,6 @@ const ActionButton = ({ action, actorid }) => {
 const ButtonActionDialog = ({ open, onClose, model, actor }) => {
   const type = useActorType(actor.type);
   const { actor: actorid } = model.props;
-
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">{model.name}</DialogTitle>
@@ -79,9 +82,9 @@ const ButtonActionDialog = ({ open, onClose, model, actor }) => {
         {type.actions.map((action, index) => (
           <ActionButton actorid={actorid} action={action} key={index} />
         ))}
-        <ListItem button color="secondary">
+        <ListItemButton color="secondary">
           <ListItemText primary="Close" onClick={onClose} />
-        </ListItem>
+        </ListItemButton>
       </List>
     </Dialog>
   );
@@ -95,19 +98,6 @@ export const DashboardButton = ({ id, width, height }) => {
   const { actor: actorid, action } = model.props;
   const [open, setOpen] = useState(false);
   const [boom, setBoom] = useState(false);
-  const config = {
-    angle: 90,
-    spread: 360,
-    startVelocity: 40,
-    elementCount: 70,
-    dragFriction: 0.12,
-    duration: 3000,
-    stagger: 3,
-    width: "10px",
-    height: "10px",
-    perspective: "500px",
-    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
-  };
 
   return useMemo(() => {
     let cssStyle = { width: model.width + "px", height: model.height + "px" };
