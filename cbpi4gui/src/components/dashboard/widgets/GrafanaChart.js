@@ -1,7 +1,7 @@
 import { ClickAwayListener, Dialog, DialogTitle, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import Button from "@mui/material/Button";
 import { TextField, DialogActions, DialogContent, Stack, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import { DateTimePicker } from '@mui/x-date-pickers';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -100,7 +100,7 @@ const GrafanaChart = ({ id }) => {
   const anchorRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [fromTime, setFromTime] = useState("now-12h");
+  const [fromTime, setFromTime] = useState(model.props?.timeframe || "now-12h");
   const [toTime, setToTime] = useState("now");
 
 
@@ -110,7 +110,7 @@ const GrafanaChart = ({ id }) => {
       load_data();
     }, (model.props?.refresh || 10) * 1000);
     return () => clearInterval(interval);
-  }, [model?.props?.url, model.props?.refresh]);
+  }, [model?.props?.url, model.props?.refresh, model.props?.timeframe]);
 
   const update = () => {
     load_data();
