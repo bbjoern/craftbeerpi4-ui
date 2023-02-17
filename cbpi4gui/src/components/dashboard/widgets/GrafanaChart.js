@@ -106,7 +106,7 @@ const GrafanaChart = ({ id }) => {
 
 
   useEffect(() => {
-    if (model.props.timeframe.substr(0,3) !== "now") {
+    if (model.props.timeframe?.substr(0,3) !== "now") {
       try {
       setFromTime(Date.parse(model.props.timeframe));
     }
