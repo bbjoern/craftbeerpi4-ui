@@ -100,11 +100,21 @@ const GrafanaChart = ({ id }) => {
   const anchorRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [fromTime, setFromTime] = useState(model.props?.timeframe || "now-12h");
+  const timeF = model.props?.timeframe;
+  const [fromTime, setFromTime] = useState( timeF || "now-12h");
   const [toTime, setToTime] = useState("now");
 
 
   useEffect(() => {
+    if (model.props.timeframe.substr(0,3) !== "now") {
+      try {
+      setFromTime(Date.parse(model.props.timeframe));
+    }
+      catch{
+        setFromTime("now-12h");
+    }
+    }
+    
     load_data();
     const interval = setInterval(() => {
       load_data();
@@ -121,6 +131,7 @@ const GrafanaChart = ({ id }) => {
     if (model?.props?.url) {
       setLoading(true);
       console.log(toTime)
+      console.log(fromTime)
       if(toTime === "now"){
         setCounter(counter => counter + 1);
       }
