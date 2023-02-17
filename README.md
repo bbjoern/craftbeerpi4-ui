@@ -21,6 +21,7 @@ http://localhost:8000#
 
 ### Changelog
 
+- 17.02.23: (0.3.3) Fix Bug in Grafana Widget
 - 01.02.23: (0.3.2) Bump Version to release
 - 29.01.23: (0.3.2.rc6) Axis styling on analytics page adapted to allow for better reading
 - 28.01.23: (0.3.2.rc5) Togglebutton import changed to new requirements on analytics page

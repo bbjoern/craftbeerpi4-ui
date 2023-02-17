@@ -1,9 +1,9 @@
 import { ClickAwayListener, Dialog, DialogTitle, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import Button from "@mui/material/Button";
 import { TextField, DialogActions, DialogContent, Stack, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import DateTimePicker from '@mui/lab/DateTimePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useRef, useState } from "react";
 import { useDraggable, useModel } from "../DashboardContext";
@@ -81,7 +81,7 @@ const SetRangeDialog = ({ open, onClose, onSubmit }) => {
           <Button onClick={onClose} variant="contained" color="secondary" autoFocus>
             Close
           </Button>
-          <Button onClick={() => onSubmit({fromT: Date.parse(fromTime), toT: Date.parse(toTime), box: checked})} variant="contained" color="Primary" autoFocus>
+          <Button onClick={() => onSubmit({fromT: Date.parse(fromTime), toT: Date.parse(toTime), box: checked})} variant="contained" /*color="Primary"*/ autoFocus>
             Submit
           </Button>
       </DialogActions>
