@@ -1,9 +1,9 @@
 import { ClickAwayListener, Dialog, DialogTitle, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
 import Button from "@mui/material/Button";
 import { TextField, DialogActions, DialogContent, Stack, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import DateTimePicker from '@mui/lab/DateTimePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useEffect, useRef, useState } from "react";
 import { useDraggable, useModel } from "../DashboardContext";
@@ -81,7 +81,7 @@ const SetRangeDialog = ({ open, onClose, onSubmit }) => {
           <Button onClick={onClose} variant="contained" color="secondary" autoFocus>
             Close
           </Button>
-          <Button onClick={() => onSubmit({fromT: Date.parse(fromTime), toT: Date.parse(toTime), box: checked})} variant="contained" color="Primary" autoFocus>
+          <Button onClick={() => onSubmit({fromT: Date.parse(fromTime), toT: Date.parse(toTime), box: checked})} variant="contained" /*color="Primary"*/ autoFocus>
             Submit
           </Button>
       </DialogActions>
@@ -100,17 +100,27 @@ const GrafanaChart = ({ id }) => {
   const anchorRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [fromTime, setFromTime] = useState("now-12h");
+  const timeF = model.props?.timeframe;
+  const [fromTime, setFromTime] = useState( timeF || "now-12h");
   const [toTime, setToTime] = useState("now");
 
 
   useEffect(() => {
+    if (model.props.timeframe?.substr(0,3) !== "now") {
+      try {
+      setFromTime(Date.parse(model.props.timeframe));
+    }
+      catch{
+        setFromTime("now-12h");
+    }
+    }
+    
     load_data();
     const interval = setInterval(() => {
       load_data();
     }, (model.props?.refresh || 10) * 1000);
     return () => clearInterval(interval);
-  }, [model?.props?.url, model.props?.refresh]);
+  }, [model?.props?.url, model.props?.refresh, model.props?.timeframe]);
 
   const update = () => {
     load_data();
@@ -120,7 +130,8 @@ const GrafanaChart = ({ id }) => {
   const load_data = () => {
     if (model?.props?.url) {
       setLoading(true);
-      console.log(toTime)
+      //console.log(toTime)
+      //console.log(fromTime)
       if(toTime === "now"){
         setCounter(counter => counter + 1);
       }
