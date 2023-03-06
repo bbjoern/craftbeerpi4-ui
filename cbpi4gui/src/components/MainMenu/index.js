@@ -11,7 +11,7 @@ import React, {useRef, useLayoutEffect, useState} from "react";
 import "../../App.css";
 import { configapi } from "../data/configapi";
 import Menu from "../util/Menu";
-import logo from "../../images/cbpi_no_border.png";
+import logo from "../../images/dattheikendoerper-logo.png";
 
 
 
@@ -120,7 +120,7 @@ const MainMenu = () => {
   const navBarRef = useRef();
 //  const [appBarHeight, setAppBarHeight] = useState(64);
   const [open, setOpen] = useState(false);
-  const [brewery,setBrewery] = useState("CraftBeerPi 4.0");
+  const [brewery,setBrewery] = useState("DATT HEIKENDÖRPER");
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -154,7 +154,7 @@ return (
                   <MenuIcon />
                 </IconButton>
                 <div className={classes.title} style={{ display: "flex", alignItems: "center", flexDirection: "row" }}>
-                  <img width={30} src={logo} style={{ marginRight: 10 }} alt="CBPi Logo"/>
+                  <img width={60} src={logo} style={{ marginRight: 10 }} alt="CBPi Logo"/>
                   <Typography component="h1" variant="h4" color="inherit" noWrap>
                     {brewery}
                   </Typography>

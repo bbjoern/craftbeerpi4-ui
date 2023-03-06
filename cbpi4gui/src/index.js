@@ -19,13 +19,13 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: "#00FF00"
+      main: "#fff"
     },
     secondary: pink,
   },
   typography: {
     fontFamily: [
-      'Advent Pro',
+      'Anton',
     ].join(','),
   },
   components: {
