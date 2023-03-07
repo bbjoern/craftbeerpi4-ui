@@ -146,7 +146,7 @@ export const widget_list = [
     icon: ShowChartIcon,
     props: [
       { name: "sensor", default: "", type: "sensor" },
-      { name: "linecolor", default: "#00FF00", type: "text" },
+      { name: "linecolor", default: "#fdf128", type: "text" },
       { name: "refresh", default: 10, type: "number" },
       { name: "width", default: 100, type: "text" }, 
       { name: "height", default: 100, type: "text" }
